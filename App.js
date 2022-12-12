@@ -5,7 +5,7 @@ LogBox.ignoreAllLogs();
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NativeBaseProvider, Text, Box } from "native-base";
+import { NativeBaseProvider } from "native-base";
 import LandingScreen from "./screens/LandingScreen";
 import Presentation1Screen from "./screens/Presentation1Screen";
 import Presentation2Screen from "./screens/Presentation2Screen";
@@ -42,9 +42,7 @@ export default function App() {
           <Stack.Screen name="Presentation4" component={Presentation4Screen} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Search" component={SearchScreen} />
-
           <Stack.Screen name="Signup" component={SignupScreen} />
-
           <Stack.Screen name="TabNavigator" component={TabNavigator} />
         </Stack.Navigator>
       </NavigationContainer>

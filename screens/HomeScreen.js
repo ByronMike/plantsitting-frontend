@@ -7,15 +7,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { Modal } from "native-base";
 import { useState } from "react";
-import { NativeBaseProvider } from "native-base";
 
 export default function HomeScreen({ navigation }) {
-  const [showModal, setShowModal] = useState(false);
-  const [signinUsername, setSigninUsername] = useState("");
-  const [signinPassword, setSigninPassword] = useState("");
-
   return (
     <View style={styles.container}>
       <Image
@@ -69,7 +63,7 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={styles.blocregister}>
-        <TouchableOpacity onPress={() => setShowModal(true)}>
+        <TouchableOpacity onPress={() => navigation.navigate("Landing")}>
           <Text style={styles.register}>
             Vous avez déjà un compte ? Connectez-vous
           </Text>
