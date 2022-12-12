@@ -28,7 +28,7 @@ export default function SignupScreen({ navigation }) {
     fetch("http://10.2.1.198:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, lastName, email, password }),
+      body: JSON.stringify({ firstName, lastName, email, zipCode, password }),
     })
       .then((response) => response.json())
       .then((data) => {
