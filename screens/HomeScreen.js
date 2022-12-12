@@ -6,16 +6,10 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { Modal } from "native-base";
 import { useState } from "react";
-import { NativeBaseProvider } from "native-base";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function HomeScreen({ navigation }) {
-  const [showModal, setShowModal] = useState(false);
-  const [signinUsername, setSigninUsername] = useState("");
-  const [signinPassword, setSigninPassword] = useState("");
-
   return (
     <View style={styles.container}>
       <Image
@@ -33,12 +27,7 @@ export default function HomeScreen({ navigation }) {
               Je <Text style={styles.boutoncherche}>CHERCHE</Text> {"\n"}un
               plant-sitter
             </Text>
-            <FontAwesome
-              icon="thin"
-              name="arrow-right"
-              size={20}
-              color="#DDA15E"
-            />
+            <FontAwesome name="arrow-right" size={20} color="#DDA15E" />
           </View>
           <View style={styles.bottom}>
             <Text style={styles.texteinfo}>
@@ -69,7 +58,7 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={styles.blocregister}>
-        <TouchableOpacity onPress={() => setShowModal(true)}>
+        <TouchableOpacity onPress={() => navigation.navigate("Landing")}>
           <Text style={styles.register}>
             Vous avez déjà un compte ? Connectez-vous
           </Text>
@@ -100,7 +89,6 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "600",
-    lineHeight: "26px",
     color: "#283618",
   },
   textdemande: {
@@ -108,7 +96,6 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "700",
     fontSize: "32px",
-    lineHeight: "41px",
     letterSpacing: "-0.03em",
     color: "#283618",
   },
@@ -124,7 +111,7 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 1,
-    alignItems: "start-flex",
+    alignItems: "flex-start",
     justifyContent: "center",
     backgroundColor: "#F6F5F1",
     flexDirection: "row",
@@ -134,7 +121,6 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "600",
     fontSize: 21,
-    lineHeight: 26,
     color: "#283618",
     width: 250,
     height: 250,
@@ -148,7 +134,7 @@ const styles = StyleSheet.create({
   },
   bottom: {
     flex: 1,
-    alignItems: "start-flex",
+    alignItems: "flex-start",
     justifyContent: "center",
   },
   texteinfo: {
@@ -156,7 +142,6 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "300",
     fontSize: 15,
-    lineHeight: 17,
     color: "#20232a",
   },
   blocregister: {
@@ -170,7 +155,6 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "300",
     fontSize: 15,
-    lineHeight: 17,
     color: "#20232a",
     textDecorationLine: "underline",
   },

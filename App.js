@@ -6,8 +6,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeBaseProvider } from "native-base";
-
 import LandingScreen from "./screens/LandingScreen";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
 import Presentation1Screen from "./screens/Presentation1Screen";
 import Presentation2Screen from "./screens/Presentation2Screen";
 import Presentation3Screen from "./screens/Presentation3Screen";
@@ -15,6 +16,7 @@ import Presentation4Screen from "./screens/Presentation4Screen";
 import SigninScreen from "./screens/SigninScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
 import MapScreen from "./screens/MapScreen";
+
 // ! A intégrer dans MapScreen
 import ListingScreen from "./screens/ListingScreen";
 import Plantsitter1Screen from "./screens/Plantsitter1Screen";
