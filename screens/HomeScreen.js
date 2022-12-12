@@ -89,24 +89,16 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "600",
-<<<<<<< HEAD
-=======
     lineHeight: 26,
->>>>>>> 7c84836363d166b688ec55141923795c40fa1588
     color: "#283618",
   },
   textdemande: {
     fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "700",
-<<<<<<< HEAD
-    fontSize: "32px",
-    letterSpacing: "-0.03em",
-=======
     fontSize: 32,
     lineHeight: 41,
     letterSpacing: -0.03,
->>>>>>> 7c84836363d166b688ec55141923795c40fa1588
     color: "#283618",
   },
   recherche: {
