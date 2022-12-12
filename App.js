@@ -6,6 +6,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeBaseProvider } from "native-base";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
 import LandingScreen from "./screens/LandingScreen";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 

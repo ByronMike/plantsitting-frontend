@@ -18,7 +18,7 @@ export default function HomeScreen({ navigation }) {
       />
       <View style={styles.bloctext}>
         <Text style={styles.textbienvenue}>Hello 👋 </Text>
-        <Text style={styles.textdemande}>Que cherchez-vous aujourd’hui ? </Text>
+        <Text style={styles.textdemande}>Que cherchez-vous aujourd'hui ? </Text>
       </View>
       <View style={styles.blocchoix}>
         <TouchableOpacity style={styles.recherche}>
@@ -89,14 +89,24 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "600",
+<<<<<<< HEAD
+=======
+    lineHeight: 26,
+>>>>>>> 7c84836363d166b688ec55141923795c40fa1588
     color: "#283618",
   },
   textdemande: {
     fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "700",
+<<<<<<< HEAD
     fontSize: "32px",
     letterSpacing: "-0.03em",
+=======
+    fontSize: 32,
+    lineHeight: 41,
+    letterSpacing: -0.03,
+>>>>>>> 7c84836363d166b688ec55141923795c40fa1588
     color: "#283618",
   },
   recherche: {
