@@ -3,19 +3,20 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   SafeAreaView,
   TouchableOpacity,
   Image,
   ScrollView,
+  useWindowDimensions,
 } from "react-native";
+import { Input } from "native-base";
 import { useState } from "react";
 // import { useDispatch } from "react-redux";
 // import { login } from "../reducers/user";
 
 export default function SignupScreen({ navigation }) {
   // const dispatch = useDispatch();
-
+  const { height, width } = useWindowDimensions();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -54,6 +55,7 @@ export default function SignupScreen({ navigation }) {
           contentContainerStyle={{
             flexGrow: 1,
             justifyContent: "center",
+            alignItems: "center",
             width: "100%",
           }}
         >
@@ -61,62 +63,87 @@ export default function SignupScreen({ navigation }) {
             style={styles.image}
             source={require("../assets/logo-basic.png")}
           />
-          <Text>s'enregistrer ou S'inscrire</Text>
-          <Text>Prenom:</Text>
-          <TextInput
-            style={styles.input}
-            name="firstName"
-            type="firsName"
-            value={firstName}
-            onChangeText={(value) => setFirstName(value)}
-          />
-          <Text>Nom:</Text>
-          <TextInput
-            style={styles.input}
-            name="lastName"
-            type="lastName"
-            value={lastName}
-            onChangeText={(value) => setLastName(value)}
-          />
-          <Text>Email:</Text>
-          <TextInput
-            style={styles.input}
-            name="email"
-            type="email"
-            value={email}
-            onChangeText={(value) => setEmail(value)}
-          />
-          <Text>Numéro de téléphone:</Text>
-          <TextInput
-            style={styles.input}
-            name="telephone"
-            type="telephone"
-            value={telephone}
-            onChangeText={(value) => setTelephone(value)}
-          />
-          <Text>Code postal:</Text>
-          <TextInput
-            style={styles.input}
-            name="zipCode"
-            type="zipCode"
-            value={telephone}
-            onChangeText={(value) => setZipCode(value)}
-          />
-          <Text>Mot de passe:</Text>
-          <TextInput
-            style={styles.input}
-            name="password"
-            type="password"
-            value={password}
-            onChangeText={(value) => setPassword(value)}
-          />
-          <TouchableOpacity
-            onPress={() => handleSubmit()}
-            style={styles.button}
-            activeOpacity={0.8}
-          >
-            <Text>Inscription</Text>
-          </TouchableOpacity>
+
+          <View style={styles.container2}>
+            <View style={{ ...styles.bloctexte, width: width * 0.85 }}>
+              <Text style={styles.textdemande}>S'inscrire</Text>
+            </View>
+            <View style={styles.blocinput}>
+              <Input
+                size="xl"
+                variant="underlined"
+                placeholder="Prenom"
+                style={styles.input}
+                name="firstName"
+                type="firsName"
+                value={firstName}
+                onChangeText={(value) => setFirstName(value)}
+              />
+
+              <Input
+                size="xl"
+                variant="underlined"
+                placeholder="Nom"
+                style={styles.input}
+                name="lastName"
+                type="lastName"
+                value={lastName}
+                onChangeText={(value) => setLastName(value)}
+              />
+
+              <Input
+                size="xl"
+                variant="underlined"
+                placeholder="Email"
+                style={styles.input}
+                name="email"
+                type="email"
+                value={email}
+                onChangeText={(value) => setEmail(value)}
+              />
+
+              <Input
+                size="xl"
+                variant="underlined"
+                placeholder="Téléphone"
+                style={styles.input}
+                name="telephone"
+                type="telephone"
+                value={telephone}
+                onChangeText={(value) => setTelephone(value)}
+              />
+
+              <Input
+                size="xl"
+                variant="underlined"
+                placeholder="Postal"
+                style={styles.input}
+                name="zipCode"
+                type="zipCode"
+                value={zipCode}
+                onChangeText={(value) => setZipCode(value)}
+              />
+
+              <Input
+                size="xl"
+                variant="underlined"
+                placeholder="Mot de passe"
+                style={styles.input}
+                name="password"
+                type="password"
+                value={password}
+                onChangeText={(value) => setPassword(value)}
+              />
+            </View>
+
+            <TouchableOpacity
+              onPress={() => handleSubmit()}
+              style={styles.button}
+              activeOpacity={0.8}
+            >
+              <Text>Inscription</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </SafeAreaView>
       <Button
@@ -129,8 +156,8 @@ export default function SignupScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   image: {
-    flex: 1,
-    justifyContent: "center",
+    width: "70%",
+    height: "20%",
     alignItems: "center",
   },
   container: {
@@ -138,6 +165,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
+  container2: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  },
+
+  bloctexte: {
+    flexDirection: "row",
+  },
+  blocimg: {},
+  blocinput: {},
   input: {
     flex: 1,
     justifyContent: "center",
@@ -147,5 +186,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  textdemande: {
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "700",
+    fontSize: "32px",
+    lineHeight: "41px",
+    letterSpacing: "-0.03em",
+    color: "#283618",
+  },
+  textInput: {
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "350",
+    fontSize: "20px",
+    lineHeight: "30px",
+    letterSpacing: "-0.03em",
+    color: "#283618",
   },
 });
