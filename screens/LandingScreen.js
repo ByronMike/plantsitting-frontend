@@ -6,7 +6,7 @@ export default function LandingScreen({ navigation }) {
       <Text>Landing Screen</Text>
       <Button
         title="Go to Presentation1 Screen"
-        onPress={() => navigation.navigate("Presentation1")}
+        onPress={() => navigation.navigate("TabNavigator")}
       />
       <Button
         title="Go to Presentation2 Screen"
@@ -22,11 +22,19 @@ export default function LandingScreen({ navigation }) {
       />
       <Button
         title="Go to Home Screen"
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("TabNavigator")}
       />
       <Button
         title="Go to Search Screen"
-        onPress={() => navigation.navigate("Search")}
+        onPress={() => navigation.navigate("TabNavigator", { screen: "Chercher" })}
+      />
+      <Button
+        title="Go to Messages Screen"
+        onPress={() => navigation.navigate("TabNavigator", { screen: "Messages" })}
+      />
+      <Button
+        title="Go to Profile Screen"
+        onPress={() => navigation.navigate("TabNavigator", { screen: "Profile" })}
       />
       <Button
         title="Go to Schedule Screen"
