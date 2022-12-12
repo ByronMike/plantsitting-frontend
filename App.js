@@ -13,6 +13,7 @@ import Presentation1Screen from "./screens/Presentation1Screen";
 import Presentation2Screen from "./screens/Presentation2Screen";
 import Presentation3Screen from "./screens/Presentation3Screen";
 import Presentation4Screen from "./screens/Presentation4Screen";
+import SigninScreen from "./screens/SigninScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
 import MapScreen from "./screens/MapScreen";
 // ! A intégrer dans MapScreen
@@ -30,6 +31,28 @@ import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
 import MessagesScreen from "./screens/MessagesScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+
+import { persistStore, persistReducer } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Provider } from "react-redux";
+import user from "./reducers/user";
+
+const reducers = combineReducers({ user });
+// ! Empêche le reducer user d'être sauvegardé dans le local storage
+const persistConfig = {
+  key: "PlantSitting",
+  storage: AsyncStorage,
+  blacklist: ["user"],
+};
+const store = configureStore({
+  reducer: persistReducer(persistConfig, reducers),
+  // Note : cette ligne permet de gérer tous type de language y compris le typescrit
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
+});
+const persistor = persistStore(store);
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,12 +80,12 @@ const TabNavigator = () => {
         tabBarActiveTintColor: "#FFFFFF",
         tabBarInactiveTintColor: "#808080",
         tabBarStyle: {
-          height:Platform.OS==='ios' ? 60 :  60,
+          height: Platform.OS === "ios" ? 60 : 60,
           paddingTop: 5,
           paddingBottom: 10,
-          backgroundColor: '#283618',
-          position: 'absolute',
-      },
+          backgroundColor: "#283618",
+          position: "absolute",
+        },
         headerShown: false,
       })}
     >
@@ -76,25 +99,45 @@ const TabNavigator = () => {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Landing" component={LandingScreen} />
-        <Stack.Screen name="Presentation1" component={Presentation1Screen} />
-        <Stack.Screen name="Presentation2" component={Presentation2Screen} />
-        <Stack.Screen name="Presentation3" component={Presentation3Screen} />
-        <Stack.Screen name="Presentation4" component={Presentation4Screen} />
-        <Stack.Screen name="Schedule" component={ScheduleScreen} />
-        <Stack.Screen name="Map" component={MapScreen} />
-        <Stack.Screen name="Listing" component={ListingScreen} />
-        <Stack.Screen name="Plantsitter1" component={Plantsitter1Screen} />
-        <Stack.Screen name="Plantsitter2" component={Plantsitter2Screen} />
-        <Stack.Screen name="Plantsitter3" component={Plantsitter3Screen} />
-        <Stack.Screen name="Signup" component={SignupScreen} />
-        <Stack.Screen name="Summary" component={SummaryScreen} />
-        <Stack.Screen name="Congratulation" component={CongratulationScreen} />
-        <Stack.Screen name="Assessment" component={AssessmentScreen} />
-        <Stack.Screen name="TabNavigator" component={TabNavigator} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Landing" component={LandingScreen} />
+            <Stack.Screen
+              name="Presentation1"
+              component={Presentation1Screen}
+            />
+            <Stack.Screen
+              name="Presentation2"
+              component={Presentation2Screen}
+            />
+            <Stack.Screen
+              name="Presentation3"
+              component={Presentation3Screen}
+            />
+            <Stack.Screen
+              name="Presentation4"
+              component={Presentation4Screen}
+            />
+            <Stack.Screen name="Signin" component={SigninScreen} />
+            <Stack.Screen name="Schedule" component={ScheduleScreen} />
+            <Stack.Screen name="Map" component={MapScreen} />
+            <Stack.Screen name="Listing" component={ListingScreen} />
+            <Stack.Screen name="Plantsitter1" component={Plantsitter1Screen} />
+            <Stack.Screen name="Plantsitter2" component={Plantsitter2Screen} />
+            <Stack.Screen name="Plantsitter3" component={Plantsitter3Screen} />
+            <Stack.Screen name="Signup" component={SignupScreen} />
+            <Stack.Screen name="Summary" component={SummaryScreen} />
+            <Stack.Screen
+              name="Congratulation"
+              component={CongratulationScreen}
+            />
+            <Stack.Screen name="Assessment" component={AssessmentScreen} />
+            <Stack.Screen name="TabNavigator" component={TabNavigator} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
   );
 }

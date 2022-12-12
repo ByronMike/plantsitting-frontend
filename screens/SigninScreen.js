@@ -1,15 +1,13 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
-import Home from "../components/Home";
 
-export default function HomeScreen({ navigation }) {
+export default function SigninScreen({ navigation }) {
  return (
    <View style={styles.container}>
-     <Text>Home Screen</Text>
+     <Text>Signin Screen</Text>
      <Button
        title="Go to Landing Screen"
        onPress={() => navigation.navigate('Landing')}
      />
-     <Home/>
    </View>
  );
 }

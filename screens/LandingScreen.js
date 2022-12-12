@@ -25,16 +25,26 @@ export default function LandingScreen({ navigation }) {
         onPress={() => navigation.navigate("TabNavigator")}
       />
       <Button
+        title="Go to Signin Screen"
+        onPress={() => navigation.navigate("Signin")}
+      />
+      <Button
         title="Go to Search Screen"
-        onPress={() => navigation.navigate("TabNavigator", { screen: "Chercher" })}
+        onPress={() =>
+          navigation.navigate("TabNavigator", { screen: "Chercher" })
+        }
       />
       <Button
         title="Go to Messages Screen"
-        onPress={() => navigation.navigate("TabNavigator", { screen: "Messages" })}
+        onPress={() =>
+          navigation.navigate("TabNavigator", { screen: "Messages" })
+        }
       />
       <Button
         title="Go to Profile Screen"
-        onPress={() => navigation.navigate("TabNavigator", { screen: "Profile" })}
+        onPress={() =>
+          navigation.navigate("TabNavigator", { screen: "Profile" })
+        }
       />
       <Button
         title="Go to Schedule Screen"

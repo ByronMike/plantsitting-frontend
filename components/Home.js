@@ -1,25 +1,35 @@
-import React from 'react'
+import { StyleSheet, Text, View } from "react-native";
+
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { testUser } from "../reducers/user";
 
 function Home() {
-    const [formProgress, setFormProgress] = useState(0);
-    const nextStep = () => {
-        setFormProgress(formProgress + 1)
-    }
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
 
-    if(formProgress==0) {
-        return 
-        <Step0 nextStep={nextStep}/>
-    }
+  useEffect(() => {
+    dispatch(testUser("test"));
+    console.log("userTest", user);
+  }, []);
 
-    if(formProgress==1) {
-        return 
-        <Step1 nextStep={nextStep}/>
-    }
+  // ! A rajouter pour gérer les screens sur une même tab (et enregistrer les données sur plusieurs screens)
+  // const [formProgress, setFormProgress] = useState(0);
+  // const nextStep = () => {
+  //   setFormProgress(formProgress + 1);
+  // };
 
+  // if (formProgress == 0) {
+  //   return;
+  //   <Step0 nextStep={nextStep} />;
+  // }
 
-  return (
-    <div>Home</div>
-  )
+  // if (formProgress == 1) {
+  //   return;
+  //   <Step1 nextStep={nextStep} />;
+  // }
+
+  return;
 }
 
-export default Home
+export default Home;
