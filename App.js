@@ -98,48 +98,56 @@ const TabNavigator = () => {
 
 export default function App() {
   return (
-
-<NativeBaseProvider> 
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Landing" component={LandingScreen} />
-            <Stack.Screen
-              name="Presentation1"
-              component={Presentation1Screen}
-            />
-            <Stack.Screen
-              name="Presentation2"
-              component={Presentation2Screen}
-            />
-            <Stack.Screen
-              name="Presentation3"
-              component={Presentation3Screen}
-            />
-            <Stack.Screen
-              name="Presentation4"
-              component={Presentation4Screen}
-            />
-            <Stack.Screen name="Signin" component={SigninScreen} />
-            <Stack.Screen name="Schedule" component={ScheduleScreen} />
-            <Stack.Screen name="Map" component={MapScreen} />
-            <Stack.Screen name="Listing" component={ListingScreen} />
-            <Stack.Screen name="Plantsitter1" component={Plantsitter1Screen} />
-            <Stack.Screen name="Plantsitter2" component={Plantsitter2Screen} />
-            <Stack.Screen name="Plantsitter3" component={Plantsitter3Screen} />
-            <Stack.Screen name="Signup" component={SignupScreen} />
-            <Stack.Screen name="Summary" component={SummaryScreen} />
-            <Stack.Screen
-              name="Congratulation"
-              component={CongratulationScreen}
-            />
-            <Stack.Screen name="Assessment" component={AssessmentScreen} />
-            <Stack.Screen name="TabNavigator" component={TabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </PersistGate>
-    </Provider>
- </NativeBaseProvider>
+    <NativeBaseProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <NavigationContainer>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="Landing" component={LandingScreen} />
+              <Stack.Screen
+                name="Presentation1"
+                component={Presentation1Screen}
+              />
+              <Stack.Screen
+                name="Presentation2"
+                component={Presentation2Screen}
+              />
+              <Stack.Screen
+                name="Presentation3"
+                component={Presentation3Screen}
+              />
+              <Stack.Screen
+                name="Presentation4"
+                component={Presentation4Screen}
+              />
+              <Stack.Screen name="Signin" component={SigninScreen} />
+              <Stack.Screen name="Schedule" component={ScheduleScreen} />
+              <Stack.Screen name="Map" component={MapScreen} />
+              <Stack.Screen name="Listing" component={ListingScreen} />
+              <Stack.Screen
+                name="Plantsitter1"
+                component={Plantsitter1Screen}
+              />
+              <Stack.Screen
+                name="Plantsitter2"
+                component={Plantsitter2Screen}
+              />
+              <Stack.Screen
+                name="Plantsitter3"
+                component={Plantsitter3Screen}
+              />
+              <Stack.Screen name="Signup" component={SignupScreen} />
+              <Stack.Screen name="Summary" component={SummaryScreen} />
+              <Stack.Screen
+                name="Congratulation"
+                component={CongratulationScreen}
+              />
+              <Stack.Screen name="Assessment" component={AssessmentScreen} />
+              <Stack.Screen name="TabNavigator" component={TabNavigator} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PersistGate>
+      </Provider>
+    </NativeBaseProvider>
   );
 }
