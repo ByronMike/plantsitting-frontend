@@ -10,6 +10,7 @@ import { NativeBaseProvider } from "native-base";
 import LandingScreen from "./screens/LandingScreen";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
+import FirstScreen from "./screens/FirstScreen";
 import Presentation1Screen from "./screens/Presentation1Screen";
 import Presentation2Screen from "./screens/Presentation2Screen";
 import Presentation3Screen from "./screens/Presentation3Screen";
@@ -108,6 +109,10 @@ export default function App() {
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Landing" component={LandingScreen} />
+              <Stack.Screen
+                name="First"
+                component={FirstScreen}
+              />
               <Stack.Screen
                 name="Presentation1"
                 component={Presentation1Screen}
