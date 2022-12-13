@@ -6,7 +6,9 @@ export default function Presentation2Screen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.buttonskip}>
-        <ButtonSkip />
+        <TouchableOpacity onPress={() => navigation.navigate("TabNavigator")}>
+          <ButtonSkip />
+        </TouchableOpacity>
       </View>
       <Image
         style={styles.image}
@@ -25,7 +27,12 @@ export default function Presentation2Screen({ navigation }) {
         </Text>
       </View>
       <View style={styles.buttonnext}>
-        <ButtonNext />
+        <TouchableOpacity
+          style={styles.touchableopacity}
+          onPress={() => navigation.navigate("Presentation3")}
+        >
+          <ButtonNext />
+        </TouchableOpacity>
       </View>
     </View>
   );

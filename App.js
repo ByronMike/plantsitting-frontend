@@ -109,10 +109,7 @@ export default function App() {
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Landing" component={LandingScreen} />
-              <Stack.Screen
-                name="First"
-                component={FirstScreen}
-              />
+              <Stack.Screen name="First" component={FirstScreen} />
               <Stack.Screen
                 name="Presentation1"
                 component={Presentation1Screen}
@@ -120,14 +117,26 @@ export default function App() {
               <Stack.Screen
                 name="Presentation2"
                 component={Presentation2Screen}
+                options={{
+                  animationTypeForReplace: "push",
+                  animation: "slide_from_right",
+                }}
               />
               <Stack.Screen
                 name="Presentation3"
                 component={Presentation3Screen}
+                options={{
+                  animationTypeForReplace: "push",
+                  animation: "slide_from_right",
+                }}
               />
               <Stack.Screen
                 name="Presentation4"
                 component={Presentation4Screen}
+                options={{
+                  animationTypeForReplace: "push",
+                  animation: "slide_from_right",
+                }}
               />
               <Stack.Screen name="Signin" component={SigninScreen} />
               <Stack.Screen name="Schedule" component={ScheduleScreen} />

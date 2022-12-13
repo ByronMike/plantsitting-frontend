@@ -1,7 +1,13 @@
 import { Column } from "native-base";
+import { useEffect } from "react";
 import { Button, StyleSheet, Text, View, Image } from "react-native";
 
 export default function FirstScreen({ navigation }) {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate("Presentation1");
+    }, 1500);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
