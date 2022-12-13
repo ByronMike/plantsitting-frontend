@@ -10,7 +10,7 @@ export default function LandingScreen({ navigation }) {
       />
       <Button
         title="Go to Presentation1 Screen"
-        onPress={() => navigation.navigate("TabNavigator")}
+        onPress={() => navigation.navigate("Presentation1")}
       />
       <Button
         title="Go to Presentation2 Screen"
