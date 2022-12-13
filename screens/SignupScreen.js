@@ -31,7 +31,7 @@ export default function SignupScreen({ navigation }) {
   // Function fetch pour s'inscrire
 
   const handleSubmit = () => {
-    fetch("http://10.2.1.198:3000/users/signup", {
+    fetch("http://10.2.2.34:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstName, lastName, email, zipCode, password }),

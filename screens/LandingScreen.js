@@ -5,8 +5,12 @@ export default function LandingScreen({ navigation }) {
     <View style={styles.container}>
       <Text>Landing Screen</Text>
       <Button
+        title="Go to First Screen"
+        onPress={() => navigation.navigate("First")}
+      />
+      <Button
         title="Go to Presentation1 Screen"
-        onPress={() => navigation.navigate("TabNavigator")}
+        onPress={() => navigation.navigate("Presentation1")}
       />
       <Button
         title="Go to Presentation2 Screen"

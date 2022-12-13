@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { login } from "../reducers/userconnexion";
 
-export default function AssementScreen({ navigation }) {
+export default function AssessmentScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value.firstName);
   const { height, width } = useWindowDimensions();
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 15,
     lineHeight: 30,
-    letterSpacing: "1em",
+    letterSpacing: 1,
     textTransform: "uppercase",
   },
   containerbouton: {
