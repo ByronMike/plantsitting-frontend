@@ -14,7 +14,7 @@ import { Input } from "native-base";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/userconnexion";
-//TEST
+//TEST blabla
 
 export default function SignupScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ export default function SignupScreen({ navigation }) {
   const [telephone, setTelephone] = useState("");
   const [mailIsOk, setMailIsOk] = useState(true);
   const [telIsOk, setTelIsOk] = useState(true);
+  const [tat, setTata] = useState("");
 
   // Function fetch pour s'inscrire
 
