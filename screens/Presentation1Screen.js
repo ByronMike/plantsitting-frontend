@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { IconButton } from "native-base";
+import ButtonNext from "../components/buttons/ButtonNext";
+import ButtonSkip from "../components/buttons/ButtonSkip";
 
 export default function Presentation1Screen({ navigation }) {
   return (
     <View style={styles.container}>
+      <View style={styles.buttonskip}>
+        <ButtonSkip/>
+      </View>
       <Image
         style={styles.image}
         source={require("../assets/illuplantsitting-2.png")}
@@ -18,9 +21,9 @@ export default function Presentation1Screen({ navigation }) {
         <Text style={styles.textsecondaire}>
           Arrondissez vos fins de mois en arrosant les plantes de vos voisins.
         </Text>
-        <TouchableOpacity backgroundColor={"#ffffff"}>
-          <FontAwesome name="chevron-right" />
-        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonnext}>
+        <ButtonNext />
       </View>
     </View>
   );
@@ -29,14 +32,22 @@ export default function Presentation1Screen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "#F6F5F1",
+    paddingTop: 40,
+    paddingBottom: 25,
+  },
+  buttonskip: {
+    width: "100%",
+    height: "10%",
+    justifyContent: "flex-start",
+    alignItems: "flex-end",
+    marginRight: 45,
   },
   image: {
     width: "100%",
     height: "30%",
-    marginBottom: 20,
   },
 
   bloctext: {
@@ -50,7 +61,7 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "700",
     lineHeight: 50,
-    color: "#283618",
+    color: "#000000",
   },
   textspan: {
     fontSize: 45,
@@ -67,7 +78,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 18,
     letterSpacing: -0.03,
-    color: "#524B6B",
+    color: "#535763",
     marginTop: 15,
+  },
+  touchableopacity: {
+    backgroundColor: "#DDA15E",
+    borderRadius: 22,
+    width: 44,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonnext: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
