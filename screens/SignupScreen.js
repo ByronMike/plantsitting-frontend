@@ -13,7 +13,7 @@ import {
 import { Input } from "native-base";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../reducers/userConnexion";
+import { login } from "../reducers/userconnexion";
 
 export default function SignupScreen({ navigation }) {
   const dispatch = useDispatch();
