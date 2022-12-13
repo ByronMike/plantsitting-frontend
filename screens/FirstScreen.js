@@ -5,7 +5,7 @@ export default function FirstScreen({ navigation }) {
    <View style={styles.container}>
     <View>
     <Image
-        source={require("../assets/logo-basic.png")}
+        source={require("../assets/logo-white-plantssiting.png")}
         // 2) Pour afficher la map sur tout l'écran : resizeMode="contain"
         resizeMode="contain" 
         style={styles.image}

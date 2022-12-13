@@ -41,9 +41,9 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Provider } from "react-redux";
 import user from "./reducers/user";
-import userconnexion from "./reducers/userconnexion";
+import userConnexion from "./reducers/userConnexion";
 
-const reducers = combineReducers({ user, userconnexion });
+const reducers = combineReducers({ user, userConnexion });
 // ! Empêche le reducer user d'être sauvegardé dans le local storage
 const persistConfig = {
   key: "PlantSitting",
