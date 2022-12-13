@@ -1,25 +1,21 @@
-import { Button, StyleSheet, Text, View, Image } from 'react-native';
+import { Column } from "native-base";
+import { Button, StyleSheet, Text, View, Image } from "react-native";
 
 export default function FirstScreen({ navigation }) {
- return (
-   <View style={styles.container}>
-    <View>
-    <Image
-        source={require("../assets/logo-white-plantssiting.png")}
-        // 2) Pour afficher la map sur tout l'écran : resizeMode="contain"
-        resizeMode="contain" 
-        style={styles.image}
-      ></Image>
+  return (
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.image}
+          source={require("../assets/logo-white-plantssiting.png")}
+          resizeMode="center"
+        />
+      </View>
+      <View>
+        <Text style={styles.text}>Marseille | Paris | London</Text>
+      </View>
     </View>
-    <View>
-     <Text>First Screen</Text>
-     <Button
-       title="Go to Landing Screen"
-       onPress={() => navigation.navigate('Landing')}
-     />
-     </View>
-   </View>
- );
+  );
 }
 
 const styles = StyleSheet.create({
@@ -29,7 +25,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  images : {
-
-  }
+  imageContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: "70%",
+    height: "50%",
+  },
+  text: {
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontSize: 12,
+    color: "#FEFAE0",
+    marginTop: -115,
+  },
 });

@@ -41,9 +41,9 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Provider } from "react-redux";
 import user from "./reducers/user";
-import userConnexion from "./reducers/userConnexion";
+import userconnexion from "./reducers/userconnexion";
 
-const reducers = combineReducers({ user, userConnexion });
+const reducers = combineReducers({ user, userconnexion });
 // ! Empêche le reducer user d'être sauvegardé dans le local storage
 const persistConfig = {
   key: "PlantSitting",
@@ -84,9 +84,9 @@ const TabNavigator = () => {
         tabBarActiveTintColor: "#FFFFFF",
         tabBarInactiveTintColor: "#808080",
         tabBarStyle: {
-          height: Platform.OS === "ios" ? 60 : 60,
+          height: Platform.OS === "ios" ? 75 : 60,
           paddingTop: 5,
-          paddingBottom: 10,
+          paddingBottom: Platform.OS === "ios" ? 23 : 10,
           backgroundColor: "#283618",
           position: "absolute",
         },
