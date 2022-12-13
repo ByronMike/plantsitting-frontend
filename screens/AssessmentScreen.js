@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 15,
     lineHeight: 30,
-    letterSpacing: "1em",
+    letterSpacing: 1,
     textTransform: "uppercase",
   },
   containerbouton: {
