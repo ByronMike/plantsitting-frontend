@@ -12,11 +12,11 @@ import {
 } from "react-native";
 import { Input } from "native-base";
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { login } from "../reducers/user";
+import { useDispatch } from "react-redux";
+import { login } from "../reducers/userConnexion";
 
 export default function SignupScreen({ navigation }) {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { height, width } = useWindowDimensions();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -37,16 +37,16 @@ export default function SignupScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        data.result;
-        // && dispatch(login({ token: data.token, username, firstName } ));
+        data.result &&
+          dispatch(login({ token: data.token, firstName: firstName }));
       });
-    // Function pour checker si le mail est bien sur un format mail
+    // Function pour checker si le mail est un format mail
 
     const emailReg = new RegExp(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i
     );
 
-    // Function pour checker si le telephone est bien sur un format tel francais
+    // Function pour checker si le telephone est un format tel francais
 
     const telReg = new RegExp(
       /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/i
@@ -105,6 +105,13 @@ export default function SignupScreen({ navigation }) {
               <View style={{ ...styles.bloctexte, width: width * 0.85 }}>
                 <Text style={styles.textdemande}>S'inscrire 😎</Text>
               </View>
+              <View style={styles.blocregister}>
+                <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
+                  <Text style={styles.register}>
+                    Vous avez déjà un compte ? Connectez-vous
+                  </Text>
+                </TouchableOpacity>
+              </View>
               <View style={styles.blocinput}>
                 <Input
                   size="xl"
@@ -116,7 +123,7 @@ export default function SignupScreen({ navigation }) {
                   value={firstName}
                   onChangeText={(value) => setFirstName(value)}
                 />
-
+                <Text></Text>
                 <Input
                   size="xl"
                   variant="underlined"
@@ -127,7 +134,7 @@ export default function SignupScreen({ navigation }) {
                   value={lastName}
                   onChangeText={(value) => setLastName(value)}
                 />
-
+                <Text></Text>
                 <Input
                   size="xl"
                   variant="underlined"
@@ -139,7 +146,6 @@ export default function SignupScreen({ navigation }) {
                   onChangeText={(value) => setEmail(value)}
                 />
                 <Text>{alerteMail}</Text>
-
                 <Input
                   size="xl"
                   variant="underlined"
@@ -163,7 +169,7 @@ export default function SignupScreen({ navigation }) {
                   value={zipCode}
                   onChangeText={(value) => setZipCode(value)}
                 />
-
+                <Text></Text>
                 <Input
                   size="xl"
                   variant="underlined"
@@ -175,13 +181,13 @@ export default function SignupScreen({ navigation }) {
                   onChangeText={(value) => setPassword(value)}
                 />
               </View>
-
+              <Text></Text>
               <View style={styles.containerbouton}>
                 <TouchableOpacity
-                  style={styles.recherche}
+                  style={styles.registerbtn}
                   onPress={() => handleSubmit()}
                 >
-                  <Text style={styles.titrerecherche}>S'inscrire</Text>
+                  <Text style={styles.titreregister}>S'inscrire</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -226,12 +232,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 25,
   },
-  recherche: {
+  registerbtn: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#DDA15E",
-    marginTop: 65,
+    marginTop: 25,
     height: 65,
     padding: 20,
     width: 250,
@@ -256,11 +262,11 @@ const styles = StyleSheet.create({
     color: "#283618",
   },
 
-  titrerecherche: {
+  titreregister: {
     color: "white",
     fontFamily: "Montserrat",
     fontStyle: "normal",
-    fontWeight: "500",
+    fontWeight: "700",
     fontSize: "15px",
     lineHeight: "30px",
     letterSpacing: "1em",
@@ -274,5 +280,19 @@ const styles = StyleSheet.create({
   textAlerte: {
     color: "red",
     alignItems: "left",
+  },
+
+  blocregister: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  register: {
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "300",
+    fontSize: 15,
+    color: "#20232a",
+    textDecorationLine: "underline",
   },
 });

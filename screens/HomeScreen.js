@@ -6,10 +6,15 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function HomeScreen({ navigation }) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userconnexion.value.firstName);
+
+  console.log("user", user);
+
   return (
     <View style={styles.container}>
       <Image
@@ -17,7 +22,7 @@ export default function HomeScreen({ navigation }) {
         source={require("../assets/logo-basic.png")}
       />
       <View style={styles.bloctext}>
-        <Text style={styles.textbienvenue}>Hello 👋 </Text>
+        <Text style={styles.textbienvenue}>Hello {user}👋 </Text>
         <Text style={styles.textdemande}>Que cherchez-vous aujourd'hui ? </Text>
       </View>
       <View style={styles.blocchoix}>
@@ -58,7 +63,7 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={styles.blocregister}>
-        <TouchableOpacity onPress={() => navigation.navigate("Landing")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
           <Text style={styles.register}>
             Vous avez déjà un compte ? Connectez-vous
           </Text>
