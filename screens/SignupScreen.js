@@ -32,7 +32,7 @@ export default function SignupScreen({ navigation }) {
   // Function fetch pour s'inscrire
 
   const handleSubmit = () => {
-    fetch("http://10.2.0.177:3000/users/signup", {
+    fetch("http://10.2.1.198:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstName, lastName, email, zipCode, password }),
@@ -84,8 +84,8 @@ export default function SignupScreen({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      behavior="position"
-      style={{ alignItems: "center", flex: 0, justifyContent: "center" }}
+      behavior={Platform.OS == "ios" ? "padding" : "position"}
+      style={styles.container}
     >
       <View style={styles.container}>
         <SafeAreaView>
@@ -226,13 +226,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
     width: "100%",
-    marginTop: 15,
+    marginTop: 6,
   },
   input: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 25,
+    marginTop: 15,
   },
   registerbtn: {
     flex: 1,
