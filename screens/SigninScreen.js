@@ -59,80 +59,85 @@ export default function SigninScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
-          <Image
-            style={styles.image}
-            source={require("../assets/logo-basic.png")}
-          />
+    <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "position"}
+      style={styles.container}
+    >
+      <View style={styles.container}>
+        <SafeAreaView>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              flexGrow: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Image
+              style={styles.image}
+              source={require("../assets/logo-basic.png")}
+            />
 
-          <View style={styles.container2}>
-            <View style={{ ...styles.bloctexte, width: width * 0.85 }}>
-              <Text style={styles.textdemande}>Se connecter 👋</Text>
-            </View>
-            <View style={styles.blocregister}>
-              <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-                <Text style={styles.register}>
-                  Vous n'avez pas de compte ? Inscrivez-vous
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.blocinput}>
-              <Input
-                size="xl"
-                variant="underlined"
-                placeholder="Prénom"
-                style={styles.input}
-                name="firstName"
-                type="firsName"
-                value={firstName}
-                onChangeText={(value) => setFirstName(value)}
-              />
+            <View style={styles.container2}>
+              <View style={{ ...styles.bloctexte, width: width * 0.85 }}>
+                <Text style={styles.textdemande}>Se connecter 👋</Text>
+              </View>
+              <View style={styles.blocregister}>
+                <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                  <Text style={styles.register}>
+                    Vous n'avez pas de compte ? Inscrivez-vous
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.blocinput}>
+                <Input
+                  size="xl"
+                  variant="underlined"
+                  placeholder="Prénom"
+                  style={styles.input}
+                  name="firstName"
+                  type="firsName"
+                  value={firstName}
+                  onChangeText={(value) => setFirstName(value)}
+                />
+                <Text></Text>
+                <Input
+                  size="xl"
+                  variant="underlined"
+                  placeholder="Email"
+                  style={styles.input}
+                  name="email"
+                  type="email"
+                  value={email}
+                  onChangeText={(value) => setEmail(value)}
+                />
+                <Text>{alerteMail}</Text>
+                <Input
+                  size="xl"
+                  variant="underlined"
+                  placeholder="Mot de passe"
+                  style={styles.input}
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChangeText={(value) => setPassword(value)}
+                />
+              </View>
               <Text></Text>
-              <Input
-                size="xl"
-                variant="underlined"
-                placeholder="Email"
-                style={styles.input}
-                name="email"
-                type="email"
-                value={email}
-                onChangeText={(value) => setEmail(value)}
-              />
-              <Text>{alerteMail}</Text>
-              <Input
-                size="xl"
-                variant="underlined"
-                placeholder="Mot de passe"
-                style={styles.input}
-                name="password"
-                type="password"
-                value={password}
-                onChangeText={(value) => setPassword(value)}
-              />
+              <View style={styles.containerbouton}>
+                <TouchableOpacity
+                  style={styles.registerbtn}
+                  onPress={() => handleSubmit()}
+                >
+                  <Text style={styles.titreregister}>Se connecter</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <Text></Text>
-            <View style={styles.containerbouton}>
-              <TouchableOpacity
-                style={styles.registerbtn}
-                onPress={() => handleSubmit()}
-              >
-                <Text style={styles.titreregister}>Se connecter</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </View>
+          </ScrollView>
+        </SafeAreaView>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 

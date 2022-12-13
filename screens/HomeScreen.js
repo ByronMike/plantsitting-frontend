@@ -8,12 +8,42 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { logout } from "../reducers/userconnexion";
 
 export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userconnexion.value.firstName);
+  const user = useSelector((state) => state.userconnexion.value);
 
-  console.log("user", user);
+  // fonction pour se déconnecter
+
+  const handleLogout = () => {
+    console.log("click");
+    dispatch(logout());
+    console.log(user.token);
+  };
+
+  // affichage logout ou connectez-vous
+
+  let userSection;
+  if (user.token) {
+    userSection = (
+      <View style={styles.blocregister}>
+        <TouchableOpacity onPress={() => handleLogout()}>
+          <Text style={styles.register}>Se déconnecter </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  } else {
+    userSection = (
+      <View style={styles.blocregister}>
+        <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
+          <Text style={styles.register}>
+            Vous avez déjà un compte ? Connectez-vous
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -22,7 +52,7 @@ export default function HomeScreen({ navigation }) {
         source={require("../assets/logo-basic.png")}
       />
       <View style={styles.bloctext}>
-        <Text style={styles.textbienvenue}>Hello {user}👋 </Text>
+        <Text style={styles.textbienvenue}>Hello {user.firstName} 👋 </Text>
         <Text style={styles.textdemande}>Que cherchez-vous aujourd'hui ? </Text>
       </View>
       <View style={styles.blocchoix}>
@@ -61,13 +91,7 @@ export default function HomeScreen({ navigation }) {
             </Text>
           </View>
         </TouchableOpacity>
-      </View>
-      <View style={styles.blocregister}>
-        <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-          <Text style={styles.register}>
-            Vous avez déjà un compte ? Connectez-vous
-          </Text>
-        </TouchableOpacity>
+        {userSection}
       </View>
     </View>
   );
@@ -89,6 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
   },
+
   textbienvenue: {
     fontSize: 18,
     fontFamily: "Montserrat",
@@ -106,6 +131,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.03,
     color: "#283618",
   },
+
   recherche: {
     borderColor: "#20232a",
     borderStyle: "solid",
@@ -115,6 +141,12 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: 15,
     borderRadius: 15,
+  },
+  shadowProp: {
+    shadowOffset: { width: 3, height: 4 },
+    shadowColor: "#171717",
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   top: {
     flex: 1,
