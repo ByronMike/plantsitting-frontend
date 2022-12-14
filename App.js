@@ -5,7 +5,7 @@ LogBox.ignoreAllLogs();
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, extendTheme } from "native-base";
 
 import LandingScreen from "./screens/LandingScreen";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -102,8 +102,32 @@ const TabNavigator = () => {
 };
 
 export default function App() {
+  const theme = extendTheme({
+    colors: {
+      // Add new color
+      primary: {
+        50: "#E3F2F9",
+        100: "#C5E4F3",
+        200: "#A2D4EC",
+        300: "#7AC1E4",
+        400: "#47A9DA",
+        500: "#0088CC",
+        600: "#007AB8",
+        700: "#006BA1",
+        800: "#005885",
+        900: "#003F5E",
+      },
+      lightorange: {
+        600: "#DDA15E",
+      }
+    },
+    config: {
+      // Changing initialColorMode to 'dark'
+      initialColorMode: "light",
+    },
+  });
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider theme={theme}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <NavigationContainer>
