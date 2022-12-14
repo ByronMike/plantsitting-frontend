@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { login } from "../reducers/userconnexion";
 
-export default function AssementScreen({ navigation }) {
+export default function AssessmentScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value.firstName);
   const { height, width } = useWindowDimensions();
