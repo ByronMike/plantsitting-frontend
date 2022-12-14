@@ -10,6 +10,7 @@ import { NativeBaseProvider } from "native-base";
 import LandingScreen from "./screens/LandingScreen";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
+import FirstScreen from "./screens/FirstScreen";
 import Presentation1Screen from "./screens/Presentation1Screen";
 import Presentation2Screen from "./screens/Presentation2Screen";
 import Presentation3Screen from "./screens/Presentation3Screen";
@@ -83,9 +84,9 @@ const TabNavigator = () => {
         tabBarActiveTintColor: "#FFFFFF",
         tabBarInactiveTintColor: "#808080",
         tabBarStyle: {
-          height: Platform.OS === "ios" ? 60 : 60,
+          height: Platform.OS === "ios" ? 75 : 60,
           paddingTop: 5,
-          paddingBottom: 10,
+          paddingBottom: Platform.OS === "ios" ? 23 : 10,
           backgroundColor: "#283618",
           position: "absolute",
         },
@@ -108,6 +109,7 @@ export default function App() {
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Landing" component={LandingScreen} />
+              <Stack.Screen name="First" component={FirstScreen} />
               <Stack.Screen
                 name="Presentation1"
                 component={Presentation1Screen}
@@ -115,14 +117,26 @@ export default function App() {
               <Stack.Screen
                 name="Presentation2"
                 component={Presentation2Screen}
+                options={{
+                  animationTypeForReplace: "push",
+                  animation: "slide_from_right",
+                }}
               />
               <Stack.Screen
                 name="Presentation3"
                 component={Presentation3Screen}
+                options={{
+                  animationTypeForReplace: "push",
+                  animation: "slide_from_right",
+                }}
               />
               <Stack.Screen
                 name="Presentation4"
                 component={Presentation4Screen}
+                options={{
+                  animationTypeForReplace: "push",
+                  animation: "slide_from_right",
+                }}
               />
               <Stack.Screen name="Signin" component={SigninScreen} />
               <Stack.Screen name="Schedule" component={ScheduleScreen} />

@@ -1,12 +1,17 @@
 import { Button, StyleSheet, Text, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LandingScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Landing Screen</Text>
       <Button
+        title="Go to First Screen"
+        onPress={() => navigation.navigate("First")}
+      />
+      <Button
         title="Go to Presentation1 Screen"
-        onPress={() => navigation.navigate("TabNavigator")}
+        onPress={() => navigation.navigate("Presentation1")}
       />
       <Button
         title="Go to Presentation2 Screen"
@@ -86,6 +91,7 @@ export default function LandingScreen({ navigation }) {
         title="Go to Assessment Screen"
         onPress={() => navigation.navigate("Assessment")}
       />
+      <Button title="Empty asyncstorage" onPress={() => AsyncStorage.clear()} />
     </View>
   );
 }

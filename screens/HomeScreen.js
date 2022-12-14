@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"; 
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { logout } from "../reducers/userconnexion";
 
