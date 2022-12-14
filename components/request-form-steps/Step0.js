@@ -1,22 +1,12 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-  useWindowDimensions,
-  KeyboardAvoidingView,
-} from "react-native";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import { Input, Box, Checkbox, Radio, Row } from "native-base";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {Box, Checkbox, Radio} from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import ButtonPrevious from "../buttons/ButtonPrevious";
 import ButtonNext from "../buttons/ButtonNext";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-function Step0() {
+function Step0(props) {
   const navigation = useNavigation();
 
   const [isChecked1, setIsChecked1] = useState(false);
@@ -24,6 +14,11 @@ function Step0() {
   const [isChecked3, setIsChecked3] = useState(false);
   const [isChecked4, setIsChecked4] = useState(false);
   const [value, setValue] = useState("one");
+
+  const handleClick = () => {
+       props.nextStep();
+     };
+
   return (
     <View style={styles.container}>
       <View style={styles.topcontainer}>
@@ -177,7 +172,7 @@ function Step0() {
           <View style={styles.buttonnext}>
             <TouchableOpacity
               style={styles.touchableopacity}
-              onPress={() => navigation.navigate("Presentation2")}
+              onPress={() => handleClick()}
             >
               <ButtonNext />
             </TouchableOpacity>
@@ -245,7 +240,7 @@ const styles = StyleSheet.create({
   buttoncontainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 200,
+    width: 250,
   },
   touchableopacity: {
     backgroundColor: "#DDA15E",

@@ -164,7 +164,10 @@ export default function App() {
               />
               <Stack.Screen name="Signin" component={SigninScreen} />
               <Stack.Screen name="Schedule" component={ScheduleScreen} />
-              <Stack.Screen name="Map" component={MapScreen} />
+              <Stack.Screen name="Map" component={MapScreen} options={{
+                  animationTypeForReplace: "push",
+                  animation: "slide_from_right",
+                }}/>
               <Stack.Screen name="Listing" component={ListingScreen} />
               <Stack.Screen
                 name="Plantsitter1"

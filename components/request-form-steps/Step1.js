@@ -1,23 +1,18 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-  useWindowDimensions,
-  KeyboardAvoidingView,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import CalendarPicker from "react-native-calendar-picker";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import { Input, Box, Checkbox, Radio, Row } from "native-base";
-import ButtonNext from "../buttons/ButtonNext";
+import { Radio } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-function Step1() {
+function Step1(props) {
+  const navigation = useNavigation();
   const [value, setValue] = useState("one");
+
+  const handleClick = () => {
+    props.previousStep();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.topcontainer}>
@@ -94,7 +89,7 @@ function Step1() {
         <View style={styles.buttonnext}>
           <TouchableOpacity
             style={styles.touchableopacityleft}
-            onPress={() => navigation.navigate("Presentation2")}
+            onPress={() => handleClick()}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14 }]}>Annuler</Text>
           </TouchableOpacity>
@@ -102,9 +97,11 @@ function Step1() {
         <View style={styles.buttonnext}>
           <TouchableOpacity
             style={styles.touchableopacityright}
-            onPress={() => navigation.navigate("Presentation2")}
+            onPress={() => navigation.navigate("Map")}
           >
-            <Text style={[{ fontWeight: "700", fontSize: 14, color: "white" }]}>Valider</Text>
+            <Text style={[{ fontWeight: "700", fontSize: 14, color: "white" }]}>
+              Valider
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

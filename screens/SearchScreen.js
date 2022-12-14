@@ -4,31 +4,30 @@ import Step0 from "../components/request-form-steps/Step0";
 import Step1 from "../components/request-form-steps/Step1";
 
 export default function SearchScreen({ navigation }) {
-  // ! A rajouter pour gérer les screens sur une même tab (et enregistrer les données sur plusieurs screens)
-  // const [formProgress, setFormProgress] = useState(0);
-  // const nextStep = () => {
-  //   setFormProgress(formProgress + 1);
-  // };
+  // Gestion des screens avec le même tab navigator et pour faciliter le stockage des données via useState
+  const [formProgress, setFormProgress] = useState(0);
+  const nextStep = () => {
+    setFormProgress(formProgress + 1);
+  };
+  const previousStep = () => {
+    setFormProgress(formProgress - 1);
+  };
 
-  // if (formProgress == 0) {
-  //   return;
-  //   <View style={styles.container}>
-  //     <Step0 nextStep={nextStep} />
-  //   </View>;
-  // }
+  if (formProgress == 0) {
+    return (
+      <View style={styles.container}>
+        <Step0 nextStep={nextStep} />
+      </View>
+    );
+  }
 
-  // if (formProgress == 1) {
-  //   return;
-  //   <View style={styles.container}>
-  //     <Step1 nextStep={nextStep} />
-  //   </View>;
-  // }
-
-  return (
-    <View style={styles.container}>
-      <Step1 />
-    </View>
-  );
+  if (formProgress == 1) {
+    return (
+      <View style={styles.container}>
+        <Step1 previousStep={previousStep} />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
