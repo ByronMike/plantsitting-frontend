@@ -34,10 +34,19 @@ export default function SignupScreen({ navigation }) {
     fetch("http://10.2.0.177:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, lastName, email, zipCode, password }),
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        zipCode,
+        password,
+        phoneNumber: telephone,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("data signup", data);
+
         data.result &&
           dispatch(login({ token: data.token, firstName: firstName }));
       });

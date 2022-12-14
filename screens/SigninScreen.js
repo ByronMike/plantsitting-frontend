@@ -33,6 +33,7 @@ export default function SigninScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("data signing", data);
         data.result &&
           dispatch(login({ token: data.token, firstName: firstName }));
       });

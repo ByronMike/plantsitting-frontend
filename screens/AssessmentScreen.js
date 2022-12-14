@@ -1,25 +1,18 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-  useWindowDimensions,
-  KeyboardAvoidingView,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import { Input, Box, Checkbox } from "native-base";
+import { Input, Box, Checkbox, Button } from "native-base";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { login } from "../reducers/userconnexion";
 
 export default function AssessmentScreen({ navigation }) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userconnexion.value.firstName);
-  const { height, width } = useWindowDimensions();
+  const user = useSelector((state) => state.userconnexion.value);
+  console.log("user.token dans le store", user.token);
+  // const { height, width } = useWindowDimensions();
   const [comment, setComment] = useState("");
   const [personalNote, setPersonalNote] = useState(0);
+  const [newReview, setNewReview] = useState("");
 
   const personalPlants = [];
   for (let i = 0; i < 5; i++) {
@@ -39,21 +32,24 @@ export default function AssessmentScreen({ navigation }) {
     );
   }
 
-  // Function fetch pour se connecter
-  // const handleSubmit = () => {
-  //   fetch('http://localhost:3000/tweets', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ token: user.token, content: newTweet }),
-  //   }).then(response => response.json())
-  //     .then(data => {
-  //       if (data.result) {
-  //         const createdTweet = { ...data.tweet, author: user };
-  //         dispatch(addTweet(createdTweet));
-  //         setNewTweet('');
-  //       }
-  //     });
-  // };
+  const handleSubmit = async () => {
+    const data = await fetch("http://10.2.1.198:3000/assessment/test", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sitterId: "63999879c065335bffdcf2b5",
+        userstoken: user.token,
+        note: personalNote,
+        text: comment,
+      }),
+    });
+
+    const reponse = data.json();
+    console.log("reponse", reponse);
+    if (reponse.result) {
+      navigation.navigate("TabNavigator", { screen: "Accueil" });
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -63,7 +59,7 @@ export default function AssessmentScreen({ navigation }) {
       />
       <View style={styles.text}>
         <Text style={styles.texttitre}>Mission terminée !</Text>
-        <Text>Laissez une note et un avis à {user}</Text>
+        <Text>Laissez une note et un avis à XXXXXX</Text>
         <View style={{ marginTop: 20, flexDirection: "row" }}>
           {personalPlants}
         </View>
@@ -105,13 +101,10 @@ export default function AssessmentScreen({ navigation }) {
       </Box>
 
       <View style={styles.containerbouton}>
-        <TouchableOpacity
-          style={styles.registerbtn}
-          // onPress={() => handleSubmit()}
-        >
+        <TouchableOpacity style={styles.registerbtn} onPress={handleSubmit}>
           <Text style={styles.titreregister}>VALIDER</Text>
         </TouchableOpacity>
-        <Text style={styles.merci}>Merci {user}😉</Text>
+        <Text style={styles.merci}>Merci {user.firstName}😉</Text>
       </View>
     </View>
   );
