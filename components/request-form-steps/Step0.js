@@ -256,11 +256,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonnext: {
-    paddingTop: 25,
-    paddingBottom: 50,
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 70,
   },
 });
 

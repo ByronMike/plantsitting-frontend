@@ -26,7 +26,7 @@ export default function SearchScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Step0 />
+      <Step1 />
     </View>
   );
 }
