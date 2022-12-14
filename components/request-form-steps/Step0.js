@@ -9,11 +9,16 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import { Input, Box, Checkbox, Radio } from "native-base";
+import { Input, Box, Checkbox, Radio, Row } from "native-base";
+import { useNavigation } from "@react-navigation/native";
+import ButtonPrevious from "../buttons/ButtonPrevious";
+import ButtonNext from "../buttons/ButtonNext";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function Step0() {
+  const navigation = useNavigation();
+
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [isChecked3, setIsChecked3] = useState(false);
@@ -23,8 +28,10 @@ function Step0() {
     <View style={styles.container}>
       <View style={styles.topcontainer}>
         <View style={styles.toptextcontainer}>
-          <Text>JE CHERCHE 👋</Text>
-          <Text>J'ai besoin d'un plant-sitteur pour</Text>
+          <Text style={styles.smalltext}>JE CHERCHE 👋</Text>
+          <Text style={styles.bigtext}>
+            J'ai besoin d'un plant-sitteur pour
+          </Text>
         </View>
         <View style={styles.topcheckboxcontainer}>
           <Box style={styles.box}>
@@ -104,12 +111,12 @@ function Step0() {
           </Box>
         </View>
       </View>
-      <View style={styles.bottomcontainer}>
-        <View style={styles.bottomtextcontainer}>
-          <Text>MES PLANTES 👋</Text>
-          <Text>J'ai</Text>
+      <View style={styles.middlecontainer}>
+        <View style={styles.middletextcontainer}>
+          <Text style={styles.smalltext}>MES PLANTES 👋</Text>
+          <Text style={styles.bigtext}>J'ai</Text>
         </View>
-        <View style={styles.bottomradiocontainer}>
+        <View style={styles.middleradiocontainer}>
           <Radio.Group
             name="myRadioGroup"
             accessibilityLabel="favorite number"
@@ -119,7 +126,7 @@ function Step0() {
               setValue(nextValue);
             }}
           >
-            <Radio value="one" my={2.5}>
+            <Radio value="one" my={3}>
               <Text
                 style={{
                   color: value === "one" ? "#DDA15E" : "#000000",
@@ -130,7 +137,7 @@ function Step0() {
                 1 à 5 plantes
               </Text>
             </Radio>
-            <Radio value="two" my={2.5}>
+            <Radio value="two" my={3}>
               <Text
                 style={{
                   color: value === "two" ? "#DDA15E" : "#000000",
@@ -141,7 +148,7 @@ function Step0() {
                 5 à 15 plantes
               </Text>
             </Radio>
-            <Radio value="three" my={2.5}>
+            <Radio value="three" my={3}>
               <Text
                 style={{
                   color: value === "three" ? "#DDA15E" : "#000000",
@@ -155,15 +162,57 @@ function Step0() {
           </Radio.Group>
         </View>
       </View>
+      <View style={styles.bottomcontainer}>
+        <View style={styles.buttoncontainer}>
+          <View style={styles.buttonnext}>
+            <TouchableOpacity
+              style={styles.touchableopacity}
+              onPress={() =>
+                navigation.navigate("TabNavigator", { screen: "Accueil" })
+              }
+            >
+              <ButtonPrevious />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonnext}>
+            <TouchableOpacity
+              style={styles.touchableopacity}
+              onPress={() => navigation.navigate("Presentation2")}
+            >
+              <ButtonNext />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-around",
+    backgroundColor: "#F6F5F1",
+  },
+  topcontainer: {
+    flex: 50,
+    alignItems: "flex-start",
+    paddingTop: 75,
+  },
+  toptextcontainer: {},
+  topcheckboxcontainer: { paddingTop: 5, paddingLeft: 25 },
+  middlecontainer: {
+    flex: 35,
+    paddingBottom: 30,
+  },
+  middletextcontainer: {},
+  middleradiocontainer: { paddingTop: 15, paddingLeft: 25 },
+  bottomcontainer: {
+    flex: 15,
+    paddingTop: 25,
     justifyContent: "center",
     alignItems: "center",
+    paddingBottom: 60,
   },
   box: {
     justifyContent: "center",
@@ -175,6 +224,43 @@ const styles = StyleSheet.create({
   },
   textbox: {
     marginBottom: 15,
+  },
+  smalltext: {
+    fontSize: 18,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "600",
+    lineHeight: 26,
+    color: "#283618",
+  },
+  bigtext: {
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "700",
+    fontSize: 32,
+    lineHeight: 41,
+    letterSpacing: -0.03,
+    color: "#283618",
+  },
+  buttoncontainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: 200,
+  },
+  touchableopacity: {
+    backgroundColor: "#DDA15E",
+    borderRadius: 22,
+    width: 44,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonnext: {
+    paddingTop: 25,
+    paddingBottom: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 70,
   },
 });
 

@@ -1,6 +1,7 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import Step0 from "../components/request-form-steps/Step0";
+import Step1 from "../components/request-form-steps/Step1";
 
 export default function SearchScreen({ navigation }) {
   // ! A rajouter pour gérer les screens sur une même tab (et enregistrer les données sur plusieurs screens)
@@ -11,12 +12,16 @@ export default function SearchScreen({ navigation }) {
 
   // if (formProgress == 0) {
   //   return;
-  //   <Step0 nextStep={nextStep} />;
+  //   <View style={styles.container}>
+  //     <Step0 nextStep={nextStep} />
+  //   </View>;
   // }
 
   // if (formProgress == 1) {
   //   return;
-  //   <Step1 nextStep={nextStep} />;
+  //   <View style={styles.container}>
+  //     <Step1 nextStep={nextStep} />
+  //   </View>;
   // }
 
   return (
