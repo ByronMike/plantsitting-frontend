@@ -4,13 +4,10 @@ const initialState = {
   value: [],
 };
 
-// 3)a On donne un nom au reducer (ex: friends)
 export const usersSlice = createSlice({
   name: "user",
 
-  // 3)b on utilise le tableau
   initialState,
-  // 3)c On créé les actions addBookmark et removeBookmark
   reducers: {
     testUser: (state, action) => {
         state.value.push(action.payload)
