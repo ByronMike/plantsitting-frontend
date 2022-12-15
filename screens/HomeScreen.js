@@ -56,7 +56,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.textdemande}>Que cherchez-vous aujourd'hui ? </Text>
       </View>
       <View style={styles.blocchoix}>
-        <TouchableOpacity style={styles.recherche}>
+        <TouchableOpacity style={styles.recherche} onPress={() => navigation.navigate("TabNavigator", { screen: "Chercher" })}>
           <View style={styles.top}>
             <Text style={styles.titrerecherche}>
               Je <Text style={styles.boutoncherche}>CHERCHE</Text> {"\n"}un
