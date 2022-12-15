@@ -26,6 +26,7 @@ import Plantsitter2Screen from "./screens/Plantsitter2Screen";
 import Plantsitter3Screen from "./screens/Plantsitter3Screen";
 import SignupScreen from "./screens/SignupScreen";
 import SummaryScreen from "./screens/SummaryScreen";
+import PaymentScreen from "./screens/PaymentScreen";
 import CongratulationScreen from "./screens/CongratulationScreen";
 import AssessmentScreen from "./screens/AssessmentScreen";
 
@@ -70,7 +71,7 @@ const TabNavigator = () => {
 
           if (route.name === "Accueil") {
             iconName = "home";
-          } else if (route.name === "Chercher") {
+          } else if (route.name === "Map") {
             iconName = "search";
           } else if (route.name === "Messages") {
             iconName = "envelope";
@@ -156,6 +157,7 @@ export default function App() {
               />
               <Stack.Screen name="Signup" component={SignupScreen} />
               <Stack.Screen name="Summary" component={SummaryScreen} />
+              <Stack.Screen name="Payment" component={PaymentScreen} />
               <Stack.Screen
                 name="Congratulation"
                 component={CongratulationScreen}
