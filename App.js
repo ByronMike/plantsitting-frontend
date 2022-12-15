@@ -42,13 +42,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Provider } from "react-redux";
 import user from "./reducers/user";
 import userconnexion from "./reducers/userconnexion";
+import request from "./reducers/request";
 
-const reducers = combineReducers({ user, userconnexion });
-// ! Empêche le reducer user d'être sauvegardé dans le local storage
+const reducers = combineReducers({ user, userconnexion, request });
 const persistConfig = {
   key: "PlantSitting",
   storage: AsyncStorage,
-  blacklist: ["user"],
+  blacklist: ["user", "request"],
 };
 const store = configureStore({
   reducer: persistReducer(persistConfig, reducers),
@@ -119,7 +119,7 @@ export default function App() {
       },
       lightorange: {
         600: "#DDA15E",
-      }
+      },
     },
     config: {
       // Changing initialColorMode to 'dark'
@@ -164,10 +164,14 @@ export default function App() {
               />
               <Stack.Screen name="Signin" component={SigninScreen} />
               <Stack.Screen name="Schedule" component={ScheduleScreen} />
-              <Stack.Screen name="Map" component={MapScreen} options={{
+              <Stack.Screen
+                name="Map"
+                component={MapScreen}
+                options={{
                   animationTypeForReplace: "push",
                   animation: "slide_from_right",
-                }}/>
+                }}
+              />
               <Stack.Screen name="Listing" component={ListingScreen} />
               <Stack.Screen
                 name="Plantsitter1"

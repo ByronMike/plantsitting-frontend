@@ -4,7 +4,7 @@ import Step0 from "../components/request-form-steps/Step0";
 import Step1 from "../components/request-form-steps/Step1";
 
 export default function SearchScreen({ navigation }) {
-  // Gestion des screens avec le même tab navigator et pour faciliter le stockage des données via useState
+  // Gestion des screens avec le même tab navigator et pour faciliter le stockage des données via useState  
   const [formProgress, setFormProgress] = useState(0);
   const nextStep = () => {
     setFormProgress(formProgress + 1);
