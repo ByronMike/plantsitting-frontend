@@ -3,10 +3,10 @@ import { Box, Checkbox, Radio } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import ButtonPrevious from "../buttons/ButtonPrevious";
 import ButtonNext from "../buttons/ButtonNext";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { userRequest, cleanRequest } from "../../reducers/request";
+import { userRequest } from "../../reducers/request";
 
 function Step0(props) {
   const navigation = useNavigation();
@@ -39,10 +39,9 @@ function Step0(props) {
     props.nextStep();
   };
 
-  useEffect(() => {
-    console.log("request", request);
-    // console.log("userNeeds", userNeeds);
-  }, []);
+  // useEffect(() => {
+  //   console.log("request", request);
+  // }, []);
 
   return (
     <View style={styles.container}>

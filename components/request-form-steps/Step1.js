@@ -1,17 +1,44 @@
-  import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import CalendarPicker from "react-native-calendar-picker";
 import { Radio } from "native-base";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { userRequest, cleanRequest } from "../../reducers/request";
 
 function Step1(props) {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const request = useSelector((state) => state.request.value);
   const [value, setValue] = useState("one");
 
-  const handleClick = () => {
+  const [stateReducer, setStateReducer] = useState(request);
+
+  const handlePreviousClick = () => {
+    dispatch(cleanRequest());
     props.previousStep();
   };
+
+  const handleValidateClick = () => {
+    setStateReducer(
+      {
+        ...stateReducer,
+        garde: value === "one",
+        depot: value === "two",
+      },
+      console.log("stateReducer", stateReducer)
+    );
+
+    // TODO Fetcher la route post ! ET actualiser le startDay et endDay
+    navigation.navigate("Map");
+  };
+
+  useEffect(() => {
+    // console.log("request", request);
+    // console.log("stateReducer", stateReducer);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -89,7 +116,7 @@ function Step1(props) {
         <View style={styles.buttonnext}>
           <TouchableOpacity
             style={styles.touchableopacityleft}
-            onPress={() => handleClick()}
+            onPress={() => handlePreviousClick()}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14 }]}>Annuler</Text>
           </TouchableOpacity>
@@ -97,7 +124,7 @@ function Step1(props) {
         <View style={styles.buttonnext}>
           <TouchableOpacity
             style={styles.touchableopacityright}
-            onPress={() => navigation.navigate("Map")}
+            onPress={() => handleValidateClick()}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "white" }]}>
               Valider
