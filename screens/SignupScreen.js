@@ -32,7 +32,7 @@ export default function SignupScreen({ navigation }) {
   // Function fetch pour s'inscrire
 
   const handleSubmit = () => {
-    fetch("http://10.2.2.34:3000/users/signup", {
+    fetch("http://10.2.1.198:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -46,7 +46,7 @@ export default function SignupScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data signup", data);
+        console.log("🚙data signup", data);
 
         data.result &&
           dispatch(login({ token: data.token, firstName: firstName }));
@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#f6f5f1",
   },
 
   container2: {

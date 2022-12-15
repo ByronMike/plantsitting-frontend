@@ -26,7 +26,7 @@ export default function SigninScreen({ navigation }) {
   // Function fetch pour se connecter
 
   const handleSubmit = () => {
-    fetch("http://10.2.2.34:3000/users/signin", {
+    fetch("http://10.2.1.198:3000/users/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstName, email, password }),
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#f6f5f1",
   },
 
   container2: {
