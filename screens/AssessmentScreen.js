@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 export default function AssessmentScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
+  const userSitter = useSelector((state) => state.usersitterconnexion.value);
+
   console.log("user.token dans le store", user.token);
   // const { height, width } = useWindowDimensions();
   const [comment, setComment] = useState("");
@@ -58,7 +60,7 @@ export default function AssessmentScreen({ navigation }) {
       />
       <View style={styles.text}>
         <Text style={styles.texttitre}>Mission terminée !</Text>
-        <Text>Laissez une note et un avis à XXXXXX</Text>
+        <Text>Laissez une note et un avis à {userSitter.firstName}</Text>
         <View style={{ marginTop: 20, flexDirection: "row" }}>
           {personalPlants}
         </View>

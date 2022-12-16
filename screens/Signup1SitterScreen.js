@@ -13,31 +13,41 @@ import {
 import { Input } from "native-base";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../reducers/userconnexion";
+import { login } from "../reducers/usersitterconnexion";
+//TEST blabla
 
-export default function SigninScreen({ navigation }) {
+export default function SignupSitterScreen({ navigation }) {
   const dispatch = useDispatch();
   const { height, width } = useWindowDimensions();
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [telephone, setTelephone] = useState("");
   const [mailIsOk, setMailIsOk] = useState(true);
+  const [telIsOk, setTelIsOk] = useState(true);
+  const [tat, setTata] = useState("");
 
-  // Function fetch pour se connecter
+  // Function fetch pour s'inscrire
 
   const handleSubmit = () => {
-<<<<<<< HEAD
-    fetch("http://10.2.0.177:3000/users/signin", {
-=======
-    fetch("http://10.2.1.198:3000/users/signin", {
->>>>>>> 8fdfa145862e0e561777aaa9c6ce169c4a2b4b76
+    fetch("http://10.2.1.198:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, email, password }),
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        zipCode,
+        password,
+        phoneNumber: telephone,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data signing", data);
+        console.log("🚙data signup", data);
+
         data.result &&
           dispatch(login({ token: data.token, firstName: firstName }));
       });
@@ -47,20 +57,38 @@ export default function SigninScreen({ navigation }) {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i
     );
 
+    // Function pour checker si le telephone est un format tel francais
+
+    const telReg = new RegExp(
+      /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/i
+    );
     const valid = emailReg.test(email);
+    const validTel = telReg.test(telephone);
     if (!valid) {
       console.log("email pas ok");
       setMailIsOk(false);
       return false;
     } else {
       console.log("mail ok");
-      navigation.navigate("TabNavigator", { screen: "SummaryScreen" });
+      if (!validTel) {
+        console.log("tel pas ok");
+        setTelIsOk(false);
+        return false;
+      } else {
+        console.log("tel ok");
+        navigation.navigate("TabNavigator", { screen: "Signup2SitterScreen" });
+      }
     }
   };
 
   let alerteMail = <Text></Text>;
   if (mailIsOk === false) {
     alerteMail = <Text style={styles.textAlerte}>Adresse email invalide</Text>;
+  }
+
+  let alerteTel = <Text></Text>;
+  if (telIsOk === false) {
+    alerteTel = <Text style={styles.textAlerte}>Téléphone invalide</Text>;
   }
 
   return (
@@ -86,12 +114,12 @@ export default function SigninScreen({ navigation }) {
 
             <View style={styles.container2}>
               <View style={{ ...styles.bloctexte, width: width * 0.85 }}>
-                <Text style={styles.textdemande}>Se connecter 👋</Text>
+                <Text style={styles.textdemande}>S'inscrire 😎</Text>
               </View>
               <View style={styles.blocregister}>
-                <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
                   <Text style={styles.register}>
-                    Vous n'avez pas de compte ? Inscrivez-vous
+                    Vous avez déjà un compte ? Connectez-vous
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -110,6 +138,17 @@ export default function SigninScreen({ navigation }) {
                 <Input
                   size="xl"
                   variant="underlined"
+                  placeholder="Nom"
+                  style={styles.input}
+                  name="lastName"
+                  type="lastName"
+                  value={lastName}
+                  onChangeText={(value) => setLastName(value)}
+                />
+                <Text></Text>
+                <Input
+                  size="xl"
+                  variant="underlined"
                   placeholder="Email"
                   style={styles.input}
                   name="email"
@@ -118,6 +157,30 @@ export default function SigninScreen({ navigation }) {
                   onChangeText={(value) => setEmail(value)}
                 />
                 <Text>{alerteMail}</Text>
+                <Input
+                  size="xl"
+                  variant="underlined"
+                  placeholder="Téléphone"
+                  style={styles.input}
+                  name="telephone"
+                  type="telephone"
+                  value={telephone}
+                  onChangeText={(value) => setTelephone(value)}
+                />
+
+                <Text>{alerteTel}</Text>
+
+                <Input
+                  size="xl"
+                  variant="underlined"
+                  placeholder="Code postal"
+                  style={styles.input}
+                  name="zipCode"
+                  type="zipCode"
+                  value={zipCode}
+                  onChangeText={(value) => setZipCode(value)}
+                />
+                <Text></Text>
                 <Input
                   size="xl"
                   variant="underlined"
@@ -135,7 +198,7 @@ export default function SigninScreen({ navigation }) {
                   style={styles.registerbtn}
                   onPress={() => handleSubmit()}
                 >
-                  <Text style={styles.titreregister}>Se connecter</Text>
+                  <Text style={styles.titreregister}>SUIVANT</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -173,13 +236,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
     width: "100%",
-    marginTop: 15,
+    marginTop: 6,
   },
   input: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 25,
+    marginTop: 15,
   },
   registerbtn: {
     flex: 1,

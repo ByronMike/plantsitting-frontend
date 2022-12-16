@@ -13,9 +13,9 @@ import {
 import { Input } from "native-base";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../reducers/userconnexion";
+import { login } from "../reducers/usersitterconnexion";
 
-export default function SigninScreen({ navigation }) {
+export default function SigninSitterScreen({ navigation }) {
   const dispatch = useDispatch();
   const { height, width } = useWindowDimensions();
   const [firstName, setFirstName] = useState("");
@@ -26,11 +26,7 @@ export default function SigninScreen({ navigation }) {
   // Function fetch pour se connecter
 
   const handleSubmit = () => {
-<<<<<<< HEAD
-    fetch("http://10.2.0.177:3000/users/signin", {
-=======
     fetch("http://10.2.1.198:3000/users/signin", {
->>>>>>> 8fdfa145862e0e561777aaa9c6ce169c4a2b4b76
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstName, email, password }),
@@ -89,7 +85,9 @@ export default function SigninScreen({ navigation }) {
                 <Text style={styles.textdemande}>Se connecter 👋</Text>
               </View>
               <View style={styles.blocregister}>
-                <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("SignupSitter")}
+                >
                   <Text style={styles.register}>
                     Vous n'avez pas de compte ? Inscrivez-vous
                   </Text>
