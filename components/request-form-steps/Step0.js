@@ -3,30 +3,16 @@ import { Box, Checkbox, Radio } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import ButtonPrevious from "../buttons/ButtonPrevious";
 import ButtonNext from "../buttons/ButtonNext";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { userRequest, cleanRequest } from "../../reducers/request";
+import { userRequest } from "../../reducers/request";
 
 function Step0(props) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const request = useSelector((state) => state.request.value);
-
-  const [userNeeds, setUserNeeds] = useState({
-    arrosage: false,
-    entretien: false,
-    traitement: false,
-    autre: false,
-    plantQty1: false,
-    plantQty5: false,
-    plantQty15: false,
-    garde: false,
-    depot: false,
-    startday: null,
-    endday: null,
-  });
 
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -35,15 +21,27 @@ function Step0(props) {
   const [value, setValue] = useState("one");
 
   const handleClick = () => {
+    dispatch(
+      userRequest({
+        arrosage: isChecked1,
+        entretien: isChecked2,
+        traitement: isChecked3,
+        autre: isChecked4,
+        plantQty1: value === "one",
+        plantQty5: value === "two",
+        plantQty15: value === "three",
+        garde: false,
+        depot: false,
+        startday: null,
+        endday: null,
+      })
+    );
     props.nextStep();
-    // dispatch(userRequest(userNeeds));
-    // dispatch(cleanRequest())
-    console.log("userNeeds", userNeeds);
   };
 
-  useEffect(() => {
-    // console.log("request", request);
-  }, []);
+  // useEffect(() => {
+  //   console.log("request", request);
+  // }, []);
 
   return (
     <View style={styles.container}>
@@ -69,7 +67,6 @@ function Step0(props) {
                 value={isChecked1}
                 onPress={() => {
                   setIsChecked1(!isChecked1);
-                  setUserNeeds({ ...userNeeds, arrosage: !isChecked1 });
                 }}
                 colorScheme="lightorange"
               >
@@ -88,7 +85,6 @@ function Step0(props) {
                 value={isChecked2}
                 onPress={() => {
                   setIsChecked2(!isChecked2);
-                  setUserNeeds({ ...userNeeds, entretien: !isChecked2 });
                 }}
                 colorScheme="lightorange"
               >
@@ -107,7 +103,6 @@ function Step0(props) {
                 value={isChecked3}
                 onPress={() => {
                   setIsChecked3(!isChecked3);
-                  setUserNeeds({ ...userNeeds, traitement: !isChecked3 });
                 }}
                 colorScheme="lightorange"
               >
@@ -126,7 +121,6 @@ function Step0(props) {
                 value={isChecked4}
                 onPress={() => {
                   setIsChecked4(!isChecked4);
-                  setUserNeeds({ ...userNeeds, autre: !isChecked4 });
                 }}
                 colorScheme="lightorange"
               >
