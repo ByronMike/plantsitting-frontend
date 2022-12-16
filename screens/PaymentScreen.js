@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { Input } from "native-base";
 
 export default function SummaryScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -19,14 +20,37 @@ export default function SummaryScreen({ navigation }) {
         source={require("../assets/logo-basic.png")}
       />
       <View style={styles.bloctext}>
-        <Text style={styles.textmerci}>Merci {user.firstName} 🌱 </Text>
-        <Text style={styles.textrecap1}>
-          voici le récapitulatif de votre demande:
+        <Text style={styles.textmerci}>
+          {user.firstName} vous voulez payer en ? 💳{" "}
         </Text>
-        <Text style={styles.textrecap2}>
-          William peut s'occuper de vos 5 plantes le 17 mars pour un montant de
-          20€.
-        </Text>
+
+        <View style={styles.blocinput}>
+          <Text style={styles.textrecap1}>Nom sur la carte:</Text>
+          <Input
+            size="xl"
+            variant="outline"
+            placeholder="Nom"
+            style={styles.input}
+          />
+          <Text style={styles.textrecap1}>N° de carte:</Text>
+          <Input
+            size="xl"
+            variant="outline"
+            placeholder="................  ▅"
+            style={styles.input}
+            name="email"
+            type="email"
+          />
+          <Text style={styles.textrecap1}>Date d'expiration:</Text>
+          <Input
+            size="m"
+            variant="outline"
+            placeholder="MM/AA"
+            style={styles.input}
+            name="password"
+            type="password"
+          />
+        </View>
       </View>
 
       <View style={styles.containerbouton}>

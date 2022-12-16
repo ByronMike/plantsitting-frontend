@@ -45,7 +45,7 @@ export default function SignupScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data signup", data);
+        console.log("🚙data signup", data);
 
         data.result &&
           dispatch(login({ token: data.token, firstName: firstName }));
@@ -218,6 +218,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#f6f5f1",
   },
 
   container2: {
@@ -257,18 +258,18 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "700",
-    fontSize: "32px",
-    lineHeight: "41px",
-    letterSpacing: "-0.03em",
+    fontSize: 32,
+    lineHeight: 41,
+    letterSpacing: -0.03,
     color: "#283618",
   },
   textInput: {
     fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "350",
-    fontSize: "20px",
-    lineHeight: "30px",
-    letterSpacing: "-0.03em",
+    fontSize: 20,
+    lineHeight: 30,
+    letterSpacing: -0.03,
     color: "#283618",
   },
 
@@ -277,9 +278,9 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "700",
-    fontSize: "15px",
-    lineHeight: "30px",
-    letterSpacing: "1em",
+    fontSize: 15,
+    lineHeight: 30,
+    letterSpacing: 1,
     textTransform: "uppercase",
   },
   containerbouton: {

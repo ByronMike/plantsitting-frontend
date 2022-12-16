@@ -12,7 +12,6 @@ export default function AssessmentScreen({ navigation }) {
   // const { height, width } = useWindowDimensions();
   const [comment, setComment] = useState("");
   const [personalNote, setPersonalNote] = useState(0);
-  const [newReview, setNewReview] = useState("");
 
   const personalPlants = [];
   for (let i = 0; i < 5; i++) {
@@ -33,7 +32,7 @@ export default function AssessmentScreen({ navigation }) {
   }
 
   const handleSubmit = async () => {
-    const data = await fetch("http://10.2.1.198:3000/assessment/test", {
+    const data = await fetch("http://10.2.1.198:3000/assessment/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -44,7 +43,7 @@ export default function AssessmentScreen({ navigation }) {
       }),
     });
 
-    const reponse = data.json();
+    const reponse = await data.json();
     console.log("reponse", reponse);
     if (reponse.result) {
       navigation.navigate("TabNavigator", { screen: "Accueil" });
