@@ -50,7 +50,6 @@ import { Provider } from "react-redux";
 import user from "./reducers/user";
 import userconnexion from "./reducers/userconnexion";
 import usersitterconnexion from "./reducers/usersitterconnexion";
-
 import request from "./reducers/request";
 
 const reducers = combineReducers({
