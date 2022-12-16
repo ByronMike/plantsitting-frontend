@@ -22,22 +22,23 @@ function Step1(props) {
   };
 
   const handleValidateClick = () => {
-    setStateReducer(
-      {
-        ...stateReducer,
-        garde: value === "one",
-        depot: value === "two",
-      },
-      console.log("stateReducer", stateReducer)
-    );
+    setStateReducer({
+      ...stateReducer,
+      garde: value === "one",
+      depot: value === "two",
+    });
+    // console.log("stateReducer", stateReducer);
+    dispatch(userRequest(stateReducer));
+    console.log("request_Step1", request);
 
     // TODO Fetcher la route post ! ET actualiser le startDay et endDay
-    navigation.navigate("Map");
+    // navigation.navigate("Map");
   };
 
   useEffect(() => {
+    // * Note : request correspond au stackage des données de Step0 UNIQUEMENT
     // console.log("request", request);
-    // console.log("stateReducer", stateReducer);
+    console.log("stateReducer", stateReducer);
   }, []);
 
   return (
@@ -124,7 +125,10 @@ function Step1(props) {
         <View style={styles.buttonnext}>
           <TouchableOpacity
             style={styles.touchableopacityright}
-            onPress={() => handleValidateClick()}
+            onPress={() => {
+              handleValidateClick();
+              navigation.navigate("Listing");
+            }}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "white" }]}>
               Valider

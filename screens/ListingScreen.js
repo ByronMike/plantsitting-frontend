@@ -7,6 +7,7 @@ import {
   ScrollView,
   StatusBar,
 } from "react-native";
+import { REACT_APP_BACKEND_URL } from "@env";
 import { useDispatch, useSelector } from "react-redux";
 import { Select, Box, CheckIcon } from "native-base";
 import { useState } from "react";
@@ -22,17 +23,33 @@ export default function ListingScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
 
+  const userchoose = useSelector((state) => state.request.value);
+
   useEffect(() => {
-    console.log("test useEffect");
-    fetch(`http://10.2.0.177:3000/sitters/listsitters`, {
+    // console.log("test useEffect");
+    fetch(`http://${REACT_APP_BACKEND_URL}/sitters/listsitters`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ entretien: true }),
+      body: JSON.stringify({
+        arrosage: userchoose.arrosage,
+        entretien: userchoose.entretien,
+        traitement: userchoose.traitement,
+        autre: userchoose.autre,
+        plantQty1: userchoose.plantQty1,
+        plantQty5: userchoose.plantQty5,
+        plantQty15: userchoose.plantQty15,
+        garde: userchoose.garde,
+        depot: userchoose.depot,
+        // TODO A rajouter et faire matcher 
+        // startday: userchoose.startday,
+        // endday: userchoose.endday,
+      }),
     })
       .then((response) => response.json())
       .then((datamatchingSitters) => {
         setMatchingSitters(datamatchingSitters.matchingSitters);
       });
+    console.log("choix", userchoose);
   }, []);
 
   const plantsitters = matchingSitters.map((data, i) => {
@@ -91,7 +108,7 @@ export default function ListingScreen({ navigation }) {
           showsVerticalScrollIndicator={true}
           contentContainerStyle={{
             flexGrow: 1,
-            justifyContent: "start-flex",
+            justifyContent: "flex-start",
             alignItems: "center",
             marginHorizontal: 20,
           }}
@@ -106,7 +123,7 @@ export default function ListingScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "start-flex",
+    justifyContent: "flex-start",
     alignItems: "center",
     paddingTop: 75,
     backgroundColor: "#F6F5F1",

@@ -3,7 +3,7 @@ import { Box, Checkbox, Radio } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import ButtonPrevious from "../buttons/ButtonPrevious";
 import ButtonNext from "../buttons/ButtonNext";
-import { useState} from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { userRequest } from "../../reducers/request";
@@ -34,14 +34,16 @@ function Step0(props) {
         depot: false,
         startday: null,
         endday: null,
+        lat: null,
+        lon: null,
       })
     );
     props.nextStep();
   };
 
-  // useEffect(() => {
-  //   console.log("request", request);
-  // }, []);
+  useEffect(() => {
+    console.log("request_Step0", request);
+  }, []);
 
   return (
     <View style={styles.container}>

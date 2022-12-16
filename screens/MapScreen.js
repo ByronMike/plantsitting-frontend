@@ -27,7 +27,7 @@ export default function MapScreen({ navigation }) {
 
       if (status === "granted") {
         Location.watchPositionAsync({ distanceInterval: 10 }, (location) => {
-          console.log(location);
+          // console.log(location);
         });
       }
     })();
