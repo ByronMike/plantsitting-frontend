@@ -18,14 +18,20 @@ const BACKEND_ADDRESS = "http://10.2.1.198:3000/messages";
 
 export default function ChatScreen({ navigation }) {
   const user = useSelector((state) => state.userconnexion.value);
+  const userSitter = useSelector((state) => state.usersitterconnexion.value);
 
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
 
   useEffect(() => {
-    fetch(`${BACKEND_ADDRESS}/users/${user.firstName}`, {
-      method: "PUT",
-    });
+    fetch(
+      user.token
+        ? `${BACKEND_ADDRESS}/users/${user.firstName}`
+        : `${BACKEND_ADDRESS}/users/${userSitter.firstName}`,
+      {
+        method: "PUT",
+      }
+    );
 
     const subscription = pusher.subscribe("chat");
     subscription.bind("pusher:subscription_succeeded", () => {
@@ -33,10 +39,15 @@ export default function ChatScreen({ navigation }) {
     });
 
     return () =>
-      fetch(`${BACKEND_ADDRESS}/users/${user.firstName}`, {
-        method: "DELETE",
-      });
-  }, [user.firstName]);
+      fetch(
+        user.token
+          ? `${BACKEND_ADDRESS}/users/${user.firstName}`
+          : `${BACKEND_ADDRESS}/users/${userSitter.firstName}`,
+        {
+          method: "DELETE",
+        }
+      );
+  }, [user.firstName, userSitter.firstName]);
 
   const handleReceiveMessage = (data) => {
     setMessages((messages) => [...messages, data]);
@@ -49,7 +60,7 @@ export default function ChatScreen({ navigation }) {
 
     const payload = {
       text: messageText,
-      username: user.firstName,
+      username: user.token ? user.firstName : userSitter.firstName,
       createdAt: new Date(),
       id: Math.floor(Math.random() * 100000),
     };
@@ -75,7 +86,10 @@ export default function ChatScreen({ navigation }) {
           size={24}
           onPress={() => navigation.goBack()}
         />
-        <Text style={styles.greetingText}>Coucou {user.firstName} 👋</Text>
+        <Text style={styles.greetingText}>
+          Coucou {user.firstName}
+          {userSitter.firstName} 👋
+        </Text>
       </View>
 
       <View style={styles.inset}>
@@ -86,7 +100,8 @@ export default function ChatScreen({ navigation }) {
               style={[
                 styles.messageWrapper,
                 {
-                  ...(message.username === user.firstName
+                  ...(message.username === user.firstName ||
+                  message.username === userSitter.firstName
                     ? styles.messageSent
                     : styles.messageRecieved),
                 },
@@ -96,7 +111,8 @@ export default function ChatScreen({ navigation }) {
                 style={[
                   styles.message,
                   {
-                    ...(message.username === user.firstName
+                    ...(message.username === userSitter.firstName ||
+                    message.username === user.firstName
                       ? styles.messageSentBg
                       : styles.messageRecievedBg),
                   },

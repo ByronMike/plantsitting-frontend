@@ -6,26 +6,30 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { logout } from "../reducers/userconnexion";
+import { logout2 } from "../reducers/usersitterconnexion";
 
 export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
+  const userSitter = useSelector((state) => state.usersitterconnexion.value);
 
   // fonction pour se déconnecter
 
   const handleLogout = () => {
     console.log("click");
     dispatch(logout());
+    dispatch(logout2());
+
     console.log(user.token);
   };
 
   // affichage logout ou connectez-vous
 
   let userSection;
-  if (user.token) {
+  if (user.token || userSitter.token) {
     userSection = (
       <View style={styles.blocregister}>
         <TouchableOpacity onPress={() => handleLogout()}>
@@ -52,11 +56,19 @@ export default function HomeScreen({ navigation }) {
         source={require("../assets/logo-basic.png")}
       />
       <View style={styles.bloctext}>
-        <Text style={styles.textbienvenue}>Hello {user.firstName} 👋 </Text>
+        <Text style={styles.textbienvenue}>
+          Hello {user.firstName}
+          {userSitter.firstName} 👋{" "}
+        </Text>
         <Text style={styles.textdemande}>Que cherchez-vous aujourd'hui ? </Text>
       </View>
       <View style={styles.blocchoix}>
-        <TouchableOpacity style={styles.recherche} onPress={() => navigation.navigate("TabNavigator", { screen: "Chercher" })}>
+        <TouchableOpacity
+          style={styles.recherche}
+          onPress={() =>
+            navigation.navigate("TabNavigator", { screen: "Chercher" })
+          }
+        >
           <View style={styles.top}>
             <Text style={styles.titrerecherche}>
               Je <Text style={styles.boutoncherche}>CHERCHE</Text> {"\n"}un

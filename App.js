@@ -16,6 +16,7 @@ import Presentation2Screen from "./screens/Presentation2Screen";
 import Presentation3Screen from "./screens/Presentation3Screen";
 import Presentation4Screen from "./screens/Presentation4Screen";
 import SigninScreen from "./screens/SigninScreen";
+import SigninSitterScreen from "./screens/SigninSitterScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
 import MapScreen from "./screens/MapScreen";
 
@@ -25,6 +26,11 @@ import Plantsitter1Screen from "./screens/Plantsitter1Screen";
 import Plantsitter2Screen from "./screens/Plantsitter2Screen";
 import Plantsitter3Screen from "./screens/Plantsitter3Screen";
 import SignupScreen from "./screens/SignupScreen";
+import Signup1SitterScreen from "./screens/Signup1SitterScreen";
+import Signup2SitterScreen from "./screens/Signup2SitterScreen";
+
+import Signup3SitterScreen from "./screens/Signup3SitterScreen";
+import Signup4SitterScreen from "./screens/Signup4SitterScreen";
 import SummaryScreen from "./screens/SummaryScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import CongratulationScreen from "./screens/CongratulationScreen";
@@ -43,9 +49,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Provider } from "react-redux";
 import user from "./reducers/user";
 import userconnexion from "./reducers/userconnexion";
+import usersitterconnexion from "./reducers/usersitterconnexion";
+
 import request from "./reducers/request";
 
-const reducers = combineReducers({ user, userconnexion, request });
+const reducers = combineReducers({
+  user,
+  userconnexion,
+  request,
+  usersitterconnexion,
+});
 const persistConfig = {
   key: "PlantSitting",
   storage: AsyncStorage,
@@ -164,6 +177,10 @@ export default function App() {
                 }}
               />
               <Stack.Screen name="Signin" component={SigninScreen} />
+              <Stack.Screen
+                name="SigninSitter"
+                component={SigninSitterScreen}
+              />
               <Stack.Screen name="Schedule" component={ScheduleScreen} />
               <Stack.Screen
                 name="Map"
@@ -187,6 +204,22 @@ export default function App() {
                 component={Plantsitter3Screen}
               />
               <Stack.Screen name="Signup" component={SignupScreen} />
+              <Stack.Screen
+                name="Signup1Sitter"
+                component={Signup1SitterScreen}
+              />
+              <Stack.Screen
+                name="Signup2Sitter"
+                component={Signup2SitterScreen}
+              />
+              <Stack.Screen
+                name="Signup3Sitter"
+                component={Signup3SitterScreen}
+              />
+              <Stack.Screen
+                name="Signup4Sitter"
+                component={Signup4SitterScreen}
+              />
               <Stack.Screen name="Summary" component={SummaryScreen} />
               <Stack.Screen name="Payment" component={PaymentScreen} />
               <Stack.Screen

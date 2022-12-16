@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn install
+  /usr/local/bin/node /usr/local/bin/yarn add pusher-js @7.4.0
 
 PATH: 
   /usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
@@ -14,12 +14,17 @@ Platform:
   darwin arm64
 
 Trace: 
-  SyntaxError: /Users/lucaspucci/Desktop/PLANTSITTING-REACT/plantsitting-frontend/package.json: Unexpected token < in JSON at position 575
-      at JSON.parse (<anonymous>)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:1629:59
-      at Generator.next (<anonymous>)
-      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+  Error: https://registry.yarnpkg.com/@7.4.0: Request "https://registry.yarnpkg.com/@7.4.0" returned a 405
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66154:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1358:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
   {
@@ -39,11 +44,7 @@ npm manifest:
       "@fortawesome/react-fontawesome": "^0.2.0",
       "@fortawesome/react-native-fontawesome": "^0.3.0",
       "@react-native-async-storage/async-storage": "^1.17.11",
-  <<<<<<< HEAD
       "@react-native-community/datetimepicker": "6.5.2",
-  =======
-      "@react-native-community/netinfo": "9.3.5",
-  >>>>>>> map
       "@react-navigation/bottom-tabs": "6",
       "@react-navigation/native": "6",
       "@react-navigation/native-stack": "6",
@@ -54,7 +55,6 @@ npm manifest:
       "expo-status-bar": "~1.4.2",
       "moment": "^2.29.4",
       "native-base": "^3.4.25",
-      "pusher-js": "7.4.0",
       "react": "18.1.0",
       "react-native": "0.70.5",
       "react-native-calendar-picker": "^7.1.3",
@@ -2269,19 +2269,12 @@ Lockfile:
       prompts "^2.4.0"
       semver "^6.3.0"
   
-  <<<<<<< HEAD
   "@react-native-community/datetimepicker@6.5.2":
     version "6.5.2"
     resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-6.5.2.tgz#d2c0df9f2c6acce39f7e957743dd811547656098"
     integrity sha512-9K3zhIH1zmpIGSG3GJTWLIoAx+sR4kJ1wqpGKMwWJ5IYXBsFxMdvGw023t0pz2CQStlnNbbNhnZY/HMYFBCsCg==
     dependencies:
       invariant "^2.2.4"
-  =======
-  "@react-native-community/netinfo@9.3.5":
-    version "9.3.5"
-    resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-9.3.5.tgz#0c60c798b5e0e14dd3b3fbab629a6e9609f709fd"
-    integrity sha512-Mqbh/J8YCfc+EqSjq5OJn2USmcD8On4048pKEfyCsCDty3lQs1SNcmHqJdu9idNU2v//aM73T8F+re59cf78Ig==
-  >>>>>>> map
   
   "@react-native/assets@1.0.0":
     version "1.0.0"
@@ -4764,7 +4757,6 @@ Lockfile:
     dependencies:
       safer-buffer ">= 2.1.2 < 3"
   
-  <<<<<<< HEAD
   iconv-lite@^0.6.2:
     version "0.6.3"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.6.3.tgz#a52f80bf38da1952eb5c681790719871a1a72501"
@@ -4772,10 +4764,7 @@ Lockfile:
     dependencies:
       safer-buffer ">= 2.1.2 < 3.0.0"
   
-  ieee754@^1.1.13:
-  =======
   ieee754@^1.1.13, ieee754@^1.2.1:
-  >>>>>>> map
     version "1.2.1"
     resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
     integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
