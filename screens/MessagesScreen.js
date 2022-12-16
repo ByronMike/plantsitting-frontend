@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { REACT_APP_BACKEND_URL } from "@env"
+import { REACT_APP_BACKEND_URL } from "@env";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Pusher from "pusher-js/react-native";
 import { useDispatch, useSelector } from "react-redux";
