@@ -10,13 +10,16 @@ import {
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { useEffect } from "react";
 
 import { useState } from "react";
 
 import { Avatar } from "native-base";
 
-function Sitter() {
-  const [personalNote, setPersonalNote] = useState(3);
+const BACKEND_ADDRESS = "http://10.2.0.177:3000";
+
+function Sitter(props) {
+  const [personalNote, setPersonalNote] = useState(5);
 
   const personalPlants = [];
   for (let i = 0; i < 5; i++) {
@@ -34,6 +37,7 @@ function Sitter() {
       />
     );
   }
+
   return (
     <TouchableOpacity>
       <View style={styles.card}>
@@ -44,22 +48,22 @@ function Sitter() {
               bg="amber.500"
               size="lg"
               source={{
-                uri: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                uri: props.userphoto,
               }}
             >
               AK
             </Avatar>
             <View style={styles.usertexte}>
-              <Text style={styles.username}>William Dupont </Text>
+              <Text style={styles.username}>
+                {props.firstname} {props.lastname}
+              </Text>
               <View style={styles.userstatus}>
                 <FontAwesome name="check-circle" size={12} color="#DDA15E" />
-                <Text style={styles.userfonction}>
-                  Plant-Sitter professionnel
-                </Text>
+                <Text style={styles.userfonction}>{props.status}</Text>
               </View>
               <View style={styles.userreview}>
                 {personalPlants}
-                <Text style={styles.textreview}>133 avis </Text>
+                <Text style={styles.textreview}>{props.review} avis</Text>
               </View>
             </View>
           </View>
@@ -69,10 +73,7 @@ function Sitter() {
           </View>
         </View>
         <View style={styles.mid}>
-          <Text style={styles.userbio}>
-            Text labels need to be distinct from other elements. If the text
-            label isn’t capitalized.
-          </Text>
+          <Text style={styles.userbio}>{props.userbio}</Text>
           <View style={styles.userfilter}>
             <Text style={styles.userfil}>Arrosage</Text>
             <Text style={styles.userfil}>Entretiens </Text>
@@ -83,10 +84,10 @@ function Sitter() {
           <View style={styles.userlocalisation}>
             <FontAwesome name="location-arrow" size={18} color="#DDA15E" />
             <Text style={styles.localisationtext}>
-              2.5 km près de chez vous{" "}
+              {props.useraddress} km près de chez vous{" "}
             </Text>
           </View>
-          <Text style={styles.userprice}>25€ / visite</Text>
+          <Text style={styles.userprice}>{props.userprice}€ / visite</Text>
         </View>
       </View>
     </TouchableOpacity>

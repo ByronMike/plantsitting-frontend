@@ -6,13 +6,7 @@ export default function Presentation1Screen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.buttonskip}>
-<<<<<<< HEAD
-        <TouchableOpacity
-          onPress={() => navigation.navigate("TabNavigator") }
-        >
-=======
         <TouchableOpacity onPress={() => navigation.navigate("TabNavigator")}>
->>>>>>> assessment
           <ButtonSkip />
         </TouchableOpacity>
       </View>
