@@ -49,31 +49,33 @@ export default function Signup2sitterScreen({ navigation }) {
       style={styles.container}
     >
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={require("../assets/logo-basic.png")}
-        />{" "}
-        <View style={styles.container2}>
-          <View>
-            <Text style={styles.textdemande}>S'inscrire 😎</Text>
-          </View>
-          <View style={styles.blocregister}>
-            <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-              <Text style={styles.register}>
-                Vous avez déjà un compte ? Connectez-vous
-              </Text>
-            </TouchableOpacity>
-          </View>
+        <SafeAreaView>
+          <Image
+            style={styles.image}
+            source={require("../assets/logo-basic.png")}
+          />{" "}
+          <View style={styles.container2}>
+            <View>
+              <Text style={styles.textdemande}>S'inscrire 😎</Text>
+            </View>
+            <View style={styles.blocregister}>
+              <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
+                <Text style={styles.register}>
+                  Vous avez déjà un compte ? Connectez-vous
+                </Text>
+              </TouchableOpacity>
+            </View>
 
-          <View style={styles.containerbouton}>
-            <TouchableOpacity
-              style={styles.registerbtn}
-              onPress={() => handleSubmit()}
-            >
-              <Text style={styles.titreregister}>SUIVANT</Text>
-            </TouchableOpacity>
+            <View style={styles.containerbouton}>
+              <TouchableOpacity
+                style={styles.registerbtn}
+                onPress={() => handleSubmit()}
+              >
+                <Text style={styles.titreregister}>SUIVANT</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        </SafeAreaView>
       </View>
     </KeyboardAvoidingView>
   );
