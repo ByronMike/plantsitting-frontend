@@ -12,7 +12,9 @@ function Step1(props) {
   const dispatch = useDispatch();
 
   const request = useSelector((state) => state.request.value);
-  const [value, setValue] = useState("one");
+  const [radioValue, setRadioValue] = useState("one");
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
 
   const [stateReducer, setStateReducer] = useState(request);
 
@@ -24,8 +26,10 @@ function Step1(props) {
   const handleValidateClick = () => {
     setStateReducer({
       ...stateReducer,
-      garde: value === "one",
-      depot: value === "two",
+      garde: radioValue === "one",
+      depot: radioValue === "two",
+      startday: selectedStartDate,
+      endday: selectedEndDate,
     });
     // console.log("stateReducer", stateReducer);
     dispatch(userRequest(stateReducer));
@@ -35,10 +39,21 @@ function Step1(props) {
     // navigation.navigate("Map");
   };
 
+  const onDateChange = (date, type) => {
+    //function to handle the date change
+    if (type === "END_DATE") {
+      setSelectedEndDate(date);
+    } else {
+      setSelectedEndDate(null);
+      setSelectedStartDate(date);
+    }
+  };
+
   useEffect(() => {
     // * Note : request correspond au stackage des données de Step0 UNIQUEMENT
     // console.log("request", request);
     console.log("stateReducer", stateReducer);
+    // console.log("startDay", selectedStartDate, selectedEndDate);
   }, []);
 
   return (
@@ -50,17 +65,17 @@ function Step1(props) {
             <Radio.Group
               name="myRadioGroup"
               accessibilityLabel="favorite number"
-              value={value}
+              value={radioValue}
               colorScheme="lightorange"
               onChange={(nextValue) => {
-                setValue(nextValue);
+                setRadioValue(nextValue);
               }}
             >
               <Radio value="one" my={3}>
                 <Text
                   style={{
-                    color: value === "one" ? "#DDA15E" : "#000000",
-                    fontWeight: value === "one" ? "600" : "400",
+                    color: radioValue === "one" ? "#DDA15E" : "#000000",
+                    fontWeight: radioValue === "one" ? "600" : "400",
                     fontSize: 14,
                   }}
                 >
@@ -70,8 +85,8 @@ function Step1(props) {
               <Radio value="two" my={3}>
                 <Text
                   style={{
-                    color: value === "two" ? "#DDA15E" : "#000000",
-                    fontWeight: value === "two" ? "600" : "400",
+                    color: radioValue === "two" ? "#DDA15E" : "#000000",
+                    fontWeight: radioValue === "two" ? "600" : "400",
                     fontSize: 14,
                   }}
                 >
@@ -91,6 +106,9 @@ function Step1(props) {
           <CalendarPicker
             startFromMonday={true}
             allowRangeSelection={true}
+            onDateChange={onDateChange}
+            minDate={new Date(2022, 1, 1)}
+            maxDate={new Date(2050, 1, 1)}
             weekdays={["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]}
             months={[
               "Janvier",
@@ -109,6 +127,12 @@ function Step1(props) {
             previousTitle="Précedent"
             nextTitle="Suivant"
             selectedDayColor="#66ff33"
+            selectedDayTextColor="#000000"
+            scaleFactor={350}
+            // textStyle={{
+            //   fontFamily: 'Montserrat',
+            //   color: '#000000',
+            // }}
           />
         </View>
         <View style={styles.middleradiocontainer}></View>
