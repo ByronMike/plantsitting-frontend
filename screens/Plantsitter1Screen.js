@@ -1,10 +1,13 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { REACT_APP_BACKEND_URL } from "@env";
+import { distance } from "../modules/checkDistance";
 import Step0 from "../components/profile-description-steps/Step0";
 import Step1 from "../components/profile-description-steps/Step1";
 import Step2 from "../components/profile-description-steps/Step2";
+
+
 
 export default function Plantsitter1Screen({ navigation }) {
   const dispatch = useDispatch();
@@ -38,6 +41,14 @@ export default function Plantsitter1Screen({ navigation }) {
 
   const dataStep0 = dataSitter.map((data, i) => {
     console.log("data", data);
+
+    let latuser = 43.292328;
+    let latsitter = data.useraddress[0].latitude;
+    let lonuser = 5.366564;
+    let lonsitter = data.useraddress[0].longitude;
+
+    const localisation = distance(latuser, latsitter, lonuser, lonsitter);
+
     return (
       <Step0
         key={i}
@@ -47,7 +58,7 @@ export default function Plantsitter1Screen({ navigation }) {
         status={data.status}
         review={data.reviews.length}
         userbio={data.userbio}
-        // useraddress={localisation}
+        useraddress={localisation}
         userphoto={data.userphoto}
         userprice={data.tarifs[0].tarif1}
         reviewsStep={reviewsStep}
