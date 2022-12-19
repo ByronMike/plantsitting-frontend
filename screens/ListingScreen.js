@@ -49,7 +49,8 @@ export default function ListingScreen({ navigation }) {
       .then((datamatchingSitters) => {
         setMatchingSitters(datamatchingSitters.matchingSitters);
       });
-    console.log("choix", userchoose);
+    // console.log("choix", userchoose);
+    console.log("matchingSitters", matchingSitters);
   }, []);
 
   const plantsitters = matchingSitters.map((data, i) => {
@@ -63,6 +64,7 @@ export default function ListingScreen({ navigation }) {
     return (
       <Sitter
         key={i}
+        token={data.token}
         firstname={data.firstname}
         lastname={data.lastname}
         status={data.status}

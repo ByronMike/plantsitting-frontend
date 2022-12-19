@@ -7,17 +7,27 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { getToken } from "../reducers/sitter";
 
 import { useState } from "react";
 
 import { Avatar } from "native-base";
 
 function Sitter(props) {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [personalNote, setPersonalNote] = useState(5);
+
+  const testId = () => {
+    console.log("token : ", props.token);
+    dispatch(getToken(props.token));
+  };
 
   const personalPlants = [];
   for (let i = 0; i < 5; i++) {
@@ -37,7 +47,7 @@ function Sitter(props) {
   }
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => {testId(); navigation.navigate("Plantsitter1")}}>
       <View style={styles.card}>
         <View style={styles.top}>
           <View style={styles.userinfo}>

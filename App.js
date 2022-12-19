@@ -50,19 +50,20 @@ import { Provider } from "react-redux";
 import user from "./reducers/user";
 import userconnexion from "./reducers/userconnexion";
 import usersitterconnexion from "./reducers/usersitterconnexion";
-
+import sitter from "./reducers/sitter";
 import request from "./reducers/request";
 
 const reducers = combineReducers({
   user,
   userconnexion,
   request,
+  sitter,
   usersitterconnexion,
 });
 const persistConfig = {
   key: "PlantSitting",
   storage: AsyncStorage,
-  blacklist: ["user", "request"],
+  blacklist: ["user", "request", "sitter"],
 };
 const store = configureStore({
   reducer: persistReducer(persistConfig, reducers),
