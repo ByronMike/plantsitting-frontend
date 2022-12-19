@@ -1,60 +1,75 @@
+import { Button, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
-import {
-  Modal,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { useSelector } from "react-redux";
 
-import MapView, { Marker } from "react-native-maps";
-import * as Location from "expo-location";
+import Step0 from "../components/results-sitters/Step0";
+import Step1 from "../components/results-sitters/Step1";
+import { Switch } from "native-base";
 
 export default function MapScreen({ navigation }) {
-  const request = useSelector((state) => state.request.value);
-  const [req, setReq] = useState();
-  const [currentPosition, setCurrentPosition] = useState();
+  // Gestion des screens avec le même tab navigator et pour faciliter le stockage des données via useState
 
-  useEffect(() => {
-    setReq(request)(async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
-      if (status === "granted") {
-        Location.watchPositionAsync({ distanceInterval: 10 }, (location) => {
-          setCurrentPosition(location.coords);
-          console.log("current pos latitude", currentPosition.latitude);
-        });
-      }
-    })();
-  }, []);
+  const user = useSelector((state) => state.userconnexion.value);
+
+  const toogleFunction = () => {
+    console.log("click");
+  };
+
+  let affichage = <View></View>;
+
+  // if (formProgress == 0) {
+  //   affichage = (
+  //     <View style={styles.container2}>
+  //       <Step0 nextStep={nextStep} />
+  //     </View>
+  //   );
+  // }
+
+  // if (formProgress == 1) {
+  //   affichage = (
+  //     <View style={styles.container2}>
+  //       <Step1 previousStep={previousStep} />
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textbienvenue}>
-        Pour quelle adresse voulez-vous un PlantSitter{" "}
-        <Text style={styles.username}>Mathis</Text> ? 👀
-      </Text>
-      <MapView
-        initialRegion={{
-          latitude: currentPosition.latitude,
-          longitude: currentPosition.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-        style={{ flex: 1, width: "100%", height: "100%", marginTop: 35 }}
-      >
-        <Marker coordinate={currentPosition} />
-      </MapView>
+      <View style={styles.bloctext}>
+        <Text style={styles.textbienvenue}>
+          Hey <Text style={styles.username}>{user.firstName}</Text>,{"\n"}
+          Découvrez les plant-sitters disponibles près de chez vous 👀
+        </Text>
+      </View>
+      <View style={styles.bloctoggle}>
+        <Text style={styles.txtchoix}> Affichage en LISTE </Text>
+        <Switch onValueChange={toggleSwitch} value={isEnabled} />
+        <Text style={styles.txtchoix}> Affichage en MAP </Text>
+      </View>
+      <View style={styles.container2}>
+        {isEnabled ? (
+          <Text>
+            <Step0 />
+          </Text>
+        ) : (
+          <Text>
+            <Step1 />
+          </Text>
+        )}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  map: {
-    flex: 1,
+  container2: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
-
   container: {
     flex: 1,
     justifyContent: "flex-start",
@@ -62,7 +77,16 @@ const styles = StyleSheet.create({
     paddingTop: 75,
     backgroundColor: "#F6F5F1",
   },
-
+  txtchoix: {
+    margin: 15,
+  },
+  bloctoggle: {
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: 15,
+    backgroundColor: "#F6F5F1",
+    flexDirection: "row",
+  },
   textbienvenue: {
     fontSize: 18,
     fontFamily: "Montserrat",
@@ -80,44 +104,5 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 26,
     color: "#DDA15E",
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  modalView: {
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 30,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  input: {
-    width: 150,
-    borderBottomColor: "#ec6e5b",
-    borderBottomWidth: 1,
-    fontSize: 16,
-  },
-  button: {
-    width: 150,
-    alignItems: "center",
-    marginTop: 20,
-    paddingTop: 8,
-    backgroundColor: "#ec6e5b",
-    borderRadius: 10,
-  },
-  textButton: {
-    color: "#ffffff",
-    height: 24,
-    fontWeight: "600",
-    fontSize: 15,
   },
 });

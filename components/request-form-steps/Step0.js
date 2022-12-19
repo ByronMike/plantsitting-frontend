@@ -3,11 +3,7 @@ import { Box, Checkbox, Radio } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import ButtonPrevious from "../buttons/ButtonPrevious";
 import ButtonNext from "../buttons/ButtonNext";
-<<<<<<< HEAD
 import { useState, useEffect } from "react";
-=======
-import { useState } from "react";
->>>>>>> listing
 import { useDispatch, useSelector } from "react-redux";
 
 import { userRequest } from "../../reducers/request";

@@ -12,11 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Select, Box, CheckIcon } from "native-base";
 import { useState } from "react";
 import { useEffect } from "react";
-import { distance } from "../modules/checkDistance";
+import { distance } from "../../modules/checkDistance";
 
-import Sitter from "../components/Sitter";
+import Sitter from "../Sitter";
 
-export default function ListingScreen({ navigation }) {
+function Step1() {
   const [service, setService] = useState("");
   const [matchingSitters, setMatchingSitters] = useState([]);
 
@@ -79,14 +79,10 @@ export default function ListingScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.bloctext}>
-        <Text style={styles.textbienvenue}>
-          Hey <Text style={styles.username}>{user.firstName}</Text>,{"\n"}
-          Découvrez les plant-sitters disponibles près de chez vous 👀
-        </Text>
         <Box style={styles.boxfilter} maxW="400">
           <Select
             selectedValue={service}
-            minWidth="300"
+            minWidth="350"
             accessibilityLabel="Choose Service"
             placeholder="Filtrer par"
             _selectedItem={{
@@ -126,7 +122,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingTop: 75,
     backgroundColor: "#F6F5F1",
   },
   container2: {
@@ -158,3 +153,5 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
 });
+
+export default Step1;
