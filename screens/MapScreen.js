@@ -7,88 +7,79 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addPlace, importPlaces } from "../reducers/user";
+
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
 export default function MapScreen({ navigation }) {
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user.value);
-
-  // const [currentPosition, setCurrentPosition] = useState(null);
-  // const [tempCoordinates, setTempCoordinates] = useState(null);
-  // const [modalVisible, setModalVisible] = useState(false);
-  // const [newPlace, setNewPlace] = useState("");
+  const request = useSelector((state) => state.request.value);
+  const [req, setReq] = useState();
+  const [currentPosition, setCurrentPosition] = useState();
 
   useEffect(() => {
-    (async () => {
+    setReq(request)(async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status === "granted") {
         Location.watchPositionAsync({ distanceInterval: 10 }, (location) => {
-          // console.log(location);
+          setCurrentPosition(location.coords);
+          console.log("current pos latitude", currentPosition.latitude);
         });
       }
     })();
   }, []);
-  // useEffect(() => {
-  //   fetch(`http://10.2.1.198:3000/places/${user.nickname}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       data.result && dispatch(importPlaces(data.places));
-  //       // importPlaces is a new order to create in reducers/user.js
-  //     });
-  // }, []);
-
-  // const handleNewPlace = () => {
-  //   fetch("http://10.2.1.198:3000/places", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       nickname: user.nickname,
-  //       name: newPlace,
-  //       latitude: tempCoordinates.latitude,
-  //       longitude: tempCoordinates.longitude,
-  //     }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.result) {
-  //         dispatch(
-  //           addPlace({
-  //             name: newPlace,
-  //             latitude: tempCoordinates.latitude,
-  //             longitude: tempCoordinates.longitude,
-  //           })
-  //         );
-  //         setModalVisible(false);
-  //         setNewPlace("");
-  //       }
-  //     });
-  // };
 
   return (
-    <MapView
-      initialRegion={{
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
-      style={{ flex: 1 }}
-    >
-      <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} />
-    </MapView>
+    <View style={styles.container}>
+      <Text style={styles.textbienvenue}>
+        Pour quelle adresse voulez-vous un PlantSitter{" "}
+        <Text style={styles.username}>Mathis</Text> ? 👀
+      </Text>
+      <MapView
+        initialRegion={{
+          latitude: currentPosition.latitude,
+          longitude: currentPosition.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+        style={{ flex: 1, width: "100%", height: "100%", marginTop: 35 }}
+      >
+        <Marker coordinate={currentPosition} />
+      </MapView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   map: {
     flex: 1,
+  },
+
+  container: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingTop: 75,
+    backgroundColor: "#F6F5F1",
+  },
+
+  textbienvenue: {
+    fontSize: 18,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "600",
+    lineHeight: 26,
+    color: "#283618",
+    paddingRight: 15,
+    paddingLeft: 15,
+  },
+  username: {
+    fontSize: 25,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "600",
+    lineHeight: 26,
+    color: "#DDA15E",
   },
   centeredView: {
     flex: 1,

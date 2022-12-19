@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#606C38",
   },
   messageText: {
-    color: "#506568",
+    color: "white",
     fontWeight: "400",
   },
   timeText: {

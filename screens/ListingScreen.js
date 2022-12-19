@@ -22,6 +22,9 @@ export default function ListingScreen({ navigation }) {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
+  const userchoose = useSelector((state) => state.request.value);
+
+  console.log("choix", userchoose);
 
   const userchoose = useSelector((state) => state.request.value);
 
