@@ -21,6 +21,9 @@ export default function ListingScreen({ navigation }) {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
+  const userchoose = useSelector((state) => state.request.value);
+
+  console.log("choix", userchoose);
 
   useEffect(() => {
     console.log("test useEffect");
@@ -91,7 +94,7 @@ export default function ListingScreen({ navigation }) {
           showsVerticalScrollIndicator={true}
           contentContainerStyle={{
             flexGrow: 1,
-            justifyContent: "start-flex",
+            justifyContent: "flex-start",
             alignItems: "center",
             marginHorizontal: 20,
           }}
@@ -106,7 +109,7 @@ export default function ListingScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "start-flex",
+    justifyContent: "flex-start",
     alignItems: "center",
     paddingTop: 75,
     backgroundColor: "#F6F5F1",
