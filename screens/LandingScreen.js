@@ -109,6 +109,10 @@ export default function LandingScreen({ navigation }) {
           onPress={() => navigation.navigate("Signup4Sitter")}
         />
         <Button
+          title="Go to CameraScreen Sitter Screen"
+          onPress={() => navigation.navigate("CameraScreen")}
+        />
+        <Button
           title="Go to Summary Screen"
           onPress={() => navigation.navigate("Summary")}
         />

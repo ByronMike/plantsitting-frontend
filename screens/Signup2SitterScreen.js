@@ -1,24 +1,41 @@
 import {
-  Button,
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   TouchableOpacity,
   Image,
-  ScrollView,
-  useWindowDimensions,
   KeyboardAvoidingView,
 } from "react-native";
+<<<<<<< HEAD
 import { REACT_APP_BACKEND_URL } from "@env";
 import { Input } from "native-base";
+=======
+import { Input, Slider, Box, Icon } from "native-base";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+>>>>>>> sitter
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/usersitterconnexion";
 //TEST blabla
 
 export default function Signup2sitterScreen({ navigation }) {
-  // Function fetch pour s'inscrire
+  //   const handleSubmit = () => {
+  //     fetch("http://10.2.1.198:3000/users/signup", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         firstName,
+  //         lastName,
+  //         email,
+  //         zipCode,
+  //         password,
+  //         phoneNumber: telephone,
+  //       }),
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log("data signup", data);
 
   const handleSubmit = () => {
     fetch(`http://${REACT_APP_BACKEND_URL}/users/signup`, {
@@ -37,12 +54,8 @@ export default function Signup2sitterScreen({ navigation }) {
       .then((data) => {
         console.log("🚙data signup", data);
 
-        data.result &&
-          dispatch(login({ token: data.token, firstName: firstName }));
-      });
-
-    navigation.navigate("TabNavigator", { screen: "Signup3SitterScreen" });
-  };
+  //     navigation.navigate("TabNavigator", { screen: "Signup3SitterScreen" });
+  //   };
 
   return (
     <KeyboardAvoidingView
@@ -54,17 +67,66 @@ export default function Signup2sitterScreen({ navigation }) {
           <Image
             style={styles.image}
             source={require("../assets/logo-basic.png")}
-          />{" "}
+          />
           <View style={styles.container2}>
             <View>
-              <Text style={styles.textdemande}>S'inscrire 😎</Text>
+              <Text style={styles.textdemande}>Mes compétences🌳:</Text>
             </View>
+            <Text style={styles.textdemande}>Arrosage:</Text>
+            <Box style={styles.box} alignItems="center" w="100%">
+              <Slider
+                defaultValue={70}
+                size="sm"
+                colorScheme="green"
+                w="75%"
+                maxW="300"
+              >
+                <Slider.Track bg="green.100">
+                  <Slider.FilledTrack bg="green.600" />
+                </Slider.Track>
+                <Slider.Thumb borderWidth="0" bg="transparent">
+                  <FontAwesomeIcon name="leaf" color="green.600" size="xl" />
+                </Slider.Thumb>
+              </Slider>
+            </Box>
+            <Text style={styles.textdemande}>Entretien de jardins:</Text>
+            <Box style={styles.box} alignItems="center" w="100%">
+              <Slider
+                defaultValue={70}
+                size="sm"
+                colorScheme="green"
+                w="75%"
+                maxW="300"
+              >
+                <Slider.Track bg="green.100">
+                  <Slider.FilledTrack bg="green.600" />
+                </Slider.Track>
+                <Slider.Thumb borderWidth="0" bg="transparent">
+                  <FontAwesomeIcon name="leaf" color="green.600" size="xl" />
+                </Slider.Thumb>
+              </Slider>
+            </Box>
+            <Text style={styles.textdemande}>Traitement des maladies:</Text>
+            <Box style={styles.box} alignItems="center" w="100%">
+              <Slider
+                defaultValue={70}
+                size="sm"
+                colorScheme="green"
+                w="75%"
+                maxW="300"
+              >
+                <Slider.Track bg="green.100">
+                  <Slider.FilledTrack bg="green.600" />
+                </Slider.Track>
+                <Slider.Thumb borderWidth="0" bg="transparent">
+                  <FontAwesomeIcon name="leaf" color="green.600" size="xl" />
+                </Slider.Thumb>
+              </Slider>
+            </Box>
             <View style={styles.blocregister}>
-              <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-                <Text style={styles.register}>
-                  Vous avez déjà un compte ? Connectez-vous
-                </Text>
-              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("signup3Sitter")}
+              ></TouchableOpacity>
             </View>
 
             <View style={styles.containerbouton}>
@@ -84,8 +146,8 @@ export default function Signup2sitterScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   image: {
-    width: "70%",
-    height: "20%",
+    width: 350,
+    height: 250,
     alignItems: "center",
   },
   container: {
@@ -104,7 +166,9 @@ const styles = StyleSheet.create({
   bloctexte: {
     flexDirection: "row",
   },
-  blocimg: {},
+  box: {
+    marginBottom: 30,
+  },
   blocinput: {
     justifyContent: "center",
     alignItems: "flex-start",
@@ -113,7 +177,6 @@ const styles = StyleSheet.create({
   },
 
   registerbtn: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#DDA15E",
@@ -131,12 +194,13 @@ const styles = StyleSheet.create({
     lineHeight: 41,
     letterSpacing: -0.03,
     color: "#283618",
+    marginBottom: 15,
   },
   titreregister: {
     color: "white",
     fontFamily: "Montserrat",
     fontStyle: "normal",
-    fontWeight: "700",
+    fontWeight: "bold",
     fontSize: 15,
     lineHeight: 30,
     letterSpacing: 1,
@@ -146,6 +210,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: 350,
+    marginTop: 45,
   },
 
   blocregister: {

@@ -1,13 +1,10 @@
 import {
-  Button,
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   TouchableOpacity,
   Image,
-  ScrollView,
-  useWindowDimensions,
   KeyboardAvoidingView,
 } from "react-native";
 import { REACT_APP_BACKEND_URL } from "@env";
@@ -17,20 +14,10 @@ import { useDispatch } from "react-redux";
 import { login } from "../reducers/usersitterconnexion";
 //TEST blabla
 
-export default function Signup3SitterScreen({ navigation }) {
-  const dispatch = useDispatch();
-  const { height, width } = useWindowDimensions();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [mailIsOk, setMailIsOk] = useState(true);
-  const [telIsOk, setTelIsOk] = useState(true);
-  const [tat, setTata] = useState("");
-
-  // Function fetch pour s'inscrire
+export default function Signup2sitterScreen({ navigation }) {
+  const [plant1, setPlant1] = useState("");
+  const [plant2, setPlant2] = useState("");
+  const [plant3, setPlant3] = useState("");
 
   const handleSubmit = () => {
     fetch(`http://${REACT_APP_BACKEND_URL}/users/signup`, {
@@ -49,151 +36,65 @@ export default function Signup3SitterScreen({ navigation }) {
       .then((data) => {
         console.log("🚙data signup", data);
 
-        data.result &&
-          dispatch(login({ token: data.token, firstName: firstName }));
+        navigation.navigate("TabNavigator", { screen: "Signup3SitterScreen" });
       });
-    // Function pour checker si le mail est un format mail
 
-    const emailReg = new RegExp(
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i
-    );
-
-    // Function pour checker si le telephone est un format tel francais
-
-    const telReg = new RegExp(
-      /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/i
-    );
-    const valid = emailReg.test(email);
-    const validTel = telReg.test(telephone);
-    if (!valid) {
-      console.log("email pas ok");
-      setMailIsOk(false);
-      return false;
-    } else {
-      console.log("mail ok");
-      if (!validTel) {
-        console.log("tel pas ok");
-        setTelIsOk(false);
-        return false;
-      } else {
-        console.log("tel ok");
-        navigation.navigate("TabNavigator", { screen: "Signup4SitterScreen" });
-      }
-    }
-  };
-
-  let alerteMail = <Text></Text>;
-  if (mailIsOk === false) {
-    alerteMail = <Text style={styles.textAlerte}>Adresse email invalide</Text>;
-  }
-
-  let alerteTel = <Text></Text>;
-  if (telIsOk === false) {
-    alerteTel = <Text style={styles.textAlerte}>Téléphone invalide</Text>;
-  }
-
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS == "ios" ? "padding" : "position"}
-      style={styles.container}
-    >
-      <View style={styles.container}>
-        <SafeAreaView>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-              flexGrow: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-            }}
-          >
+    return (
+      <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : "position"}
+        style={styles.container}
+      >
+        <View style={styles.container}>
+          <SafeAreaView>
             <Image
               style={styles.image}
               source={require("../assets/logo-basic.png")}
             />
-
             <View style={styles.container2}>
-              <View style={{ ...styles.bloctexte, width: width * 0.85 }}>
-                <Text style={styles.textdemande}>S'inscrire 😎</Text>
+              <View>
+                <Text style={styles.textdemande}>
+                  Mes tarifs pour 1 visite:
+                </Text>
               </View>
+              <Text style={styles.textdemande}>Pour 1 à 5 plantes:</Text>
+              <Input
+                size="xl"
+                variant="outline"
+                placeholder="20€ (prix moyen conseillé)"
+                style={styles.input}
+                name="firstName"
+                type="firsName"
+                value={plant1}
+                onChangeText={(value) => setPlant1(value)}
+              />
+              <Text style={styles.textdemande}>Pour 5 à 15 plantes:</Text>
+              <Input
+                size="xl"
+                variant="outline"
+                placeholder="30€ (prix moyen conseillé)"
+                style={styles.input}
+                name="firstName"
+                type="firsName"
+                value={plant2}
+                onChangeText={(value) => setPlant2(value)}
+              />
+              <Text style={styles.textdemande}>Pour 15 et + plantes:</Text>
+              <Input
+                size="xl"
+                variant="outline"
+                placeholder="50€ (prix moyen conseillé)"
+                style={styles.input}
+                name="firstName"
+                type="firsName"
+                value={plant3}
+                onChangeText={(value) => setPlant3(value)}
+              />
               <View style={styles.blocregister}>
-                <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-                  <Text style={styles.register}>
-                    Vous avez déjà un compte ? Connectez-vous
-                  </Text>
-                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("signup4Sitter")}
+                ></TouchableOpacity>
               </View>
-              <View style={styles.blocinput}>
-                <Input
-                  size="xl"
-                  variant="underlined"
-                  placeholder="Prénom"
-                  style={styles.input}
-                  name="firstName"
-                  type="firsName"
-                  value={firstName}
-                  onChangeText={(value) => setFirstName(value)}
-                />
-                <Text></Text>
-                <Input
-                  size="xl"
-                  variant="underlined"
-                  placeholder="Nom"
-                  style={styles.input}
-                  name="lastName"
-                  type="lastName"
-                  value={lastName}
-                  onChangeText={(value) => setLastName(value)}
-                />
-                <Text></Text>
-                <Input
-                  size="xl"
-                  variant="underlined"
-                  placeholder="Email"
-                  style={styles.input}
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChangeText={(value) => setEmail(value)}
-                />
-                <Text>{alerteMail}</Text>
-                <Input
-                  size="xl"
-                  variant="underlined"
-                  placeholder="Téléphone"
-                  style={styles.input}
-                  name="telephone"
-                  type="telephone"
-                  value={telephone}
-                  onChangeText={(value) => setTelephone(value)}
-                />
 
-                <Text>{alerteTel}</Text>
-
-                <Input
-                  size="xl"
-                  variant="underlined"
-                  placeholder="Code postal"
-                  style={styles.input}
-                  name="zipCode"
-                  type="zipCode"
-                  value={zipCode}
-                  onChangeText={(value) => setZipCode(value)}
-                />
-                <Text></Text>
-                <Input
-                  size="xl"
-                  variant="underlined"
-                  placeholder="Mot de passe"
-                  style={styles.input}
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChangeText={(value) => setPassword(value)}
-                />
-              </View>
-              <Text></Text>
               <View style={styles.containerbouton}>
                 <TouchableOpacity
                   style={styles.registerbtn}
@@ -203,17 +104,17 @@ export default function Signup3SitterScreen({ navigation }) {
                 </TouchableOpacity>
               </View>
             </View>
-          </ScrollView>
-        </SafeAreaView>
-      </View>
-    </KeyboardAvoidingView>
-  );
+          </SafeAreaView>
+        </View>
+      </KeyboardAvoidingView>
+    );
+  };
 }
 
 const styles = StyleSheet.create({
   image: {
-    width: "70%",
-    height: "20%",
+    width: 350,
+    height: 250,
     alignItems: "center",
   },
   container: {
@@ -224,7 +125,6 @@ const styles = StyleSheet.create({
   },
 
   container2: {
-    flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
@@ -232,21 +132,17 @@ const styles = StyleSheet.create({
   bloctexte: {
     flexDirection: "row",
   },
-  blocimg: {},
+  box: {
+    marginBottom: 30,
+  },
   blocinput: {
     justifyContent: "center",
     alignItems: "flex-start",
     width: "100%",
     marginTop: 6,
   },
-  input: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 15,
-  },
+
   registerbtn: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#DDA15E",
@@ -264,17 +160,8 @@ const styles = StyleSheet.create({
     lineHeight: 41,
     letterSpacing: -0.03,
     color: "#283618",
+    marginBottom: 15,
   },
-  textInput: {
-    fontFamily: "Montserrat",
-    fontStyle: "normal",
-    fontWeight: "350",
-    fontSize: 20,
-    lineHeight: 30,
-    letterSpacing: -0.03,
-    color: "#283618",
-  },
-
   titreregister: {
     color: "white",
     fontFamily: "Montserrat",
@@ -289,10 +176,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: 350,
-  },
-  textAlerte: {
-    color: "red",
-    alignItems: "left",
+    marginTop: 45,
   },
 
   blocregister: {
