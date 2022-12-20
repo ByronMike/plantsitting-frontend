@@ -19,8 +19,8 @@ function CardReviews(props) {
           <Text></Text>
         </View>
         <View style={styles.rating}>
-          {/* bug1 */}
-          {/* <Text>{dataReviews[0].firstName}</Text> */}
+
+          <Text>{props.firstName}</Text>
         </View>
       </View>
       <View style={styles.bottomContainer}>

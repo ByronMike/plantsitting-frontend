@@ -1,7 +1,6 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { reviewSitter } from "../reducers/review";
 import { REACT_APP_BACKEND_URL } from "@env";
 import { distance } from "../modules/checkDistance";
 import Step0 from "../components/profile-description-steps/Step0";
@@ -35,31 +34,19 @@ export default function Plantsitter1Screen({ navigation }) {
       .then((dataSitter) => {
         setDataSitter([dataSitter.sitter]);
       });
-    // console.log("choix", userchoose);
-    console.log("dataSitter : ", dataSitter);
-
-    // fetch pour les informations Reviews du Sitter
-    fetch(
-      `http://${REACT_APP_BACKEND_URL}/sitters/reviewsBySitter/${userToken}`
-    )
-      .then((response) => response.json())
-      .then((reviews) => {
-        // console.log("dataReviews : ", reviews.reviews[0].author);
-        dispatch(reviewSitter([reviews.reviews[0].author]));
-      });
+    // console.log("dataSitter", dataSitter);
+    // console.log("dataSitter : ", dataSitter[0].sitter);
+    // console.log("dataSitter : ", dataSitter.sitter.reviews[0].author.firstName);
   }, []);
 
   const dataStep0 = dataSitter.map((data, i) => {
-    console.log("data", data);
-    console.log("tokeeen", data.userphoto);
-
+    // console.log("data", data.reviews);
+    // console.log("tokeeen", data.userphoto);
     let latuser = 43.292328;
     let latsitter = data.useraddress[0].latitude;
     let lonuser = 5.366564;
     let lonsitter = data.useraddress[0].longitude;
-
     const localisation = distance(latuser, latsitter, lonuser, lonsitter);
-
     return (
       <Step0
         key={i}
@@ -67,7 +54,7 @@ export default function Plantsitter1Screen({ navigation }) {
         firstname={data.firstname}
         lastname={data.lastname}
         status={data.status}
-        review={data.reviews.length}
+        reviewLength={data.reviews.length}
         userbio={data.userbio}
         useraddress={localisation}
         userphoto={data.userphoto}
