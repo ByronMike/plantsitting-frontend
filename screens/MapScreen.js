@@ -9,7 +9,7 @@ import { Switch } from "native-base";
 export default function MapScreen({ navigation }) {
   // Gestion des screens avec le même tab navigator et pour faciliter le stockage des données via useState
 
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   const user = useSelector((state) => state.userconnexion.value);
