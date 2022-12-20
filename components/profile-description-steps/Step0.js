@@ -4,6 +4,8 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import { Avatar, Row } from "native-base";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -11,7 +13,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { useEffect } from "react";
-import cardReviews from "./cardReviews";
+import CardReviews from "./CardReviews";
 
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
@@ -22,12 +24,13 @@ function Step0(props) {
   }
 
   useEffect(() => {
-    console.log("reviews :", props.reviews);
+    // console.log("reviews :", props.reviews);
+    // console.log("props.token :", props.token);
   }, []);
 
   const dataReviews = props.reviews.map((data, i) => {
     return (
-      <cardReviews
+      <CardReviews
         key={i}
         author={data.author}
         reviewNote={data.reviewNote}
@@ -117,7 +120,21 @@ function Step0(props) {
         </View>
         <View style={styles.reviewsContainer}>
           <View style={styles.reviewNumber}></View>
-          <View style={styles.cards}>{dataReviews}</View>
+          <View style={styles.cards}>
+            <SafeAreaView style={styles.container2}>
+              <ScrollView
+                showsVerticalScrollIndicator={true}
+                contentContainerStyle={{
+                  flexGrow: 1,
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  marginHorizontal: 20,
+                }}
+              >
+                {dataReviews}
+              </ScrollView>
+            </SafeAreaView>
+          </View>
         </View>
       </View>
     </View>
@@ -226,7 +243,14 @@ const styles = StyleSheet.create({
   },
   reviewsContainer: {},
   reviewNumber: {},
-  reviews: {},
+  reviews: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  cards: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 export default Step0;

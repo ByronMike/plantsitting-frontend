@@ -39,6 +39,7 @@ export default function Plantsitter1Screen({ navigation }) {
 
   const dataStep0 = dataSitter.map((data, i) => {
     console.log("data", data);
+    console.log("tokeeen", data.userphoto);
 
     let latuser = 43.292328;
     let latsitter = data.useraddress[0].latitude;
