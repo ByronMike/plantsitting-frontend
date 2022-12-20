@@ -7,129 +7,106 @@ import {
   Image,
   KeyboardAvoidingView,
 } from "react-native";
-import { REACT_APP_BACKEND_URL } from "@env";
 import { Input } from "native-base";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/usersitterconnexion";
-//TEST blabla
 
-export default function Signup2sitterScreen({ navigation }) {
+export default function Signup4sitterScreen({ navigation }) {
   const [bio, setBio] = useState("");
   const [rib, setRib] = useState("");
 
-  const handleSubmit = () => {
-    fetch(`http://${REACT_APP_BACKEND_URL}/users/signup`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        zipCode,
-        password,
-        phoneNumber: telephone,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("🚙data signup", data);
-
-        navigation.navigate("TabNavigator", { screen: "Signup3SitterScreen" });
-      });
-
-    return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "position"}
-        style={styles.container}
-      >
-        <View style={styles.container}>
-          <SafeAreaView>
-            <Image
-              style={styles.image}
-              source={require("../assets/logo-basic.png")}
-            />
-            <View style={styles.container2}>
-              <View>
-                <Text style={styles.textdemande}>
-                  Mes information détaillées:
-                </Text>
-              </View>
-              <Text style={styles.textdemande}>Ma biographie:</Text>
-              <Input
-                size="xl"
-                variant="outline"
-                placeholder="Décrivez vous en quelques lignes pour vous présenter à vos futurs clients."
-                style={styles.input}
-                name="bio"
-                type="bio"
-                value={bio}
-                onChangeText={(value) => setBio(value)}
-              />
-              <Text style={styles.textdemande}>Mes équipements:</Text>
-              <Box style={styles.box}>
-                <View
-                  direction={{
-                    base: "column",
-                    md: "row",
-                  }}
-                  space={3}
-                  alignItems="flex-start"
-                >
-                  <Checkbox
-                    style={styles.boxelemnt}
-                    value="Pourboir"
-                    colorScheme="green"
-                  >
-                    <Text style={styles.boxelemnt}>Amateur</Text>
-                  </Checkbox>
-                  <Checkbox
-                    style={styles.boxelemnt}
-                    value="Don assosciation"
-                    colorScheme="green"
-                  >
-                    <Text style={styles.boxelemnt}> Intermédiaire</Text>
-                  </Checkbox>
-                  <Checkbox
-                    style={styles.boxelemnt}
-                    value="Don assosciation"
-                    colorScheme="green"
-                  >
-                    <Text style={styles.boxelemnt}>professionnel</Text>
-                  </Checkbox>
-                </View>
-              </Box>
-              <Text style={styles.textdemande}>Mon RIB:</Text>
-              <Input
-                size="l"
-                variant="outline"
-                placeholder="Merci de compléter votre rib pour recevoir le paiement de vos préstations."
-                style={styles.input}
-                name="rib"
-                type="rib"
-                value={rib}
-                onChangeText={(value) => setRib(value)}
-              />
-              <View style={styles.blocregister}>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("signup4Sitter")}
-                ></TouchableOpacity>
-              </View>
-
-              <View style={styles.containerbouton}>
-                <TouchableOpacity
-                  style={styles.registerbtn}
-                  onPress={() => handleSubmit()}
-                >
-                  <Text style={styles.titreregister}>SUIVANT</Text>
-                </TouchableOpacity>
-              </View>
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "position"}
+      style={styles.container}
+    >
+      <View style={styles.container}>
+        <SafeAreaView>
+          <Image
+            style={styles.image}
+            source={require("../assets/logo-basic.png")}
+          />
+          <View style={styles.container2}>
+            <View>
+              <Text style={styles.textdemande}>
+                Mes information détaillées:
+              </Text>
             </View>
-          </SafeAreaView>
-        </View>
-      </KeyboardAvoidingView>
-    );
-  };
+            <Text style={styles.textdemande}>Ma biographie:</Text>
+            <Input
+              size="xl"
+              variant="outline"
+              placeholder="Décrivez vous en quelques lignes pour vous présenter à vos futurs clients."
+              style={styles.input}
+              name="bio"
+              type="bio"
+              value={bio}
+              onChangeText={(value) => setBio(value)}
+            />
+            <Text style={styles.textdemande}>Mes équipements:</Text>
+            <Box style={styles.box}>
+              <View
+                direction={{
+                  base: "column",
+                  md: "row",
+                }}
+                space={3}
+                alignItems="flex-start"
+              >
+                <Checkbox
+                  style={styles.boxelemnt}
+                  value="Pourboir"
+                  colorScheme="green"
+                >
+                  <Text style={styles.boxelemnt}>Amateur</Text>
+                </Checkbox>
+                <Checkbox
+                  style={styles.boxelemnt}
+                  value="Don assosciation"
+                  colorScheme="green"
+                >
+                  <Text style={styles.boxelemnt}> Intermédiaire</Text>
+                </Checkbox>
+                <Checkbox
+                  style={styles.boxelemnt}
+                  value="Don assosciation"
+                  colorScheme="green"
+                >
+                  <Text style={styles.boxelemnt}>professionnel</Text>
+                </Checkbox>
+              </View>
+            </Box>
+            <Text style={styles.textdemande}>Mon RIB:</Text>
+            <Input
+              size="l"
+              variant="outline"
+              placeholder="Merci de compléter votre rib pour recevoir le paiement de vos préstations."
+              style={styles.input}
+              name="rib"
+              type="rib"
+              value={rib}
+              onChangeText={(value) => setRib(value)}
+            />
+            <View style={styles.blocregister}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("signup4Sitter")}
+              ></TouchableOpacity>
+            </View>
+
+            <View style={styles.containerbouton}>
+              <TouchableOpacity
+                style={styles.registerbtn}
+                onPress={() => handleSubmit()}
+              >
+                <Text style={styles.titreregister}>SUIVANT</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </SafeAreaView>
+      </View>
+    </KeyboardAvoidingView>
+  );
 }
 
 const styles = StyleSheet.create({

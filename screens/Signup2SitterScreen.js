@@ -7,56 +7,8 @@ import {
   Image,
   KeyboardAvoidingView,
 } from "react-native";
-<<<<<<< HEAD
-import { REACT_APP_BACKEND_URL } from "@env";
-import { Input } from "native-base";
-=======
-import { Input, Slider, Box, Icon } from "native-base";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
->>>>>>> sitter
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "../reducers/usersitterconnexion";
-//TEST blabla
 
 export default function Signup2sitterScreen({ navigation }) {
-  //   const handleSubmit = () => {
-  //     fetch("http://10.2.1.198:3000/users/signup", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         firstName,
-  //         lastName,
-  //         email,
-  //         zipCode,
-  //         password,
-  //         phoneNumber: telephone,
-  //       }),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log("data signup", data);
-
-  const handleSubmit = () => {
-    fetch(`http://${REACT_APP_BACKEND_URL}/users/signup`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        zipCode,
-        password,
-        phoneNumber: telephone,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("🚙data signup", data);
-
-  //     navigation.navigate("TabNavigator", { screen: "Signup3SitterScreen" });
-  //   };
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "position"}
