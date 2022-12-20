@@ -1,9 +1,17 @@
-import { StyleSheet, View, Text, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import { Avatar, Row } from "native-base";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import { useEffect } from "react";
+import cardReviews from "./cardReviews";
 
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
@@ -12,6 +20,21 @@ function Step0(props) {
   function titleCase(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase();
   }
+
+  useEffect(() => {
+    console.log("reviews :", props.reviews);
+  }, []);
+
+  const dataReviews = props.reviews.map((data, i) => {
+    return (
+      <cardReviews
+        key={i}
+        author={data.author}
+        reviewNote={data.reviewNote}
+        reviewText={data.reviewText}
+      />
+    );
+  });
 
   return (
     <View style={styles.container}>
@@ -48,7 +71,7 @@ function Step0(props) {
             </Text>
           </View>
           <View style={styles.price}>
-            <Text style={styles.userprice}>{props.userprice}€ / visite</Text>
+            <Text style={styles.userPrice}>{props.userprice}€ / visite</Text>
           </View>
         </View>
         <View style={styles.bioContainer}>
@@ -57,10 +80,44 @@ function Step0(props) {
         </View>
       </View>
       <View style={styles.bottomContainer}>
-        <View style={styles.tabsContainer}></View>
+        <View style={styles.tabsContainer}>
+          <TouchableOpacity
+            style={styles.touchableOpacitySelected}
+            onPress={() => {
+              handleValidateClick();
+              navigation.navigate("");
+            }}
+          >
+            <Text style={[{ fontWeight: "700", fontSize: 14, color: "white" }]}>
+              Avis
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.touchableOpacityUnselected}
+            onPress={() => {
+              handleValidateClick();
+              navigation.navigate("");
+            }}
+          >
+            <Text style={[{ fontWeight: "700", fontSize: 14, color: "black" }]}>
+              Compétences
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.touchableOpacityUnselected}
+            onPress={() => {
+              handleValidateClick();
+              navigation.navigate("");
+            }}
+          >
+            <Text style={[{ fontWeight: "700", fontSize: 14, color: "black" }]}>
+              Équipement
+            </Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.reviewsContainer}>
           <View style={styles.reviewNumber}></View>
-          <View style={styles.cards}></View>
+          <View style={styles.cards}>{dataReviews}</View>
         </View>
       </View>
     </View>
@@ -105,17 +162,68 @@ const styles = StyleSheet.create({
   },
   topInformations: { flexDirection: "row", justifyContent: "space-between" },
   localisation: { flexDirection: "row" },
-  localisationText: {},
+  localisationText: {
+    fontSize: 12,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "600",
+    lineHeight: 26,
+    color: "#283618",
+  },
   price: {},
-  userPrice: {},
-  bioContainer: {},
-  title: {},
-  userBio: {},
+  userPrice: {
+    fontSize: 14,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "700",
+    lineHeight: 26,
+    color: "#283618",
+  },
+  bioContainer: {
+    paddingTop: 20,
+  },
+  title: {
+    fontSize: 16,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "700",
+    lineHeight: 26,
+    color: "#283618",
+  },
+  userBio: {
+    fontSize: 14,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "600",
+    lineHeight: 26,
+    color: "#283618",
+    paddingTop: 10,
+  },
   bottomContainer: {
     flex: 55,
-    width: "100%",
+    paddingTop: 80,
+    width: viewWidth,
   },
-  tabsContainer: {},
+  tabsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: viewWidth,
+  },
+  touchableOpacitySelected: {
+    backgroundColor: "#DDA15E",
+    borderRadius: 5,
+    width: 100,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  touchableOpacityUnselected: {
+    borderRadius: 5,
+    width: 100,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   reviewsContainer: {},
   reviewNumber: {},
   reviews: {},

@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View} from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { REACT_APP_BACKEND_URL } from "@env";
@@ -6,8 +6,6 @@ import { distance } from "../modules/checkDistance";
 import Step0 from "../components/profile-description-steps/Step0";
 import Step1 from "../components/profile-description-steps/Step1";
 import Step2 from "../components/profile-description-steps/Step2";
-
-
 
 export default function Plantsitter1Screen({ navigation }) {
   const dispatch = useDispatch();
@@ -61,6 +59,7 @@ export default function Plantsitter1Screen({ navigation }) {
         useraddress={localisation}
         userphoto={data.userphoto}
         userprice={data.tarifs[0].tarif1}
+        reviews={data.reviews}
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
         equimpentsStep={equipmentsStep}
