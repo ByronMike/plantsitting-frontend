@@ -31,6 +31,7 @@ import Signup2SitterScreen from "./screens/Signup2SitterScreen";
 
 import Signup3SitterScreen from "./screens/Signup3SitterScreen";
 import Signup4SitterScreen from "./screens/Signup4SitterScreen";
+import CameraScreen from "./screens/CameraScreen";
 import SummaryScreen from "./screens/SummaryScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import CongratulationScreen from "./screens/CongratulationScreen";
@@ -51,12 +52,13 @@ import user from "./reducers/user";
 import userconnexion from "./reducers/userconnexion";
 import usersitterconnexion from "./reducers/usersitterconnexion";
 import request from "./reducers/request";
-
+import sitter from "./reducers/sitter";
 const reducers = combineReducers({
   user,
   userconnexion,
   request,
   usersitterconnexion,
+  sitter,
 });
 const persistConfig = {
   key: "PlantSitting",
@@ -219,6 +221,7 @@ export default function App() {
                 name="Signup4Sitter"
                 component={Signup4SitterScreen}
               />
+              <Stack.Screen name="CameraScreen" component={CameraScreen} />
               <Stack.Screen name="Summary" component={SummaryScreen} />
               <Stack.Screen name="Payment" component={PaymentScreen} />
               <Stack.Screen
