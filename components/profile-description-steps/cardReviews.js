@@ -4,20 +4,6 @@ import { REACT_APP_BACKEND_URL } from "@env";
 import { Avatar } from "native-base";
 
 function CardReviews(props) {
-  const [dataReviews, setDataReviews] = useState([]);
-
-  useEffect(() => {
-    fetch(
-      `http://${REACT_APP_BACKEND_URL}/sitters/reviewsBySitter/${props.token}`
-    )
-      .then((response) => response.json())
-      .then((reviews) => {
-        setDataReviews([reviews.reviews]);
-      });
-    // console.log("choix", userchoose);
-    console.log("dataReviews : ", dataReviews);
-  }, []);
-
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -30,9 +16,12 @@ function CardReviews(props) {
           }}
         ></Avatar>
         <View style={styles.infosContainer}>
-          <Text>{props.author}</Text>
+          <Text></Text>
         </View>
-        <View style={styles.rating}></View>
+        <View style={styles.rating}>
+          {/* bug1 */}
+          {/* <Text>{dataReviews[0].firstName}</Text> */}
+        </View>
       </View>
       <View style={styles.bottomContainer}>
         <View style={styles.titleComment}></View>

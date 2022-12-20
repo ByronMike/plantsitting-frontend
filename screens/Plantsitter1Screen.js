@@ -1,6 +1,7 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { reviewSitter } from "../reducers/review";
 import { REACT_APP_BACKEND_URL } from "@env";
 import { distance } from "../modules/checkDistance";
 import Step0 from "../components/profile-description-steps/Step0";
@@ -28,6 +29,7 @@ export default function Plantsitter1Screen({ navigation }) {
   }, []);
 
   useEffect(() => {
+    // fetch pour les informations du Sitter
     fetch(`http://${REACT_APP_BACKEND_URL}/sitters/sitterProfile/${userToken}`)
       .then((response) => response.json())
       .then((dataSitter) => {
@@ -35,6 +37,16 @@ export default function Plantsitter1Screen({ navigation }) {
       });
     // console.log("choix", userchoose);
     console.log("dataSitter : ", dataSitter);
+
+    // fetch pour les informations Reviews du Sitter
+    fetch(
+      `http://${REACT_APP_BACKEND_URL}/sitters/reviewsBySitter/${userToken}`
+    )
+      .then((response) => response.json())
+      .then((reviews) => {
+        // console.log("dataReviews : ", reviews.reviews[0].author);
+        dispatch(reviewSitter([reviews.reviews[0].author]));
+      });
   }, []);
 
   const dataStep0 = dataSitter.map((data, i) => {

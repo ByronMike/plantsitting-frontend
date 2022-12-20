@@ -13,12 +13,21 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CardReviews from "./CardReviews";
 
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
 
 function Step0(props) {
+
+  const dispatch = useDispatch();
+  const review = useSelector((state) => state.review.value);
+
+  useEffect(() => {
+    console.log("datareviews", review);
+  }, []);
+
   function titleCase(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase();
   }
@@ -26,6 +35,7 @@ function Step0(props) {
   useEffect(() => {
     // console.log("reviews :", props.reviews);
     // console.log("props.token :", props.token);
+    console.log("datareviews", props.dataReviews);
   }, []);
 
   const dataReviews = props.reviews.map((data, i) => {
@@ -33,6 +43,7 @@ function Step0(props) {
       <CardReviews
         key={i}
         author={data.author}
+        reviewName={review[0].firstName}
         reviewNote={data.reviewNote}
         reviewText={data.reviewText}
       />

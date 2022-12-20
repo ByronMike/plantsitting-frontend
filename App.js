@@ -52,6 +52,7 @@ import userconnexion from "./reducers/userconnexion";
 import usersitterconnexion from "./reducers/usersitterconnexion";
 import sitter from "./reducers/sitter";
 import request from "./reducers/request";
+import review from "./reducers/review";
 
 const reducers = combineReducers({
   user,
@@ -59,6 +60,7 @@ const reducers = combineReducers({
   request,
   sitter,
   usersitterconnexion,
+  review,
 });
 const persistConfig = {
   key: "PlantSitting",
