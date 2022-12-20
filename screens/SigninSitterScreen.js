@@ -10,6 +10,7 @@ import {
   useWindowDimensions,
   KeyboardAvoidingView,
 } from "react-native";
+import { REACT_APP_BACKEND_URL } from "@env";
 import { Input } from "native-base";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -26,7 +27,7 @@ export default function SigninSitterScreen({ navigation }) {
   // Function fetch pour se connecter
 
   const handleSubmit = () => {
-    fetch("http://10.2.1.198:3000/users/signin", {
+    fetch(`http://${REACT_APP_BACKEND_URL}/users/signin`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firstName, email, password }),

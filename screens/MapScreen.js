@@ -1,132 +1,108 @@
+import { Button, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
-import {
-  Modal,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addPlace, importPlaces } from "../reducers/user";
-import MapView, { Marker } from "react-native-maps";
-import * as Location from "expo-location";
+import { useSelector } from "react-redux";
+
+import Step0 from "../components/results-sitters/Step0";
+import Step1 from "../components/results-sitters/Step1";
+import { Switch } from "native-base";
 
 export default function MapScreen({ navigation }) {
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user.value);
+  // Gestion des screens avec le même tab navigator et pour faciliter le stockage des données via useState
 
-  // const [currentPosition, setCurrentPosition] = useState(null);
-  // const [tempCoordinates, setTempCoordinates] = useState(null);
-  // const [modalVisible, setModalVisible] = useState(false);
-  // const [newPlace, setNewPlace] = useState("");
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
+  const user = useSelector((state) => state.userconnexion.value);
 
-      if (status === "granted") {
-        Location.watchPositionAsync({ distanceInterval: 10 }, (location) => {
-          console.log(location);
-        });
-      }
-    })();
-  }, []);
-  // useEffect(() => {
-  //   fetch(`http://10.2.1.198:3000/places/${user.nickname}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       data.result && dispatch(importPlaces(data.places));
-  //       // importPlaces is a new order to create in reducers/user.js
-  //     });
-  // }, []);
+  const toogleFunction = () => {
+    console.log("click");
+  };
 
-  // const handleNewPlace = () => {
-  //   fetch("http://10.2.1.198:3000/places", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       nickname: user.nickname,
-  //       name: newPlace,
-  //       latitude: tempCoordinates.latitude,
-  //       longitude: tempCoordinates.longitude,
-  //     }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.result) {
-  //         dispatch(
-  //           addPlace({
-  //             name: newPlace,
-  //             latitude: tempCoordinates.latitude,
-  //             longitude: tempCoordinates.longitude,
-  //           })
-  //         );
-  //         setModalVisible(false);
-  //         setNewPlace("");
-  //       }
-  //     });
-  // };
+  let affichage = <View></View>;
+
+  // if (formProgress == 0) {
+  //   affichage = (
+  //     <View style={styles.container2}>
+  //       <Step0 nextStep={nextStep} />
+  //     </View>
+  //   );
+  // }
+
+  // if (formProgress == 1) {
+  //   affichage = (
+  //     <View style={styles.container2}>
+  //       <Step1 previousStep={previousStep} />
+  //     </View>
+  //   );
+  // }
 
   return (
-    <MapView
-      initialRegion={{
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
-      style={{ flex: 1 }}
-    >
-      <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} />
-    </MapView>
+    <View style={styles.container}>
+      <View style={styles.bloctext}>
+        <Text style={styles.textbienvenue}>
+          Hey <Text style={styles.username}>{user.firstName}</Text>,{"\n"}
+          Découvrez les plant-sitters disponibles près de chez vous 👀
+        </Text>
+      </View>
+      <View style={styles.bloctoggle}>
+        <Text style={styles.txtchoix}> Affichage en LISTE </Text>
+        <Switch onValueChange={toggleSwitch} value={isEnabled} />
+        <Text style={styles.txtchoix}> Affichage en MAP </Text>
+      </View>
+      <View style={styles.container2}>
+        {isEnabled ? (
+          <Text>
+            <Step0 />
+          </Text>
+        ) : (
+          <Text>
+            <Step1 />
+          </Text>
+        )}
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  map: {
-    flex: 1,
-  },
-  centeredView: {
-    flex: 1,
+  container2: {
     justifyContent: "center",
     alignItems: "center",
+    width: "100%",
   },
-  modalView: {
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 30,
+  container: {
+    flex: 1,
+    justifyContent: "flex-start",
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    paddingTop: 75,
+    backgroundColor: "#F6F5F1",
   },
-  input: {
-    width: 150,
-    borderBottomColor: "#ec6e5b",
-    borderBottomWidth: 1,
-    fontSize: 16,
+  txtchoix: {
+    margin: 15,
   },
-  button: {
-    width: 150,
+  bloctoggle: {
+    justifyContent: "flex-start",
     alignItems: "center",
-    marginTop: 20,
-    paddingTop: 8,
-    backgroundColor: "#ec6e5b",
-    borderRadius: 10,
+    padding: 15,
+    backgroundColor: "#F6F5F1",
+    flexDirection: "row",
   },
-  textButton: {
-    color: "#ffffff",
-    height: 24,
+  textbienvenue: {
+    fontSize: 18,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
     fontWeight: "600",
-    fontSize: 15,
+    lineHeight: 26,
+    color: "#283618",
+    paddingRight: 15,
+    paddingLeft: 15,
+  },
+  username: {
+    fontSize: 25,
+    fontFamily: "Montserrat",
+    fontStyle: "normal",
+    fontWeight: "600",
+    lineHeight: 26,
+    color: "#DDA15E",
   },
 });

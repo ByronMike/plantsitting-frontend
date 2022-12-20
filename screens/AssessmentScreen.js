@@ -3,6 +3,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { Input, Box, Checkbox, Button } from "native-base";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { REACT_APP_BACKEND_URL } from "@env";
 // import { login } from "../reducers/userconnexion";
 
 export default function AssessmentScreen({ navigation }) {
@@ -34,16 +35,19 @@ export default function AssessmentScreen({ navigation }) {
   }
 
   const handleSubmit = async () => {
-    const data = await fetch("http://10.2.1.198:3000/assessment/save", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        sitterId: "63999879c065335bffdcf2b5",
-        userstoken: user.token,
-        note: personalNote,
-        text: comment,
-      }),
-    });
+    const data = await fetch(
+      `http://${REACT_APP_BACKEND_URL}/assessment/save`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sitterId: "63999879c065335bffdcf2b5",
+          userstoken: user.token,
+          note: personalNote,
+          text: comment,
+        }),
+      }
+    );
 
     const reponse = await data.json();
     console.log("reponse", reponse);

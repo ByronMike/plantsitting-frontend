@@ -9,12 +9,13 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { REACT_APP_BACKEND_URL } from "@env";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Pusher from "pusher-js/react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 const pusher = new Pusher("618bd2be40dbf43fb31b", { cluster: "eu" });
-const BACKEND_ADDRESS = "http://10.2.1.198:3000/messages";
+const BACKEND_ADDRESS = `http://${REACT_APP_BACKEND_URL}/messages`;
 
 export default function ChatScreen({ navigation }) {
   const user = useSelector((state) => state.userconnexion.value);
@@ -224,7 +225,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#606C38",
   },
   messageText: {
-    color: "#506568",
+    color: "white",
     fontWeight: "400",
   },
   timeText: {

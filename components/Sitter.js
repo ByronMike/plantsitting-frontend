@@ -16,8 +16,6 @@ import { useState } from "react";
 
 import { Avatar } from "native-base";
 
-const BACKEND_ADDRESS = "http://10.2.0.177:3000";
-
 function Sitter(props) {
   const [personalNote, setPersonalNote] = useState(5);
 
@@ -134,7 +132,7 @@ const styles = StyleSheet.create({
   },
   userinfo: {
     marginTop: 15,
-    justifyContent: "start-flex",
+    justifyContent: "flex-start",
     alignItems: "center",
     width: "100%",
     flexDirection: "row",
@@ -218,7 +216,7 @@ const styles = StyleSheet.create({
   userreview: {
     flexDirection: "row",
     marginTop: 4,
-    justifyContent: "start-flex",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
 });
