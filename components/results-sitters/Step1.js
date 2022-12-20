@@ -50,14 +50,23 @@ function Step1() {
       .then((datamatchingSitters) => {
         setMatchingSitters(datamatchingSitters.matchingSitters);
       });
-    console.log("choix", userchoose);
   }, []);
+
+  console.log("user location", userchoose);
 
   const plantsitters = matchingSitters.map((data, i) => {
     let latuser = 43.292328;
     let latsitter = data.useraddress[0].latitude;
     let lonuser = 5.366564;
     let lonsitter = data.useraddress[0].longitude;
+
+    // fetch(`http://${REACT_APP_BACKEND_URL}/sitters/average`)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("data fetch", data);
+    //   });
+
+    // console.log("Lastname", data.lastname);
 
     const localisation = distance(latuser, latsitter, lonuser, lonsitter);
 
@@ -79,7 +88,7 @@ function Step1() {
   return (
     <View style={styles.container}>
       <View style={styles.bloctext}>
-        <Box style={styles.boxfilter} maxW="400">
+        {/* <Box style={styles.boxfilter} maxW="400">
           <Select
             selectedValue={service}
             minWidth="350"
@@ -98,7 +107,7 @@ function Step1() {
             <Select.Item label="Professionnel" value="pro" />
             <Select.Item label="Amateur" value="amateur" />
           </Select>
-        </Box>
+        </Box> */}
       </View>
       <SafeAreaView style={styles.container2}>
         <ScrollView
@@ -108,6 +117,7 @@ function Step1() {
             justifyContent: "flex-start",
             alignItems: "center",
             marginHorizontal: 20,
+            paddingBottom: 250,
           }}
         >
           {plantsitters}
@@ -128,6 +138,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: StatusBar.currentHeight,
     width: "100%",
+    paddingBottom: 400,
   },
   textbienvenue: {
     fontSize: 18,
