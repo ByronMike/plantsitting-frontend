@@ -55,6 +55,7 @@ function Step1() {
   console.log("user location", userchoose);
 
   const plantsitters = matchingSitters.map((data, i) => {
+    console.log("data user adress", data.useraddress[0].latitude);
     let latuser = 43.292328;
     let latsitter = data.useraddress[0].latitude;
     let lonuser = 5.366564;
@@ -76,6 +77,7 @@ function Step1() {
         useraddress={localisation}
         userphoto={data.userphoto}
         userprice={data.tarifs[0].tarif1}
+        token={data.token}
       />
     );
   });

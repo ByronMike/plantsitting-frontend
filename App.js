@@ -53,18 +53,21 @@ import user from "./reducers/user";
 import userconnexion from "./reducers/userconnexion";
 import usersitterconnexion from "./reducers/usersitterconnexion";
 import request from "./reducers/request";
-import sitterPhoto from "./reducers/sitterPhoto";
+import sitter from "./reducers/sitter";
+import sitter from "./reducers/sitter";
+
 const reducers = combineReducers({
   user,
   userconnexion,
   request,
   usersitterconnexion,
-  sitterPhoto,
+  sitter,
+  usersitterconnexion,
 });
 const persistConfig = {
   key: "PlantSitting",
   storage: AsyncStorage,
-  blacklist: ["user", "request"],
+  blacklist: ["user", "request", "sitter"],
 };
 const store = configureStore({
   reducer: persistReducer(persistConfig, reducers),
