@@ -17,12 +17,10 @@ import { useState } from "react";
 import { Avatar } from "native-base";
 
 function Sitter(props) {
-  const [personalNote, setPersonalNote] = useState(5);
-
   const personalPlants = [];
   for (let i = 0; i < 5; i++) {
     let style = { cursor: "pointer" };
-    if (i < personalNote) {
+    if (i < props.reviewnote) {
       style = { color: "green", cursor: "pointer" };
     }
     personalPlants.push(

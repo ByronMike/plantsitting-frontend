@@ -9,7 +9,7 @@ import { Switch } from "native-base";
 export default function MapScreen({ navigation }) {
   // Gestion des screens avec le même tab navigator et pour faciliter le stockage des données via useState
 
-  const [isEnabled, setIsEnabled] = useState(true);
+  const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   const user = useSelector((state) => state.userconnexion.value);
@@ -19,22 +19,6 @@ export default function MapScreen({ navigation }) {
   };
 
   let affichage = <View></View>;
-
-  // if (formProgress == 0) {
-  //   affichage = (
-  //     <View style={styles.container2}>
-  //       <Step0 nextStep={nextStep} />
-  //     </View>
-  //   );
-  // }
-
-  // if (formProgress == 1) {
-  //   affichage = (
-  //     <View style={styles.container2}>
-  //       <Step1 previousStep={previousStep} />
-  //     </View>
-  //   );
-  // }
 
   return (
     <View style={styles.container}>
