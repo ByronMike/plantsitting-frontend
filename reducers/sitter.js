@@ -4,7 +4,7 @@ const initialState = {
   value: {},
 };
 
-export const requestsSlice = createSlice({
+export const sitterSlice = createSlice({
   name: "sitter",
 
   initialState,
@@ -15,5 +15,5 @@ export const requestsSlice = createSlice({
   },
 });
 
-export const { getToken } = requestsSlice.actions;
-export default requestsSlice.reducer;
+export const { getToken } = sitterSlice.actions;
+export default sitterSlice.reducer;

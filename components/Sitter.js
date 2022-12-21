@@ -25,7 +25,7 @@ function Sitter(props) {
   const [personalNote, setPersonalNote] = useState(5);
 
   const testId = () => {
-    console.log("token : ", props.token);
+    console.log("token props : ", props.token);
     dispatch(getToken(props.token));
   };
 
@@ -47,7 +47,12 @@ function Sitter(props) {
   }
 
   return (
-    <TouchableOpacity onPress={() => {testId(); navigation.navigate("Plantsitter1")}}>
+    <TouchableOpacity
+      onPress={() => {
+        testId();
+        navigation.navigate("Plantsitter1");
+      }}
+    >
       <View style={styles.card}>
         <View style={styles.top}>
           <View style={styles.userinfo}>

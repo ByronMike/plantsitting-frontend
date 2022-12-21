@@ -151,7 +151,7 @@ function Step1(props) {
             style={styles.touchableopacityright}
             onPress={() => {
               handleValidateClick();
-              navigation.navigate("Listing");
+              navigation.navigate("Map");
             }}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "white" }]}>

@@ -60,7 +60,6 @@ const reducers = combineReducers({
   request,
   sitter,
   usersitterconnexion,
-  sitter,
 });
 const persistConfig = {
   key: "PlantSitting",
