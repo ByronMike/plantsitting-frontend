@@ -12,32 +12,27 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CardReviews from "./CardReviews";
 
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
+const { titleCase } = require('../../modules/titleCase');
 
 function Step0(props) {
-  useEffect(() => {}, []);
-
-  function titleCase(string) {
-    return string[0].toUpperCase() + string.slice(1).toLowerCase();
-  }
 
   useEffect(() => {
     // console.log("datareviews", props.reviews);
   }, []);
 
   const dataReviews = props.reviews.map((data, i) => {
-    console.log("data", data.author);
+    console.log("datouuuu", data.author.firstName);
     return (
       <CardReviews
         key={i}
         firstName={data.author.firstName}
-        // reviewName={review[0].firstName}
-        reviewNote={data.author.reviewNote}
-        reviewText={data.author.reviewText}
+        reviewNote={data.reviewNote}
+        reviewText={data.reviewText}
       />
     );
   });
@@ -122,7 +117,9 @@ function Step0(props) {
           </TouchableOpacity>
         </View>
         <View style={styles.reviewsContainer}>
-          <View style={styles.reviewNumber}></View>
+          <View style={styles.reviewNumber}>
+            <Text> {props.reviewLength} avis</Text>
+          </View>
           <View style={styles.cards}>
             <SafeAreaView style={styles.container2}>
               <ScrollView
@@ -131,7 +128,7 @@ function Step0(props) {
                   flexGrow: 1,
                   justifyContent: "flex-start",
                   alignItems: "center",
-                  marginHorizontal: 20,
+                  // marginHorizontal: 20,
                 }}
               >
                 {dataReviews}
@@ -153,6 +150,7 @@ const styles = StyleSheet.create({
   topContainer: {
     flex: 25,
     marginTop: 25,
+    width: viewWidth,
   },
   barNavigation: {},
   avatar: {},
@@ -226,8 +224,7 @@ const styles = StyleSheet.create({
   },
   tabsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    width: viewWidth,
+    justifyContent: "space-between",
   },
   touchableOpacitySelected: {
     backgroundColor: "#DDA15E",
@@ -244,16 +241,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  reviewsContainer: {},
-  reviewNumber: {},
+  reviewsContainer: {
+    paddingTop: 20,
+  },
+  reviewNumber: {
+    paddingBottom: 10,
+  },
   reviews: {
     alignItems: "center",
     justifyContent: "center",
+    // width: viewWidth,
   },
   cards: {
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: 10,
   },
+  container2: {},
 });
 
 export default Step0;

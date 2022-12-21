@@ -34,7 +34,7 @@ export default function Plantsitter1Screen({ navigation }) {
       .then((dataSitter) => {
         setDataSitter([dataSitter.sitter]);
       });
-    // console.log("dataSitter", dataSitter);
+    console.log("dataSitter", dataSitter);
     // console.log("dataSitter : ", dataSitter[0].sitter);
     // console.log("dataSitter : ", dataSitter.sitter.reviews[0].author.firstName);
   }, []);
