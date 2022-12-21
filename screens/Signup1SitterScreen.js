@@ -33,7 +33,7 @@ export default function SignupSitterScreen({ navigation }) {
   // Function fetch pour s'inscrire
 
   const handleSubmit = () => {
-    fetch(`http://${REACT_APP_BACKEND_URL}/users/signup`, {
+    fetch(`http://${REACT_APP_BACKEND_URL}/sitters/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

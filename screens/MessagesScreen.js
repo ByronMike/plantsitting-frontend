@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     justifySelf: "flex-end",
     alignContent: "flex-start",
-    marginBottom: 90,
+    marginBottom: 65,
     marginTop: "auto",
     background: "transparent",
     paddingLeft: 20,
@@ -252,6 +252,7 @@ const styles = StyleSheet.create({
     padding: 14,
     borderRadius: 30,
     shadowColor: "#000",
+    marginBottom: -20,
     shadowOffset: {
       width: 0,
       height: 1,

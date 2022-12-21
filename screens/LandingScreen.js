@@ -121,6 +121,10 @@ export default function LandingScreen({ navigation }) {
           onPress={() => navigation.navigate("Payment")}
         />
         <Button
+          title="Go to Vinted Screen"
+          onPress={() => navigation.navigate("Vinted")}
+        />
+        <Button
           title="Go to Congratulation Screen"
           onPress={() => navigation.navigate("Congratulation")}
         />

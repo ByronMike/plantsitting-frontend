@@ -131,15 +131,14 @@ const styles = StyleSheet.create({
   },
   titreregister: {
     color: "white",
-    // fontFamily: "Montserrat",
+    fontFamily: "Montserrat",
     fontStyle: "normal",
     fontWeight: "700",
     fontSize: 15,
     lineHeight: 30,
-    // textTransform: "uppercase",
+    textTransform: "uppercase",
   },
   registerbtn: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#DDA15E",
