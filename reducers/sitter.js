@@ -4,16 +4,16 @@ const initialState = {
   value: {},
 };
 
-export const sittersSlice = createSlice({
-  name: "addPhoto",
+export const requestsSlice = createSlice({
+  name: "sitter",
 
   initialState,
   reducers: {
-    addphoto: (state, action) => {
+    getToken: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { addphoto } = sittersSlice.actions;
-export default sittersSlice.reducer;
+export const { getToken } = requestsSlice.actions;
+export default requestsSlice.reducer;

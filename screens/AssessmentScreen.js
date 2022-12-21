@@ -13,6 +13,7 @@ export default function AssessmentScreen({ navigation }) {
 
   console.log("user.token dans le store", user.token);
   // const { height, width } = useWindowDimensions();
+  const [title, setTitle] = useState("");
   const [comment, setComment] = useState("");
   const [personalNote, setPersonalNote] = useState(0);
 
@@ -43,8 +44,9 @@ export default function AssessmentScreen({ navigation }) {
         body: JSON.stringify({
           sitterId: "63999879c065335bffdcf2b5",
           userstoken: user.token,
-          note: personalNote,
-          text: comment,
+          reviewNote: personalNote,
+          reviewTitle: title,
+          reviewText: comment,
         }),
       }
     );
@@ -69,6 +71,19 @@ export default function AssessmentScreen({ navigation }) {
           {personalPlants}
         </View>
       </View>
+      {/* <View style={styles.blocinputTitle}>
+        <Input
+          colorScheme="#606C38"
+          size="1"
+          variant="outline"
+          placeholder="Ajouter le titre de votre commentaire...."
+          name="title"
+          type="title"
+          value={title}
+          textAlign="center"
+          onChangeText={(value) => setTitle(value)}
+        />
+      </View> */}
       <View style={styles.blocinput}>
         <Input
           colorScheme="#606C38"
@@ -133,12 +148,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 25,
   },
-
-  blocinput: {
+  blocinputTitle: {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
     marginTop: 5,
+    padding: 25,
+  },
+  blocinput: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
     padding: 25,
   },
   input: {
