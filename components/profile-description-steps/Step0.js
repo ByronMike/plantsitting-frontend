@@ -17,22 +17,22 @@ import CardReviews from "./CardReviews";
 
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
-const { titleCase } = require('../../modules/titleCase');
+const { titleCase } = require("../../modules/titleCase");
 
 function Step0(props) {
-
   useEffect(() => {
     // console.log("datareviews", props.reviews);
   }, []);
 
   const dataReviews = props.reviews.map((data, i) => {
-    console.log("datouuuu", data.author.firstName);
+    // console.log("datouuuu", data);
     return (
       <CardReviews
         key={i}
         firstName={data.author.firstName}
         reviewNote={data.reviewNote}
         reviewText={data.reviewText}
+        userPhoto={data.author.userPhoto}
       />
     );
   });
@@ -85,7 +85,7 @@ function Step0(props) {
           <TouchableOpacity
             style={styles.touchableOpacitySelected}
             onPress={() => {
-              props.reviewsStep()
+              props.reviewsStep();
             }}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "white" }]}>
@@ -95,7 +95,7 @@ function Step0(props) {
           <TouchableOpacity
             style={styles.touchableOpacityUnselected}
             onPress={() => {
-              props.skillsStep()
+              props.skillsStep();
             }}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "black" }]}>
@@ -105,7 +105,7 @@ function Step0(props) {
           <TouchableOpacity
             style={styles.touchableOpacityUnselected}
             onPress={() => {
-              props.equipmentsStep()
+              props.equipmentsStep();
             }}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "black" }]}>

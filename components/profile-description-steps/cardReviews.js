@@ -29,13 +29,7 @@ function CardReviews(props) {
     );
   }
 
-  let hourIcon = (
-    <FontAwesome
-      name="trash-o"
-      size={10}
-      color="#AAA6B9"
-    />
-  );
+  let hourIcon = <FontAwesome name="trash-o" size={10} color="#AAA6B9" />;
 
   return (
     <View style={styles.container}>
@@ -46,14 +40,16 @@ function CardReviews(props) {
             bg="amber.500"
             size="12"
             source={{
-              uri: props.userphoto,
+              uri: props.userPhoto,
             }}
           ></Avatar>
           <View style={styles.infosContainer}>
             {/* Lorsque la BDD sera propre il faudra utilisé le module titleCase pour harmoniser les noms */}
             <Text style={styles.textFirstName}>{props.firstName}</Text>
             <View style={styles.timePublication}>
-              <Text style={styles.timeText}>{hourIcon}  il y a (x) minutes </Text>
+              <Text style={styles.timeText}>
+                {hourIcon} il y a (x) minutes{" "}
+              </Text>
             </View>
           </View>
         </View>

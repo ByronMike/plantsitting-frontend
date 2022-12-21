@@ -62,13 +62,13 @@ export default function Plantsitter1Screen({ navigation }) {
         reviews={data.reviews}
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
-        equimpentsStep={equipmentsStep}
+        equipmentsStep={equipmentsStep}
       />
     );
   });
 
   const dataStep1 = dataSitter.map((data, i) => {
-    // console.log("data", data.reviews);
+    console.log("data", data.equipment);
     // console.log("tokeeen", data.userphoto);
     let latuser = 43.292328;
     let latsitter = data.useraddress[0].latitude;
@@ -88,9 +88,10 @@ export default function Plantsitter1Screen({ navigation }) {
         userphoto={data.userphoto}
         userprice={data.tarifs[0].tarif1}
         reviews={data.reviews}
+        skills={data.skills[0]}
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
-        equimpentsStep={equipmentsStep}
+        equipmentsStep={equipmentsStep}
       />
     );
   });
@@ -116,23 +117,24 @@ export default function Plantsitter1Screen({ navigation }) {
         userphoto={data.userphoto}
         userprice={data.tarifs[0].tarif1}
         reviews={data.reviews}
+        equipment={data.equipment}
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
-        equimpentsStep={equipmentsStep}
+        equipmentsStep={equipmentsStep}
       />
     );
   });
 
   if (formProgress == 0) {
-    return (<View style={styles.container}>{dataStep0}</View>);
+    return <View style={styles.container}>{dataStep0}</View>;
   }
 
   if (formProgress == 1) {
-    return (<View style={styles.container}>{dataStep1}</View>);
+    return <View style={styles.container}>{dataStep1}</View>;
   }
 
   if (formProgress == 2) {
-    return (<View style={styles.container}>{dataStep2}</View>);
+    return <View style={styles.container}>{dataStep2}</View>;
   }
 }
 
