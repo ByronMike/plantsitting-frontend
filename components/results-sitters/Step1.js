@@ -48,7 +48,7 @@ function Step1() {
     })
       .then((response) => response.json())
       .then((datamatchingSitters) => {
-        setMatchingSitters(datamatchingSitters.matchingSitters);
+        setMatchingSitters(datamatchingSitters.sittersWithAverage);
       });
   }, []);
 
@@ -60,13 +60,7 @@ function Step1() {
     let lonuser = 5.366564;
     let lonsitter = data.useraddress[0].longitude;
 
-    // fetch(`http://${REACT_APP_BACKEND_URL}/sitters/average`)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("data fetch", data);
-    //   });
-
-    // console.log("Lastname", data.lastname);
+    console.log("Average ", data.average);
 
     const localisation = distance(latuser, latsitter, lonuser, lonsitter);
 
@@ -77,6 +71,7 @@ function Step1() {
         lastname={data.lastname}
         status={data.status}
         review={data.reviews.length}
+        reviewnote={data.average}
         userbio={data.userbio}
         useraddress={localisation}
         userphoto={data.userphoto}
@@ -87,28 +82,7 @@ function Step1() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.bloctext}>
-        {/* <Box style={styles.boxfilter} maxW="400">
-          <Select
-            selectedValue={service}
-            minWidth="350"
-            accessibilityLabel="Choose Service"
-            placeholder="Filtrer par"
-            _selectedItem={{
-              bg: "teal.600",
-              endIcon: <CheckIcon size="5" />,
-            }}
-            mt={1}
-            onValueChange={(itemValue) => setService(itemValue)}
-          >
-            <Select.Item label="Prix croissant" value="priceacd" />
-            <Select.Item label="Prix décroissant" value="pricedc" />
-            <Select.Item label="Localisation" value="localisation" />
-            <Select.Item label="Professionnel" value="pro" />
-            <Select.Item label="Amateur" value="amateur" />
-          </Select>
-        </Box> */}
-      </View>
+      <View style={styles.bloctext}></View>
       <SafeAreaView style={styles.container2}>
         <ScrollView
           showsVerticalScrollIndicator={true}

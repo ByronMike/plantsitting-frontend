@@ -60,7 +60,7 @@ export default function MapScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((datamatchingSitters) => {
-        setMatchingSitters(datamatchingSitters.matchingSitters);
+        setMatchingSitters(datamatchingSitters.sittersWithAverage);
       });
   }, []);
 

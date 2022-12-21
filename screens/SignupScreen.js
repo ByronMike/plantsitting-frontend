@@ -36,11 +36,11 @@ export default function SignupScreen({ navigation }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        zipCode,
-        password,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        zipCode: zipCode,
+        password: password,
         phoneNumber: telephone,
       }),
     })
