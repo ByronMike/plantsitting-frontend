@@ -7,6 +7,8 @@ import {
   Image,
   KeyboardAvoidingView,
 } from "react-native";
+import { Slider, Box } from "native-base";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 export default function Signup2sitterScreen({ navigation }) {
   return (

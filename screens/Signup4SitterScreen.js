@@ -7,7 +7,7 @@ import {
   Image,
   KeyboardAvoidingView,
 } from "react-native";
-import { Input } from "native-base";
+import { Input, Checkbox, Box } from "native-base";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/usersitterconnexion";

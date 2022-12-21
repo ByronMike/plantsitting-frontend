@@ -19,6 +19,7 @@ import SigninScreen from "./screens/SigninScreen";
 import SigninSitterScreen from "./screens/SigninSitterScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
 import MapScreen from "./screens/MapScreen";
+import VintedScreen from "./screens/VintedScreen";
 
 // ! A intégrer dans MapScreen
 import ListingScreen from "./screens/ListingScreen";
@@ -221,6 +222,7 @@ export default function App() {
                 name="Signup4Sitter"
                 component={Signup4SitterScreen}
               />
+              <Stack.Screen name="Vinted" component={VintedScreen} />
               <Stack.Screen name="CameraScreen" component={CameraScreen} />
               <Stack.Screen name="Summary" component={SummaryScreen} />
               <Stack.Screen name="Payment" component={PaymentScreen} />
