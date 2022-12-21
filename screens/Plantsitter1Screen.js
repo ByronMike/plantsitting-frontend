@@ -67,43 +67,73 @@ export default function Plantsitter1Screen({ navigation }) {
     );
   });
 
+  const dataStep1 = dataSitter.map((data, i) => {
+    // console.log("data", data.reviews);
+    // console.log("tokeeen", data.userphoto);
+    let latuser = 43.292328;
+    let latsitter = data.useraddress[0].latitude;
+    let lonuser = 5.366564;
+    let lonsitter = data.useraddress[0].longitude;
+    const localisation = distance(latuser, latsitter, lonuser, lonsitter);
+    return (
+      <Step1
+        key={i}
+        token={data.token}
+        firstname={data.firstname}
+        lastname={data.lastname}
+        status={data.status}
+        reviewLength={data.reviews.length}
+        userbio={data.userbio}
+        useraddress={localisation}
+        userphoto={data.userphoto}
+        userprice={data.tarifs[0].tarif1}
+        reviews={data.reviews}
+        reviewsStep={reviewsStep}
+        skillsStep={skillsStep}
+        equimpentsStep={equipmentsStep}
+      />
+    );
+  });
+
+  const dataStep2 = dataSitter.map((data, i) => {
+    // console.log("data", data.reviews);
+    // console.log("tokeeen", data.userphoto);
+    let latuser = 43.292328;
+    let latsitter = data.useraddress[0].latitude;
+    let lonuser = 5.366564;
+    let lonsitter = data.useraddress[0].longitude;
+    const localisation = distance(latuser, latsitter, lonuser, lonsitter);
+    return (
+      <Step2
+        key={i}
+        token={data.token}
+        firstname={data.firstname}
+        lastname={data.lastname}
+        status={data.status}
+        reviewLength={data.reviews.length}
+        userbio={data.userbio}
+        useraddress={localisation}
+        userphoto={data.userphoto}
+        userprice={data.tarifs[0].tarif1}
+        reviews={data.reviews}
+        reviewsStep={reviewsStep}
+        skillsStep={skillsStep}
+        equimpentsStep={equipmentsStep}
+      />
+    );
+  });
+
   if (formProgress == 0) {
-    return <View style={styles.container}>{dataStep0}</View>;
+    return (<View style={styles.container}>{dataStep0}</View>);
   }
 
   if (formProgress == 1) {
-    return (
-      <View style={styles.container}>
-        <Step1
-          reviewsStep={reviewsStep}
-          skillsStep={skillsStep}
-          equimpentsStep={equipmentsStep}
-        />
-      </View>
-    );
+    return (<View style={styles.container}>{dataStep1}</View>);
   }
 
   if (formProgress == 2) {
-    return (
-      <View style={styles.container}>
-        <Step2
-          reviewsStep={reviewsStep}
-          skillsStep={skillsStep}
-          equimpentsStep={equipmentsStep}
-        />
-      </View>
-    );
+    return (<View style={styles.container}>{dataStep2}</View>);
   }
-
-  return (
-    <View style={styles.container}>
-      <Text>Plantsitter1 Screen</Text>
-      <Button
-        title="Go to Landing Screen"
-        onPress={() => navigation.navigate("Landing")}
-      />
-    </View>
-  );
 }
 
 const styles = StyleSheet.create({

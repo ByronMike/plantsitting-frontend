@@ -85,8 +85,7 @@ function Step0(props) {
           <TouchableOpacity
             style={styles.touchableOpacitySelected}
             onPress={() => {
-              handleValidateClick();
-              navigation.navigate("");
+              props.reviewsStep()
             }}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "white" }]}>
@@ -96,8 +95,7 @@ function Step0(props) {
           <TouchableOpacity
             style={styles.touchableOpacityUnselected}
             onPress={() => {
-              handleValidateClick();
-              navigation.navigate("");
+              props.skillsStep()
             }}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "black" }]}>
@@ -107,8 +105,7 @@ function Step0(props) {
           <TouchableOpacity
             style={styles.touchableOpacityUnselected}
             onPress={() => {
-              handleValidateClick();
-              navigation.navigate("");
+              props.equipmentsStep()
             }}
           >
             <Text style={[{ fontWeight: "700", fontSize: 14, color: "black" }]}>
