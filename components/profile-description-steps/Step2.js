@@ -18,12 +18,15 @@ import {
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { useEffect, useState } from "react";
 import CardReviews from "./CardReviews";
+import { useDispatch, useSelector } from "react-redux";
 
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
 const { titleCase } = require("../../modules/titleCase");
 
 function Step2(props) {
+  const user = useSelector((state) => state.userconnexion.value);
+
   useEffect(() => {
     // console.log("datareviews", props.reviews);
   }, []);
