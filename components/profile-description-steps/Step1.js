@@ -6,14 +6,20 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  Animated,
 } from "react-native";
 import { Avatar, Progress, VStack, Center, Box } from "native-base";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faArrowLeftLong,
+  faEllipsisVertical,
+} from "@fortawesome/free-solid-svg-icons/";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { useEffect, useState } from "react";
 import CardReviews from "./CardReviews";
+import ProgressBar from "react-native-animated-progress";
 
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
@@ -32,10 +38,35 @@ function Step1(props) {
     );
   });
 
+  const progress = new Animated.Value(0);
+
+  const updateProgress = () => {
+    Animated.timing(progress, {
+      // tovalue : affichage en pourcentage
+      toValue: 100,
+      duration: 2000,
+    }).start();
+  };
+
+  useEffect(() => {
+    updateProgress();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
-        <View style={styles.barNavigation}></View>
+        <View style={styles.barNavigation}>
+          <TouchableOpacity onPress={() => props.navigationPrevious()}>
+            <FontAwesomeIcon icon={faArrowLeftLong} size={25} color="#000000" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigationHome()}>
+            <FontAwesomeIcon
+              icon={faEllipsisVertical}
+              size={20}
+              color="#000000"
+            />
+          </TouchableOpacity>
+        </View>
         <View style={styles.avatar}>
           <Avatar
             alignSelf="center"
@@ -73,6 +104,20 @@ function Step1(props) {
         <View style={styles.bioContainer}>
           <Text style={styles.title}>Biographie</Text>
           <Text style={styles.userBio}>{props.userbio}</Text>
+          <View style={styles.booking}>
+            <TouchableOpacity
+              style={styles.checkingBouton}
+              onPress={() => {
+                props.navigationSignup();
+              }}
+            >
+              <Text
+                style={[{ fontWeight: "700", fontSize: 12, color: "white" }]}
+              >
+                RÉSERVER LE PLANT-SITTER
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
       <View style={styles.bottomContainer}>
@@ -114,31 +159,41 @@ function Step1(props) {
               <VStack space="md">
                 <VStack mx="4" space="md">
                   <Text style={styles.text}>
-                    Arrosage : {props.skills.arrosage}{" "}
+                    Arrosage : {props.skills.arrosage}%
                   </Text>
-                  <Progress
-                    colorScheme="primary"
-                    value={props.skills.arrosage}
-                    unfilledColor="#FF0000"
+                  <ProgressBar
+                    progress={props.skills.arrosage}
+                    height={7}
+                    backgroundColor="#358600"
+                    animated={true}
                   />
                   <Text style={styles.text}>
-                    Entretiens de jardin : {props.skills.entretien}{" "}
+                    Entretiens de jardin : {props.skills.entretien}%
                   </Text>
-                  <Progress
-                    colorScheme="secondary"
-                    value={props.skills.entretien}
+                  <ProgressBar
+                    progress={props.skills.entretien}
+                    height={7}
+                    backgroundColor="#63C132"
+                    animated={true}
                   />
                   <Text style={styles.text}>
-                    Traitement de maladie : {props.skills.traitement}{" "}
+                    Traitement de maladie : {props.skills.traitement}%
                   </Text>
-                  <Progress
-                    colorScheme="emerald"
-                    value={props.skills.entretien}
+                  <ProgressBar
+                    progress={props.skills.traitement}
+                    height={7}
+                    backgroundColor="#9EE37D"
+                    animated={true}
                   />
                   <Text style={styles.text}>
-                    Autres demandes : {props.skills.autres}
+                    Autres demandes : {props.skills.autres}%
                   </Text>
-                  <Progress colorScheme="warning" value={props.skills.autres} />
+                  <ProgressBar
+                    progress={props.skills.autres}
+                    height={7}
+                    backgroundColor="#AAEFDF"
+                    animated={true}
+                  />
                 </VStack>
               </VStack>
             </Box>
@@ -160,7 +215,13 @@ const styles = StyleSheet.create({
     marginTop: 25,
     width: viewWidth,
   },
-  barNavigation: {},
+  barNavigation: {
+    zIndex: 2,
+    position: "absolute",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: viewWidth,
+  },
   avatar: {},
   textContainer: {},
   nameContainer: {
@@ -183,7 +244,7 @@ const styles = StyleSheet.create({
   userFunction: { marginLeft: 10 },
   textContainer: {},
   middleContainer: {
-    flex: 20,
+    flex: 30,
     width: viewWidth,
   },
   topInformations: { flexDirection: "row", justifyContent: "space-between" },
@@ -225,8 +286,23 @@ const styles = StyleSheet.create({
     color: "#283618",
     paddingTop: 10,
   },
+  booking: {
+    width: viewWidth,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 10,
+  },
+  checkingBouton: {
+    padding: 1,
+    backgroundColor: "green",
+    borderRadius: 5,
+    width: 190,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   bottomContainer: {
-    flex: 55,
+    flex: 45,
     paddingTop: 80,
     width: viewWidth,
   },
