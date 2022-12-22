@@ -99,13 +99,9 @@ function Step0(props) {
             <TouchableOpacity
               style={styles.checkingBouton}
               onPress={() => {
-<<<<<<< HEAD
-                props.navigationSignup();
-=======
                 !user.token
                   ? props.navigationSignup()
                   : props.navigationSummary();
->>>>>>> map
               }}
             >
               <Text
