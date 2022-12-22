@@ -23,6 +23,21 @@ export default function Plantsitter1Screen({ navigation }) {
     setFormProgress(2);
   };
 
+  const navigationPrevious = () => {
+    navigation.navigate("Map")
+  };
+
+  const navigationHome = () => {
+    navigation.navigate("TabNavigator", { screen: "Accueil" })
+  };
+
+  const navigationSignup = () => {
+    setTimeout(() => {
+      navigation.navigate("Signup1Sitter")
+    }, 1000); 
+    
+  };
+
   useEffect(() => {
     console.log("sitter token reducer", sitterToken);
   }, []);
@@ -63,6 +78,9 @@ export default function Plantsitter1Screen({ navigation }) {
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
         equipmentsStep={equipmentsStep}
+        navigationPrevious={navigationPrevious}
+        navigationHome={navigationHome}
+        navigationSignup={navigationSignup}
       />
     );
   });
@@ -92,6 +110,9 @@ export default function Plantsitter1Screen({ navigation }) {
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
         equipmentsStep={equipmentsStep}
+        navigationPrevious={navigationPrevious}
+        navigationHome={navigationHome}
+        navigationSignup={navigationSignup}
       />
     );
   });
@@ -121,6 +142,9 @@ export default function Plantsitter1Screen({ navigation }) {
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
         equipmentsStep={equipmentsStep}
+        navigationPrevious={navigationPrevious}
+        navigationHome={navigationHome}
+        navigationSignup={navigationSignup}
       />
     );
   });
