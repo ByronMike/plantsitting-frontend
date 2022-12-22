@@ -11,6 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 export default function SummaryScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
+  const request = useSelector((state) => state.request.value);
+
+  console.log("request", request);
+  console.log("user", user);
 
   return (
     <View style={styles.container}>
