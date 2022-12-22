@@ -16,10 +16,6 @@ export default function SummaryScreen({ navigation }) {
   const userSitter = useSelector((state) => state.usersitterconnexion.value);
   const request = useSelector((state) => state.request.value);
   const sitterToken = useSelector((state) => state.sitter.value);
-
-  console.log("request", request);
-  console.log("user", user);
-  console.log("sitter", sitter);
   const [dataSitter, setDataSitter] = useState([]);
 
   useEffect(() => {
@@ -28,17 +24,19 @@ export default function SummaryScreen({ navigation }) {
       `http://${REACT_APP_BACKEND_URL}/sitters/sitterProfile/${sitterToken}`
     )
       .then((response) => response.json())
-      .then((dataSitter) => {
-        setDataSitter(dataSitter.sitter);
+      .then((data) => {
+        setDataSitter(data.sitter);
       });
-    console.log("dataSitter", setDataSitter);
+    // console.log("dataSitter test", dataSitter.tarifs[0].tarif1);
+
     // console.log("dataSitter : ", dataSitter.tarifs[0].tarif1);
     // console.log("dataSitter : ", dataSitter.sitter.reviews[0].author.firstName);
   }, []);
 
-  console.log("request ", request);
-  console.log("user", user);
-  console.log("sitter", sitterToken);
+  // console.log("request ", request);
+  // console.log("user", user);
+  // console.log("sitter", sitterToken);
+  console.log("date", request);
 
   // création en BDD du service :
   const handleSubmit = () => {
@@ -69,6 +67,8 @@ export default function SummaryScreen({ navigation }) {
         },
         photoStart: "",
         photoEnd: "",
+        startday: request.startday,
+        endday: request.endday,
         depot: request.depot,
         garde: request.garde,
       }),
@@ -93,8 +93,8 @@ export default function SummaryScreen({ navigation }) {
           voici le récapitulatif de votre demande:
         </Text>
         <Text style={styles.textrecap2}>
-          {userSitter.firstName} peut s'occuper de vos 5 plantes le 17 mars pour
-          un montant de 20€.
+          {dataSitter.firstname} peut s'occuper de vos 5 plantes le 20 mars pour
+          un montant de 8€.
         </Text>
       </View>
 

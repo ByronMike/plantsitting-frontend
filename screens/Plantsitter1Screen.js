@@ -33,7 +33,13 @@ export default function Plantsitter1Screen({ navigation }) {
 
   const navigationSignup = () => {
     setTimeout(() => {
-      navigation.navigate("Signup1Sitter")
+      navigation.navigate("Signup");
+    }, 1000);
+  };
+
+  const navigationSummary = () => {
+    setTimeout(() => {
+      navigation.navigate("Summary");
     }, 1000);
   };
 
@@ -82,6 +88,7 @@ export default function Plantsitter1Screen({ navigation }) {
         navigationPrevious={navigationPrevious}
         navigationHome={navigationHome}
         navigationSignup={navigationSignup}
+        navigationSummary={navigationSummary}
       />
     );
   });
@@ -114,6 +121,7 @@ export default function Plantsitter1Screen({ navigation }) {
         navigationPrevious={navigationPrevious}
         navigationHome={navigationHome}
         navigationSignup={navigationSignup}
+        navigationSummary={navigationSummary}
       />
     );
   });
@@ -146,6 +154,7 @@ export default function Plantsitter1Screen({ navigation }) {
         navigationPrevious={navigationPrevious}
         navigationHome={navigationHome}
         navigationSignup={navigationSignup}
+        navigationSummary={navigationSummary}
       />
     );
   });

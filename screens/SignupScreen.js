@@ -76,7 +76,7 @@ export default function SignupScreen({ navigation }) {
         return false;
       } else {
         console.log("tel ok");
-        navigation.navigate("TabNavigator", { screen: "SummaryScreen" });
+        navigation.navigate("Summary");
       }
     }
   };
