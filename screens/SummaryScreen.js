@@ -12,9 +12,11 @@ export default function SummaryScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
   const request = useSelector((state) => state.request.value);
+  const sitter = useSelector((state) => state.sitter.value);
 
   console.log("request", request);
   console.log("user", user);
+  console.log("sitter", sitter);
 
   return (
     <View style={styles.container}>
