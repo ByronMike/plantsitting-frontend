@@ -9,8 +9,12 @@ import {
 } from "react-native";
 import { Avatar, Row } from "native-base";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faArrowLeftLong,
+  faEllipsisVertical,
+} from "@fortawesome/free-solid-svg-icons/";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { useEffect, useState } from "react";
 import CardReviews from "./CardReviews";
@@ -39,7 +43,18 @@ function Step2(props) {
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
-        <View style={styles.barNavigation}></View>
+        <View style={styles.barNavigation}>
+          <TouchableOpacity onPress={() => props.navigationPrevious()}>
+            <FontAwesomeIcon icon={faArrowLeftLong} size={25} color="#000000" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigationHome()}>
+            <FontAwesomeIcon
+              icon={faEllipsisVertical}
+              size={20}
+              color="#000000"
+            />
+          </TouchableOpacity>
+        </View>
         <View style={styles.avatar}>
           <Avatar
             alignSelf="center"
@@ -77,6 +92,20 @@ function Step2(props) {
         <View style={styles.bioContainer}>
           <Text style={styles.title}>Biographie</Text>
           <Text style={styles.userBio}>{props.userbio}</Text>
+          <View style={styles.booking}>
+            <TouchableOpacity
+              style={styles.checkingBouton}
+              onPress={() => {
+                props.navigationSignup();
+              }}
+            >
+              <Text
+                style={[{ fontWeight: "700", fontSize: 12, color: "white" }]}
+              >
+                RÉSERVER LE PLANT-SITTER
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
       <View style={styles.bottomContainer}>
@@ -131,7 +160,13 @@ const styles = StyleSheet.create({
     marginTop: 25,
     width: viewWidth,
   },
-  barNavigation: {},
+  barNavigation: {
+    zIndex: 2,
+    position: "absolute",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: viewWidth,
+  },
   avatar: {},
   textContainer: {},
   nameContainer: {
@@ -154,7 +189,7 @@ const styles = StyleSheet.create({
   userFunction: { marginLeft: 10 },
   textContainer: {},
   middleContainer: {
-    flex: 20,
+    flex: 30,
     width: viewWidth,
   },
   topInformations: { flexDirection: "row", justifyContent: "space-between" },
@@ -196,8 +231,23 @@ const styles = StyleSheet.create({
     color: "#283618",
     paddingTop: 10,
   },
+  booking: {
+    width: viewWidth,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 10,
+  },
+  checkingBouton: {
+    padding: 1,
+    backgroundColor: "green",
+    borderRadius: 5,
+    width: 190,
+    height: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   bottomContainer: {
-    flex: 55,
+    flex: 45,
     paddingTop: 80,
     width: viewWidth,
   },
