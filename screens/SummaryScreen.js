@@ -11,10 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 export default function SummaryScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
+  const userSitter = useSelector((state) => state.usersitterconnexion.value);
   const request = useSelector((state) => state.request.value);
 
-  console.log("request", request);
-  console.log("user", user);
+  console.log("info request", request);
 
   return (
     <View style={styles.container}>
@@ -28,8 +28,8 @@ export default function SummaryScreen({ navigation }) {
           voici le récapitulatif de votre demande:
         </Text>
         <Text style={styles.textrecap2}>
-          William peut s'occuper de vos 5 plantes le 17 mars pour un montant de
-          20€.
+          {userSitter.firstName} peut s'occuper de vos 5 plantes le 17 mars pour
+          un montant de 20€.
         </Text>
       </View>
 

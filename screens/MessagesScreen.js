@@ -74,7 +74,7 @@ export default function ChatScreen({ navigation }) {
 
     setMessageText("");
   };
-
+  console.log("ok", user, userSitter);
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -119,7 +119,19 @@ export default function ChatScreen({ navigation }) {
                   },
                 ]}
               >
-                <Text style={styles.messageText}>{message.text}</Text>
+                {message.username === userSitter.firstName ? (
+                  <>
+                    <Text style={styles.messageText}>{message.text}</Text>
+                    <Text style={styles.messageText}>
+                      {userSitter.firstName}
+                    </Text>
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.messageText}>{message.text}</Text>
+                    <Text style={styles.messageText}>{user.firstName}</Text>
+                  </>
+                )}
               </View>
               <Text style={styles.timeText}>
                 {new Date(message.createdAt).getHours()}:
@@ -226,6 +238,10 @@ const styles = StyleSheet.create({
   },
   messageText: {
     color: "white",
+    fontWeight: "400",
+  },
+  messageName: {
+    color: "black",
     fontWeight: "400",
   },
   timeText: {
