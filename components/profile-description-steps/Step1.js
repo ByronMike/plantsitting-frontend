@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   progressContainer: {
-    paddingTop: 60,
+    paddingTop: 30,
   },
   text: {
     textAlign: "center",

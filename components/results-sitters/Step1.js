@@ -92,8 +92,9 @@ function Step1() {
             flexGrow: 1,
             justifyContent: "flex-start",
             alignItems: "center",
-            marginHorizontal: 20,
-            paddingBottom: 250,
+            marginHorizontal: Platform.OS === "ios" ? 20 : 0,
+            paddingBottom: Platform.OS === "ios" ? 250 : 250,
+            minHeight: 400,
           }}
         >
           {plantsitters}
@@ -109,12 +110,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "#F6F5F1",
-  },
-  container2: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    width: "100%",
-    paddingBottom: 400,
   },
   textbienvenue: {
     fontSize: 18,

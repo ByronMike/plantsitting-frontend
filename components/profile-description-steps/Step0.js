@@ -155,6 +155,7 @@ function Step0(props) {
                   justifyContent: "flex-start",
                   alignItems: "center",
                   minHeight: 400,
+                  paddingBottom: 100,
                   // marginHorizontal: 20,
                 }}
               >

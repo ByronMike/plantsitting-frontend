@@ -35,13 +35,13 @@ export default function MapScreen({ navigation }) {
       </View>
       <View style={styles.container2}>
         {isEnabled ? (
-          <Text>
+          <View>
             <Step0 />
-          </Text>
+          </View>
         ) : (
-          <Text>
+          <View>
             <Step1 />
-          </Text>
+          </View>
         )}
       </View>
     </View>
