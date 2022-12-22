@@ -9,7 +9,7 @@ import Step2 from "../components/profile-description-steps/Step2";
 
 export default function Plantsitter1Screen({ navigation }) {
   const dispatch = useDispatch();
-  const userToken = useSelector((state) => state.sitter.value);
+  const sitterToken = useSelector((state) => state.sitter.value);
   const [dataSitter, setDataSitter] = useState([]);
 
   const [formProgress, setFormProgress] = useState(0);
@@ -23,13 +23,29 @@ export default function Plantsitter1Screen({ navigation }) {
     setFormProgress(2);
   };
 
+  const navigationPrevious = () => {
+    navigation.navigate("Map");
+  };
+
+  const navigationHome = () => {
+    navigation.navigate("TabNavigator", { screen: "Accueil" });
+  };
+
+  const navigationSignup = () => {
+    setTimeout(() => {
+      navigation.navigate("Signup1Sitter")
+    }, 1000);
+  };
+
   useEffect(() => {
-    console.log("token reducer", userToken);
+    console.log("sitter token reducer", sitterToken);
   }, []);
 
   useEffect(() => {
     // fetch pour les informations du Sitter
-    fetch(`http://${REACT_APP_BACKEND_URL}/sitters/sitterProfile/${userToken}`)
+    fetch(
+      `http://${REACT_APP_BACKEND_URL}/sitters/sitterProfile/${sitterToken}`
+    )
       .then((response) => response.json())
       .then((dataSitter) => {
         setDataSitter([dataSitter.sitter]);
@@ -63,6 +79,9 @@ export default function Plantsitter1Screen({ navigation }) {
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
         equipmentsStep={equipmentsStep}
+        navigationPrevious={navigationPrevious}
+        navigationHome={navigationHome}
+        navigationSignup={navigationSignup}
       />
     );
   });
@@ -92,6 +111,9 @@ export default function Plantsitter1Screen({ navigation }) {
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
         equipmentsStep={equipmentsStep}
+        navigationPrevious={navigationPrevious}
+        navigationHome={navigationHome}
+        navigationSignup={navigationSignup}
       />
     );
   });
@@ -121,6 +143,9 @@ export default function Plantsitter1Screen({ navigation }) {
         reviewsStep={reviewsStep}
         skillsStep={skillsStep}
         equipmentsStep={equipmentsStep}
+        navigationPrevious={navigationPrevious}
+        navigationHome={navigationHome}
+        navigationSignup={navigationSignup}
       />
     );
   });
