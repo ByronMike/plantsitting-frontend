@@ -187,14 +187,16 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   scroll: {
-    margin: 25,
+    marginTop: 25,
+    marginHorizontal: 50,
   },
   cards: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderStyle: "solid",
     borderColor: "white",
-    marginHorizontal: 38,
-    margin: 20,
+    marginHorizontal: 43,
+    // margin: 20,
+    width: 380,
   },
   photo: {
     width: 242,

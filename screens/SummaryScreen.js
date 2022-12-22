@@ -11,12 +11,17 @@ import { useDispatch, useSelector } from "react-redux";
 export default function SummaryScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
+  const userSitter = useSelector((state) => state.usersitterconnexion.value);
   const request = useSelector((state) => state.request.value);
   const sitter = useSelector((state) => state.sitter.value);
 
+<<<<<<< HEAD
   console.log("request", request);
   console.log("user", user);
   console.log("sitter", sitter);
+=======
+  console.log("info request", request);
+>>>>>>> 1cf216e19f252e412bc83a41d52812eaee1e23fe
 
   return (
     <View style={styles.container}>
@@ -30,8 +35,8 @@ export default function SummaryScreen({ navigation }) {
           voici le récapitulatif de votre demande:
         </Text>
         <Text style={styles.textrecap2}>
-          William peut s'occuper de vos 5 plantes le 17 mars pour un montant de
-          20€.
+          {userSitter.firstName} peut s'occuper de vos 5 plantes le 17 mars pour
+          un montant de 20€.
         </Text>
       </View>
 

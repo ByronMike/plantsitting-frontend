@@ -27,7 +27,7 @@ function Step1() {
   console.log("choix", userchoose);
 
   useEffect(() => {
-    // console.log("test useEffect");
+    console.log("test useEffect");
     fetch(`http://${REACT_APP_BACKEND_URL}/sitters/listsitters`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

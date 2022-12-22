@@ -54,7 +54,6 @@ import userconnexion from "./reducers/userconnexion";
 import usersitterconnexion from "./reducers/usersitterconnexion";
 import request from "./reducers/request";
 import sitter from "./reducers/sitter";
-import sitter from "./reducers/sitter";
 
 const reducers = combineReducers({
   user,
