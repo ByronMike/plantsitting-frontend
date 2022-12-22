@@ -22,8 +22,10 @@ import CardReviews from "./CardReviews";
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
 const { titleCase } = require("../../modules/titleCase");
+import { useDispatch, useSelector } from "react-redux";
 
 function Step0(props) {
+  const user = useSelector((state) => state.userconnexion.value);
   useEffect(() => {
     // console.log("datareviews", props.reviews);
   }, []);
@@ -97,7 +99,13 @@ function Step0(props) {
             <TouchableOpacity
               style={styles.checkingBouton}
               onPress={() => {
+<<<<<<< HEAD
                 props.navigationSignup();
+=======
+                !user.token
+                  ? props.navigationSignup()
+                  : props.navigationSummary();
+>>>>>>> map
               }}
             >
               <Text
