@@ -24,18 +24,17 @@ export default function Plantsitter1Screen({ navigation }) {
   };
 
   const navigationPrevious = () => {
-    navigation.navigate("Map")
+    navigation.navigate("Map");
   };
 
   const navigationHome = () => {
-    navigation.navigate("TabNavigator", { screen: "Accueil" })
+    navigation.navigate("TabNavigator", { screen: "Accueil" });
   };
 
   const navigationSignup = () => {
     setTimeout(() => {
       navigation.navigate("Signup1Sitter")
-    }, 1000); 
-    
+    }, 1000);
   };
 
   useEffect(() => {
@@ -44,7 +43,9 @@ export default function Plantsitter1Screen({ navigation }) {
 
   useEffect(() => {
     // fetch pour les informations du Sitter
-    fetch(`http://${REACT_APP_BACKEND_URL}/sitters/sitterProfile/${sitterToken}`)
+    fetch(
+      `http://${REACT_APP_BACKEND_URL}/sitters/sitterProfile/${sitterToken}`
+    )
       .then((response) => response.json())
       .then((dataSitter) => {
         setDataSitter([dataSitter.sitter]);
