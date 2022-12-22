@@ -1,9 +1,41 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Animated } from "react-native";
+import { useEffect, useState } from "react";
+import LottieView from "lottie-react-native";
 import ButtonSkip from "../components/buttons/ButtonSkip";
 
 export default function CongratulationScreen({ navigation }) {
+  
+  const [animationProgress, setAnimationProgress] = useState(
+    new Animated.Value(0)
+  );
+  const [isAnimationVisible, setIsAnimationVisible] = useState(false);
+
+  useEffect(() => {
+    
+      animationProgress.setValue(0);
+  
+      setIsAnimationVisible(true);
+  
+      Animated.timing(animationProgress, {
+        toValue: 0.8,
+        duration: 2500,
+        useNativeDriver: true,
+      }).start(() => {
+        setIsAnimationVisible(false);
+      });
+    
+  }, []);
+
   return (
     <View style={styles.container}>
+      {isAnimationVisible && (
+        <LottieView
+          style={styles.lottie}
+          source={require("../assets/leaves.json")}
+          progress={animationProgress}
+          resizeMode="cover"
+        />
+      )}
       <View style={styles.buttonskip}>
         <TouchableOpacity onPress={() => navigation.navigate("Assessment")}>
           <ButtonSkip />

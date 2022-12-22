@@ -34,7 +34,7 @@ export default function Plantsitter1Screen({ navigation }) {
   const navigationSignup = () => {
     setTimeout(() => {
       navigation.navigate("Signup1Sitter")
-    }, 1000);
+    }, 2000);
   };
 
   useEffect(() => {

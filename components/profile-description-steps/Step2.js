@@ -6,8 +6,10 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  Animated,
 } from "react-native";
 import { Avatar, Row } from "native-base";
+import LottieView from "lottie-react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -24,6 +26,25 @@ const viewWidth = wp("90%", screenWidth);
 const { titleCase } = require("../../modules/titleCase");
 
 function Step2(props) {
+  const [animationProgress, setAnimationProgress] = useState(
+    new Animated.Value(0)
+  );
+  const [isAnimationVisible, setIsAnimationVisible] = useState(false);
+
+  function handlePressAnimation() {
+    animationProgress.setValue(0);
+
+    setIsAnimationVisible(true);
+
+    Animated.timing(animationProgress, {
+      toValue: 1,
+      duration: 2500,
+      useNativeDriver: true,
+    }).start(() => {
+      setIsAnimationVisible(false);
+    });
+  }
+
   useEffect(() => {
     // console.log("datareviews", props.reviews);
   }, []);
@@ -42,6 +63,14 @@ function Step2(props) {
 
   return (
     <View style={styles.container}>
+      {isAnimationVisible && (
+        <LottieView
+          style={styles.lottie}
+          source={require("../../assets/fallingLeaves.json")}
+          progress={animationProgress}
+          resizeMode="cover"
+        />
+      )}
       <View style={styles.topContainer}>
         <View style={styles.barNavigation}>
           <TouchableOpacity onPress={() => props.navigationPrevious()}>
@@ -97,6 +126,7 @@ function Step2(props) {
               style={styles.checkingBouton}
               onPress={() => {
                 props.navigationSignup();
+                handlePressAnimation();
               }}
             >
               <Text

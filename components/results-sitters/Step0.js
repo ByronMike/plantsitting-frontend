@@ -22,6 +22,7 @@ export default function MapScreen({ navigation }) {
   const [currentPosition, setCurrentPosition] = useState();
   const [stateReducer, setStateReducer] = useState(request);
   const [matchingSitters, setMatchingSitters] = useState([]);
+  const [isAnimationVisible, setIsAnimationVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -29,14 +30,16 @@ export default function MapScreen({ navigation }) {
 
       if (status === "granted") {
         Location.watchPositionAsync({ distanceInterval: 30 }, (location) => {
+          console.log("position :", location.coords);
+          // console.log("currentposition", currentPosition.longitude);
           setCurrentPosition(location.coords);
           setStateReducer({
             ...stateReducer,
-            lat: location.coords.latitude,
-            lon: location.coords.longitude,
+            // latitude: location.coords.latitude,
+            // longitude: location.coords.longitude,
           });
           dispatch(userRequest(stateReducer));
-          console.log("request stateReducer", stateReducer);
+          // console.log("request stateReducer", stateReducer);
         });
       }
     })();
@@ -65,7 +68,7 @@ export default function MapScreen({ navigation }) {
   }, []);
 
   const positionSitter = matchingSitters.map((data, i) => {
-    console.log("user places longitude", data.useraddress[0].latitude);
+    // console.log("user places longitude", data.useraddress[0].latitude);
 
     return (
       <Marker
@@ -111,7 +114,14 @@ export default function MapScreen({ navigation }) {
         }}
         style={{ flex: 1, width: "100%", height: "100%" }}
       >
-        <Marker coordinate={currentPosition} />
+        {currentPosition && (
+          <Marker
+            coordinate={{
+              latitude: currentPosition.latitude,
+              longitude: currentPosition.longitude,
+            }}
+          />
+        )}
         {positionSitter}
       </MapView>
     </View>
