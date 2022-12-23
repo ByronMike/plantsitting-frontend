@@ -128,7 +128,7 @@ function Step2(props) {
               style={styles.checkingBouton}
               onPress={() => {
                 handlePressAnimation();
-                !user.token
+              !user.token
                   ? props.navigationSignup()
                   : props.navigationSummary();
               }}

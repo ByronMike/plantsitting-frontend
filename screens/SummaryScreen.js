@@ -18,6 +18,8 @@ export default function SummaryScreen({ navigation }) {
   const sitterToken = useSelector((state) => state.sitter.value);
   const [dataSitter, setDataSitter] = useState([]);
 
+  const [dataService, setDataService] = useState({});
+
   useEffect(() => {
     // fetch pour les informations du Sitter
     fetch(
@@ -31,6 +33,7 @@ export default function SummaryScreen({ navigation }) {
 
     // console.log("dataSitter : ", dataSitter.tarifs[0].tarif1);
     // console.log("dataSitter : ", dataSitter.sitter.reviews[0].author.firstName);
+    console.log("user", user);
   }, []);
 
   // console.log("request ", request);
@@ -38,47 +41,51 @@ export default function SummaryScreen({ navigation }) {
   // console.log("sitter", sitterToken);
   console.log("date", request);
 
+  useEffect(() => {
+    setDataService({
+      usertoken: user.token,
+      sittertoken: sitterToken,
+      equipment: dataSitter.equipment,
+      skills: {
+        arrosage: request.arrosage,
+        entretien: request.entretien,
+        traitement: request.traitement,
+        autres: request.autre,
+      },
+      plant1: request.plantQty1,
+      plant2: request.plantQty5,
+      plant3: request.plantQty15,
+      // tarif1: dataSitter.tarifs[0].tarif1,
+      // tarif2: dataSitter.tarifs[0].tarif2,
+      // tarif3: dataSitter.tarifs[0].tarif3,
+      location: {
+        cityName: "",
+        zipCode: "",
+        latitude: request.lat,
+        longitude: request.lon,
+      },
+      photoStart: "",
+      photoEnd: "",
+      startday: request.startday,
+      endday: request.endday,
+      depot: request.depot,
+      garde: request.garde,
+    });
+  }, []);
+
   // création en BDD du service :
   const handleSubmit = () => {
     fetch(`http://${REACT_APP_BACKEND_URL}/services/newservice`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        usertoken: user.token,
-        sittertoken: sitterToken,
-        equipment: dataSitter.equipment,
-        skills: {
-          arrosage: request.arrosage,
-          entretien: request.entretien,
-          traitement: request.traitement,
-          autres: request.autre,
-        },
-        plant1: request.plantQty1,
-        plant2: request.plantQty5,
-        plant3: request.plantQty15,
-        tarif1: dataSitter.tarifs[0].tarif1,
-        tarif2: dataSitter.tarifs[0].tarif2,
-        tarif3: dataSitter.tarifs[0].tarif3,
-        location: {
-          cityName: "",
-          zipCode: "",
-          latitude: request.lat,
-          longitude: request.lon,
-        },
-        photoStart: "",
-        photoEnd: "",
-        startday: request.startday,
-        endday: request.endday,
-        depot: request.depot,
-        garde: request.garde,
-      }),
+      body: JSON.stringify(dataService),
     })
       .then((response) => response.json())
       .then((data) => {
+        setDataService(data);
         console.log("🚙 data service DONE", data);
-
-        data && navigation.navigate("Payment");
       });
+    navigation.navigate("Payment");
   };
 
   return (
@@ -143,7 +150,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 23,
     lineHeight: 41,
-    letterSpacing: "-0.03",
+    letterSpacing: -0.03,
     color: "#616c38",
     marginBottom: 25,
   },
@@ -153,7 +160,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 28,
     lineHeight: 41,
-    letterSpacing: "-0.03",
+    letterSpacing: -0.03,
     color: "#283618",
     marginBottom: 25,
   },
