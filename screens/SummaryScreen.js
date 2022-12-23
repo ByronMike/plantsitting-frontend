@@ -7,10 +7,79 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { REACT_APP_BACKEND_URL } from "@env";
 
 export default function SummaryScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userconnexion.value);
+  const userSitter = useSelector((state) => state.usersitterconnexion.value);
+  const request = useSelector((state) => state.request.value);
+  const sitterToken = useSelector((state) => state.sitter.value);
+  const [dataSitter, setDataSitter] = useState([]);
+
+  useEffect(() => {
+    // fetch pour les informations du Sitter
+    fetch(
+      `http://${REACT_APP_BACKEND_URL}/sitters/sitterProfile/${sitterToken}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setDataSitter(data.sitter);
+      });
+    // console.log("dataSitter test", dataSitter.tarifs[0].tarif1);
+
+    // console.log("dataSitter : ", dataSitter.tarifs[0].tarif1);
+    // console.log("dataSitter : ", dataSitter.sitter.reviews[0].author.firstName);
+  }, []);
+
+  // console.log("request ", request);
+  // console.log("user", user);
+  // console.log("sitter", sitterToken);
+  console.log("date", request);
+
+  // création en BDD du service :
+  const handleSubmit = () => {
+    fetch(`http://${REACT_APP_BACKEND_URL}/services/newservice`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        usertoken: user.token,
+        sittertoken: sitterToken,
+        equipment: dataSitter.equipment,
+        skills: {
+          arrosage: request.arrosage,
+          entretien: request.entretien,
+          traitement: request.traitement,
+          autres: request.autre,
+        },
+        plant1: request.plantQty1,
+        plant2: request.plantQty5,
+        plant3: request.plantQty15,
+        tarif1: dataSitter.tarifs[0].tarif1,
+        tarif2: dataSitter.tarifs[0].tarif2,
+        tarif3: dataSitter.tarifs[0].tarif3,
+        location: {
+          cityName: "",
+          zipCode: "",
+          latitude: request.lat,
+          longitude: request.lon,
+        },
+        photoStart: "",
+        photoEnd: "",
+        startday: request.startday,
+        endday: request.endday,
+        depot: request.depot,
+        garde: request.garde,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("🚙 data service DONE", data);
+
+        data && navigation.navigate("Payment");
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -24,8 +93,8 @@ export default function SummaryScreen({ navigation }) {
           voici le récapitulatif de votre demande:
         </Text>
         <Text style={styles.textrecap2}>
-          William peut s'occuper de vos 5 plantes le 17 mars pour un montant de
-          20€.
+          {dataSitter.firstname} peut s'occuper de vos 5 plantes le 20 mars pour
+          un montant de 8€.
         </Text>
       </View>
 
@@ -34,10 +103,7 @@ export default function SummaryScreen({ navigation }) {
           Payer et entrer en contact avec le plant-sitter
         </Text>
         <TouchableOpacity style={styles.registerbtn}>
-          <Text
-            style={styles.titreregister}
-            onPress={() => navigation.navigate("Landing")}
-          >
+          <Text style={styles.titreregister} onPress={() => handleSubmit()}>
             SUIVANT
           </Text>
         </TouchableOpacity>

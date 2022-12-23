@@ -7,17 +7,30 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
+  ImageBackground,
 } from "react-native";
 import { userRequest, cleanRequest } from "../../reducers/request";
 import MapView, { Marker } from "react-native-maps";
+import { getToken } from "../../reducers/sitter";
+import { useNavigation } from "@react-navigation/native";
+
 import * as Location from "expo-location";
 import { REACT_APP_BACKEND_URL } from "@env";
 
-export default function MapScreen({ navigation }) {
+function Step0(props) {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const request = useSelector((state) => state.request.value);
   const userchoose = useSelector((state) => state.request.value);
+
+  console.log("token props : ", props.token);
+
+  const testId = (token) => {
+    console.log("token props : ", token);
+    dispatch(getToken(token));
+  };
 
   const [currentPosition, setCurrentPosition] = useState();
   const [stateReducer, setStateReducer] = useState(request);
@@ -69,6 +82,8 @@ export default function MapScreen({ navigation }) {
 
   const positionSitter = matchingSitters.map((data, i) => {
     // console.log("user places longitude", data.useraddress[0].latitude);
+    console.log("user places longitude", data.useraddress[0].latitude);
+    console.log("data photo", data.userphoto);
 
     return (
       <Marker
@@ -77,27 +92,37 @@ export default function MapScreen({ navigation }) {
           latitude: data.useraddress[0].latitude,
           longitude: data.useraddress[0].longitude,
         }}
+        onPress={() => {
+          testId(data.token);
+          navigation.navigate("Plantsitter1");
+        }}
       >
         <View
           style={{
+            width: 40,
+            height: 40,
+            borderRadius: 30 / 2,
             backgroundColor: "#DDA15E",
-            alignItems: "center",
-            justifyContent: "center",
-
-            width: "120%",
-            height: "150%",
-            color: "white",
-            borderRadius: 8,
+            padding: 3,
           }}
         >
           <Text
             style={{
-              color: "#283618",
-              padding: 3,
+              color: "white",
+              fontWeight: "bold",
+              textAlign: "center",
+              fontSize: 11,
+              padding: 1,
+              marginBottom: 2,
             }}
           >
-            {data.firstname} à {data.tarifs[0].tarif1} €
+            {data.tarifs[0].tarif1} €
           </Text>
+          <ImageBackground
+            source={{ uri: data.userphoto }}
+            style={{ width: 40, height: 40 }}
+            imageStyle={{ borderRadius: 30 / 2 }}
+          ></ImageBackground>
         </View>
       </Marker>
     );
@@ -200,3 +225,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 });
+
+export default Step0;

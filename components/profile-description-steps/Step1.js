@@ -21,6 +21,7 @@ import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { useEffect, useState } from "react";
 import CardReviews from "./CardReviews";
 import ProgressBar from "react-native-animated-progress";
+import { useDispatch, useSelector } from "react-redux";
 
 const screenWidth = Dimensions.get("window").width;
 const viewWidth = wp("90%", screenWidth);
@@ -45,6 +46,7 @@ function Step1(props) {
       setIsAnimationVisible(false);
     });
   }
+  const user = useSelector((state) => state.userconnexion.value);
 
   const dataReviews = props.reviews.map((data, i) => {
     // console.log("datouuuu", data);
@@ -136,8 +138,10 @@ function Step1(props) {
             <TouchableOpacity
               style={styles.checkingBouton}
               onPress={() => {
-                props.navigationSignup();
                 handlePressAnimation();
+                !user.token
+                  ? props.navigationSignup()
+                  : props.navigationSummary();
               }}
             >
               <Text
