@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { Input, Box, Checkbox, Button } from "native-base";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { REACT_APP_BACKEND_URL } from "@env";
 // import { login } from "../reducers/userconnexion";
@@ -11,7 +11,10 @@ export default function AssessmentScreen({ navigation }) {
   const user = useSelector((state) => state.userconnexion.value);
   const userSitter = useSelector((state) => state.usersitterconnexion.value);
 
-  console.log("user.token dans le store", user.token);
+  useEffect(() => {
+    console.log("user", user);
+  });
+
   // const { height, width } = useWindowDimensions();
   const [title, setTitle] = useState("");
   const [comment, setComment] = useState("");

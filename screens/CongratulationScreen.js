@@ -37,7 +37,7 @@ export default function CongratulationScreen({ navigation }) {
         />
       )}
       <View style={styles.buttonskip}>
-        <TouchableOpacity onPress={() => navigation.navigate("Assessment")}>
+        <TouchableOpacity onPress={() => navigation.navigate("TabNavigator", { screen: "Accueil" })}>
           <ButtonSkip />
         </TouchableOpacity>
       </View>

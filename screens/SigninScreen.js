@@ -51,7 +51,7 @@ export default function SigninScreen({ navigation }) {
       return false;
     } else {
       console.log("mail ok");
-      navigation.navigate("TabNavigator", { screen: "SummaryScreen" });
+      navigation.navigate("SummaryScreen" );
     }
   };
 

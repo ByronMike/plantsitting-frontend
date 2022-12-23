@@ -74,7 +74,7 @@ export default function SummaryScreen({ navigation }) {
   }, []);
 
   // création en BDD du service :
-  // const handleSubmit = () => {
+  const handleSubmit = () => {
   //   fetch(`http://${REACT_APP_BACKEND_URL}/services/newservice`, {
   //     method: "POST",
   //     headers: { "Content-Type": "application/json" },
@@ -85,8 +85,8 @@ export default function SummaryScreen({ navigation }) {
   //       setDataService(data);
   //       console.log("🚙 data service DONE", data);
   //     });
-    navigation.navigate("Payment");
-  // };
+  navigation.navigate("Payment");
+  };
 
   return (
     <View style={styles.container}>
@@ -109,8 +109,8 @@ export default function SummaryScreen({ navigation }) {
         <Text style={styles.textpayer}>
           Payer et entrer en contact avec le plant-sitter
         </Text>
-        <TouchableOpacity style={styles.registerbtn}>
-          <Text style={styles.titreregister} onPress={() => handleSubmit()}>
+        <TouchableOpacity style={styles.registerbtn} onPress={() => handleSubmit()}>
+          <Text style={styles.titreregister} >
             SUIVANT
           </Text>
         </TouchableOpacity>
