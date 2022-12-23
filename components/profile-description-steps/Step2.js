@@ -27,12 +27,14 @@ const viewWidth = wp("90%", screenWidth);
 const { titleCase } = require("../../modules/titleCase");
 
 function Step2(props) {
+  const user = useSelector((state) => state.userconnexion.value);
   const [animationProgress, setAnimationProgress] = useState(
     new Animated.Value(0)
   );
   const [isAnimationVisible, setIsAnimationVisible] = useState(false);
 
   function handlePressAnimation() {
+    // console.log("user", user)
     animationProgress.setValue(0);
 
     setIsAnimationVisible(true);
@@ -45,7 +47,6 @@ function Step2(props) {
       setIsAnimationVisible(false);
     });
   }
-  const user = useSelector((state) => state.userconnexion.value);
 
   useEffect(() => {
     // console.log("datareviews", props.reviews);
@@ -128,7 +129,7 @@ function Step2(props) {
               style={styles.checkingBouton}
               onPress={() => {
                 handlePressAnimation();
-              !user.token
+                !user.token
                   ? props.navigationSignup()
                   : props.navigationSummary();
               }}

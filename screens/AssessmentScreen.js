@@ -54,7 +54,7 @@ export default function AssessmentScreen({ navigation }) {
     const reponse = await data.json();
     console.log("reponse", reponse);
     if (reponse.result) {
-      navigation.navigate("TabNavigator", { screen: "Accueil" });
+      navigation.navigate("Congratulation");
     }
   };
 

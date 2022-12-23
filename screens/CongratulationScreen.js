@@ -18,7 +18,7 @@ export default function CongratulationScreen({ navigation }) {
   
       Animated.timing(animationProgress, {
         toValue: 0.8,
-        duration: 2500,
+        duration: 3500,
         useNativeDriver: true,
       }).start(() => {
         setIsAnimationVisible(false);

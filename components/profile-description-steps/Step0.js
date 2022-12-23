@@ -26,13 +26,16 @@ const viewWidth = wp("90%", screenWidth);
 const { titleCase } = require("../../modules/titleCase");
 import { useDispatch, useSelector } from "react-redux";
 
+
 function Step0(props) {
+  const user = useSelector((state) => state.userconnexion.value);
   const [animationProgress, setAnimationProgress] = useState(
     new Animated.Value(0)
   );
   const [isAnimationVisible, setIsAnimationVisible] = useState(false);
 
   function handlePressAnimation() {
+     
     animationProgress.setValue(0);
 
     setIsAnimationVisible(true);
@@ -46,9 +49,9 @@ function Step0(props) {
     });
   }
 
-  const user = useSelector((state) => state.userconnexion.value);
+
   useEffect(() => {
-    // console.log("datareviews", props.reviews);
+    console.log("datareviews",user);
   }, []);
 
   const dataReviews = props.reviews.map((data, i) => {
@@ -129,7 +132,7 @@ function Step0(props) {
               style={styles.checkingBouton}
               onPress={() => {
                 handlePressAnimation();
-                user.token
+                !user.token
                   ? props.navigationSignup()
                   : props.navigationSummary();
               }}

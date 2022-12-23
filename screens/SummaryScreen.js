@@ -74,19 +74,19 @@ export default function SummaryScreen({ navigation }) {
   }, []);
 
   // création en BDD du service :
-  const handleSubmit = () => {
-    fetch(`http://${REACT_APP_BACKEND_URL}/services/newservice`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dataService),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setDataService(data);
-        console.log("🚙 data service DONE", data);
-      });
+  // const handleSubmit = () => {
+  //   fetch(`http://${REACT_APP_BACKEND_URL}/services/newservice`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(dataService),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setDataService(data);
+  //       console.log("🚙 data service DONE", data);
+  //     });
     navigation.navigate("Payment");
-  };
+  // };
 
   return (
     <View style={styles.container}>

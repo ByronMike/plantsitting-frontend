@@ -34,6 +34,7 @@ function Step1(props) {
   const [isAnimationVisible, setIsAnimationVisible] = useState(false);
 
   function handlePressAnimation() {
+     console.log("user", user)
     animationProgress.setValue(0);
 
     setIsAnimationVisible(true);
@@ -139,7 +140,7 @@ function Step1(props) {
               style={styles.checkingBouton}
               onPress={() => {
                 handlePressAnimation();
-                user.token
+                !user.token
                   ? props.navigationSignup()
                   : props.navigationSummary();
               }}
