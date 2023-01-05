@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     color: "#283618",
   },
   touchableopacityleft: {
-    width: 50,
+    width: Platform.OS === "ios" ? 55 : 50,
     height: 44,
     alignItems: "center",
     justifyContent: "center",

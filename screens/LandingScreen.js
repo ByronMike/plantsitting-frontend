@@ -11,6 +11,7 @@ export default function LandingScreen({ navigation }) {
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
+          padding: 50,
         }}
       >
         <Text>Landing Screen</Text>
